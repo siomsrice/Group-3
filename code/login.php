@@ -54,7 +54,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 </head>
 
 <body>
-        <style tyoe="text/css"> /*temporary style*/
+        <style type="text/css"> /*temporary style*/
 
             /*for text boxes*/
             #text{
