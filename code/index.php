@@ -3,8 +3,7 @@
 ?>
 
     <div class="index-intro">
-        <?php
-         if(isset($_SESSION["useruid"])){
+        <?php  if(isset($_SESSION["useruid"])){
             echo "<p>Hello, ". $_SESSION["useruid"]  ."</p>";
            
         }
