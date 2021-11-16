@@ -33,6 +33,7 @@ body{
 }
 
 .navLinks li{
+    color: aliceblue;
     margin-left: 20px;
     display: inline-block;
     margin-top: -15px;
@@ -43,7 +44,7 @@ body{
 }
 
 .navLinks li a:hover{
-    color: #0088a9
+    color: white;
 }
 
 button{
@@ -59,3 +60,4 @@ button{
 button:hover{
     background-color: rgba(0,136,169, 0.8);
 }
+

@@ -103,7 +103,7 @@
     }
 
     function loginUser($conn, $username, $pwd){
-        $uidExists = uidExists($conn, $username, $username); //connected to line 52
+        $uidExists = uidExists($conn, $username, $username); //connected to function uidExists
 
         if($uidExists === false){
             header("location: ../login.php?error=userexists");
@@ -126,3 +126,27 @@
             exit();
         }
     }
+
+    function getUsersData($usersId){
+        $array = array();
+        $query = mysqli_query("SELECT * FROM 'users' where 'usersId' =" .$usersId);
+        while($row = mysqli_fetch_assoc($query)){
+
+            $array['usersId'] = $row['usersId'];
+            $array['usersName'] = $row['userName'];
+            $array['usersEmail'] = $row['usersEmail'];
+            $array['usersUid'] = $row['usersUid'];
+            $array['phone'] = $row['phone'];
+            $array['address'] = $row['address'];
+            $array['usertype'] = $row['usertype'];
+        }
+        return $array;
+    } 
+
+    function getId($usersName){
+        $query = mysqli_query("SELECT usersId FROM users where usersName =". $usersName);
+        while($row = mysqli_fetch_assoc($query)){
+            return $row['usersid'];
+        }
+    }
+

@@ -1,7 +1,5 @@
 <?php
     session_start();
-
-
 ?>
 
 <!DOCTYPE html>
@@ -24,11 +22,11 @@
                       <ul class="navLinks">
                         <li><a href="#">Home</a></li>
                         <li><a href="#">About Us</a></li>
-                        <li><a href="#">Blogs</a></li>
+                        <li><a href="#">Blog</a></li>
 
                         <?php //code to check if user is logged in
                             if(isset($_SESSION["useruid"])){
-                                echo "<li><a href='profile.php'>Profile</a></li>";
+                                echo "<li><a href='testing.php'>Profile</a></li>";
                                 echo "<li><a href='includes/logout.inc.php'>Log Out</a></li>";
                             }
 
