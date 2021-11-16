@@ -7,5 +7,11 @@ umu
 dds_romeo
 uwu
 test
+<<<<<<< HEAD
 test2
 >>>>>>> JohnRupert-branch
+=======
+hello
+hi
+
+>>>>>>> LhesterCastucianoBranch
