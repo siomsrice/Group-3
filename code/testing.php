@@ -51,16 +51,15 @@
 
 
     </div>
+    <br>
+    <br>
+    <button><a href="update.php"> UPDATE ACCOUNT </a></button>
 
 
     <br>
     <br>
-    <button><a href="#"> DELETE ACCOUNT </a></button>
-        <?
-            echo "<button><a href='delete.php'></a></button>"
-
-        ?>
-
+    <button><a href="delete.php"> DELETE ACCOUNT </a></button>
+        
 
 <?php
     include_once 'footer.php';}
