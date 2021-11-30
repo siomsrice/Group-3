@@ -30,18 +30,6 @@
                 mysqli_close($conn);
                 ?>
 
-<<<<<<< HEAD
-            <?php
-
-                session_start();
-                session_unset();
-                session_destroy();
-
-                header("location: index.php");
-            ?>
-
-=======
->>>>>>> c41321b9a12f8959484a532e95b26c17b2e30229
 <?php
     include_once 'footer.php';
     ?>
