@@ -202,4 +202,9 @@ class User_model extends CI_Model {
 
         return false;
     }
+
+    public function countUser(){
+        $query = $this->db->get('users');
+        return $query->num_rows();
+    }
 }

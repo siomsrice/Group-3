@@ -4,9 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Users extends CI_Controller {
 
 	public function index(){
-		$this->load->view('welcome_message');
+		#$this->load->view('front/login');
 	}
-    
 
     public function register(){
         $data = array();
@@ -18,7 +17,7 @@ class Users extends CI_Controller {
             $this->user_model->createUser($data);
         }
         #$this->load->view('templates/header');
-        $this->load->view('users/addUser');
+        $this->load->view('front/addUser');
         #$this->load->view('templates/footer');
     }
 
@@ -37,12 +36,13 @@ class Users extends CI_Controller {
                 #print_r($return);
                 $_SESSION['usersId'] = $return[0]['usersId'];
 				$_SESSION['usersUid'] = $return[0]['usersUid'];
-				redirect('users/viewUser');
+				#redirect('front/viewUser');
+                redirect('index.php/users/viewUser');
             }
 
         }
 
-        $this->load->view('users/login');
+        $this->load->view('front/login');
     }
 
     public function viewUser(){
@@ -60,7 +60,7 @@ class Users extends CI_Controller {
             $this->user_model->updateUser($data);
         }
         #Connection to FrontEnd
-        $this->load->view('users/viewUser', $output);
+        $this->load->view('front/viewUser', $output);
     }
 
     public function updateUser(){
@@ -78,7 +78,7 @@ class Users extends CI_Controller {
             $this->user_model->updateUser($data);
         }
         #Connection to FrontEnd
-        $this->load->view('users/updateUser', $output);
+        $this->load->view('front/updateUser', $output);
     }
 
     public function deleteUser(){
@@ -98,20 +98,21 @@ class Users extends CI_Controller {
                 echo "WrongPwd";
             }
         }
-        $this->load->view('users/deleteUser');
+        $this->load->view('front/deleteUser');
     }
 
     public function logout(){
         session_unset('usersId');
 		session_unset('usersUid');
 		session_destroy();
-		redirect(base_url());
+		redirect(base_url().'front/login');
     }
 
     public function profile(){
             #Connection to Front End
-            $this->load->view('users/userProfile');
+            $this->load->view('front/userProfile');
     }   
+
 
 }
 
