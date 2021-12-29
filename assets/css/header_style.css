@@ -6,6 +6,13 @@ body{
     url("public/PC_background.jpg") center/cover no-repeat fixed;
     justify-content: stretch;
     font-family:'Poppins','Ubuntu',sans-serif;
+
+    /*background-image:url(https://wallpapercave.com/w/ZuWkDQd.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 900px;*/
+    
 }
 
 /* --------Dropdown---------- */

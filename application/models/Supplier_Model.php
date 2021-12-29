@@ -38,7 +38,7 @@ class Supplier_model extends CI_Model {
     public function getSupInfo(){
         $this->db->select('*');
         $this->db->from($this->table);
-        $this->db->join('brandCategory', 'supplier.brandID = brandCategory.brandID');
+        $this->db->join('brand', 'supplier.brandID = brand.brandID');
         $result = $this->db->get()->result_array();
         return $result;
     }

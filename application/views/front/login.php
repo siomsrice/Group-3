@@ -35,7 +35,7 @@
                                 <input type="submit" value ="login" class="mt-3 mb-4 col-3">
 							</div>
 						</div>
-						<p class="text-center">Don't have an account? <a href="#"><span>Sign Up</span></a></p>
+						<p class="text-center">Don't have an account? <a href="<?php echo base_url()."index.php/users/register";?>"><span>Sign Up</span></a></p>
 					</form>
 				</div>
 			</div>

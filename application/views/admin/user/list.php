@@ -42,10 +42,10 @@
                         <td><?php echo $user['phone']; ?></td>
                         <td><?php echo $user['address']; ?></td>
                         <td>
-                            <a href="<?php echo base_url().'admin/user/edit/'.$user['u_id'];?>"
+                            <a href="<?php echo base_url().'admin/user/edit/'.$user['usersId'];?>"
                                 class="btn btn-info mb-1"><i
                                     class="fas fa-edit mr-1"></i>Edit</a>
-                            <a href="javascript:void(0);" onclick="deleteUser(<?php echo $user['u_id']; ?>)"
+                            <a href="javascript:void(0);" onclick="deleteUser(<?php echo $user['usersId']; ?>)"
                                 class="btn btn-danger"><i class="fas fa-trash-alt"></i>   Delete</a>
                         </td>
                     </tr>
@@ -61,7 +61,7 @@
     </div>
 </div>
 <script type="text/javascript">
-    
+
 function deleteUser(id) {
     if (confirm("Are you sure you want to delete user?")) {
         window.location.href = '<?php echo base_url().'admin/user/delete/';?>' + id;

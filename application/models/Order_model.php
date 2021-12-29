@@ -43,7 +43,7 @@ class Order_model extends CI_Model {
         return $this->db->insert_id();
     }
 
-    public function counterOrder(){
+    public function countOrder(){
         $query = $this->db->get($this->table);
         return $query->num_rows();
     }

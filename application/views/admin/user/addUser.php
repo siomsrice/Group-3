@@ -1,4 +1,19 @@
-<div class="col-lg-5 bg-dark bg-opacity-50 p-3 mt-5 mx-auto">
+
+<?php
+    $this->load->view('admin/templates/header');
+?>
+
+<!--DISABLED TELEPHONE PATTERN LATER FOR EASIER TESTING-->
+<section class="Form my-4 mx-5 w-100 mx-auto text-white">
+		<div class="container">
+			<div class="row">
+                <div class="col-lg-6 p-4 mt-4">
+                    <h1 class="text-center">PC BUILDER</h1>
+                    <h5 class="text-center">Want a Custom PC Without the Expensive Price tag?</h5>
+                    <img src="<?php echo base_url('styles/PCB_SamplePic.png'); ?>" alt="" class="col-12 pt-5 mx-auto d-block">
+                </div>
+
+				<div class="col-lg-5 bg-dark bg-opacity-50 p-3 mt-5 mx-auto">
 					<h3 class="pb-4 text-center">Create an Account</h3>
                 <?=isset($message) ? $message: "";?>
 					<form method="POST" onsubmit="return checkForm(this);">
@@ -51,13 +66,29 @@
 							</div>
 						</div>
 
+                        <!-- Password Repeat -->
                         <div class="form-row">
+							<div class="col-9 mx-auto">
+								<input type="password" required name="pwdRepeat" placeholder="Confirm Password" class="form-control my-3 p-2" >
+							</div>
+						</div>
+                       
+                        <!-- Submit -->
+						<div class="form-row">
 							<div class="col-lg-12 text-center">
                                 <input type="submit" class="mt-3 mb-4 col-7" value="Submit"></input>
 							</div>
 						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+    <!-- Sign Up End -->
 
-<script>
+
+    <!-- Script for Checkbox -->
+    <script>
     function checkForm(form){
         if(!form.terms.checked) {
         alert("Please indicate that you accept the Terms and Conditions");

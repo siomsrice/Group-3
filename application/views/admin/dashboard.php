@@ -1,5 +1,9 @@
+<?php
+    $this->load->view('admin/templates/header');
+?>
+
+
 <div class="container">
-    
     <div class="summary">
         User/s: <?php echo $countUser ?> <br>
         Supplier/s: <?php echo $countUser ?> <br>
@@ -14,12 +18,12 @@
     <div class="report">
         Supplier Report: <?php echo $countUser ?> <br>
         <tbody id="myTable">
-                <?php if(!empty($resReport)) {?>
-                <?php foreach($resReport as $report) { ?>
+                <?php if(!empty($supReport)) {?>
+                <?php foreach($supReport as $report) { ?>
                     <tr>
                         <td><?php echo $report->supplierId; ?></td>
                         <td><?php echo $report->Name; ?></td>
-                        <td><?php echo $report->itemPrice; ?></td>
+                        <td><?php echo $report->price; ?></td>
                         </tr>
                         <?php } ?>
                         <?php } else {?>
