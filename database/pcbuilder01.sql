@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 14, 2021 at 01:01 AM
+-- Generation Time: Dec 29, 2021 at 04:32 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.30
 
@@ -45,12 +45,22 @@ INSERT INTO `admin` (`adminId`, `username`, `password`, `email`, `date`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `brandcategory`
+-- Table structure for table `brand`
 --
 
-CREATE TABLE `brandcategory` (
+CREATE TABLE `brand` (
   `brandID` int(11) NOT NULL,
   `brandName` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `category`
+--
+
+CREATE TABLE `category` (
+  `categoryId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -60,7 +70,7 @@ CREATE TABLE `brandcategory` (
 --
 
 CREATE TABLE `items` (
-  `ItemId` int(11) UNSIGNED NOT NULL,
+  `itemId` int(11) UNSIGNED NOT NULL,
   `supplierId` int(11) NOT NULL,
   `itemName` varchar(256) NOT NULL,
   `itemBrand` varchar(256) NOT NULL,
@@ -142,7 +152,8 @@ INSERT INTO `users` (`usersId`, `firstName`, `usersEmail`, `usersUid`, `usersPwd
 (20, 'asd', 'gmail@gmail.com', 'testtt', '202cb962ac59075b964b07152d234b70', 123, 'address', 'Buyer', 'zxc', 'Active', '', 'Agree'),
 (21, 'newfirstname1', 'newemail1@gmail.com', 'newsername1', '202cb962ac59075b964b07152d234b70', 12345, 'new address', 'Buyer', 'newlastname1', 'Active', '', 'Agree'),
 (22, 'namename', 'mail@gmail.com', 'useruser', '202cb962ac59075b964b07152d234b70', 123, 'addaddress', 'Buyer', 'sursur', 'Inactive', '', 'Agree'),
-(23, 'mark cedrick', 'markcedrick@gmail.com', 'markcedqt', '202cb962ac59075b964b07152d234b70', 19239821, 'mark address', 'Buyer', 'doria', 'Inactive', '', 'Agree');
+(23, 'mark cedrick', 'markcedrick@gmail.com', 'markcedqt', '202cb962ac59075b964b07152d234b70', 19239821, 'mark address', 'Buyer', 'doria', 'Inactive', '', 'Agree'),
+(24, 'testing1', 'testing@gmail.com', 'testing3', '202cb962ac59075b964b07152d234b70', 12345, 'testingadd', 'Buyer', 'testing2', 'Active', '', 'Agree');
 
 --
 -- Indexes for dumped tables
@@ -155,16 +166,22 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`adminId`);
 
 --
--- Indexes for table `brandcategory`
+-- Indexes for table `brand`
 --
-ALTER TABLE `brandcategory`
+ALTER TABLE `brand`
   ADD PRIMARY KEY (`brandID`);
+
+--
+-- Indexes for table `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`categoryId`);
 
 --
 -- Indexes for table `items`
 --
 ALTER TABLE `items`
-  ADD PRIMARY KEY (`ItemId`);
+  ADD PRIMARY KEY (`itemId`);
 
 --
 -- Indexes for table `order`
@@ -195,16 +212,22 @@ ALTER TABLE `admin`
   MODIFY `adminId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `brandcategory`
+-- AUTO_INCREMENT for table `brand`
 --
-ALTER TABLE `brandcategory`
+ALTER TABLE `brand`
   MODIFY `brandID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `category`
+--
+ALTER TABLE `category`
+  MODIFY `categoryId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `ItemId` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `itemId` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `order`
@@ -222,7 +245,7 @@ ALTER TABLE `supplier`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `usersId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `usersId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
