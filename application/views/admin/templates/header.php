@@ -32,8 +32,15 @@
                             <div class="dropdown">
                                 <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-search"></i></button>
                                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-                                        <li><a class="dropdown-item" href="#">Manage User</a></li>
-                                        <li><a class="dropdown-item" href="<?php echo base_url(); 'admin/createUser';?>">Create User</a></li>
+                                        <a href="<?php echo base_url()."index.php/admin/manageuser"?>" class="nav-item nav-link mx-3">Manage User</a> 
+
+                                        <!--
+                                            *removed php tags*
+                                        <li><a href=" /* echo base_url(); 'index.php/admin/register'*/?>" class="dropdown-item" >Create User</a></li>
+                                        <li><a class="dropdown-item" href="/* echo base_url(); 'index.php/admin/register';*/?>">testing</a></li>
+                                        -->
+                                        
+                                        <a href="<?php echo base_url()."index.php/admin/register"?> "class="nav-item nav-link mx-3">Create User</a> 
                                 </ul>
                             </div>
 
@@ -56,8 +63,8 @@
                             <div class="dropdown">
                                 <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-search"></i></button>
                                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-                                        <li><a class="dropdown-item" href="#">Manage Item/s </a></li>
-                                        <li><a class="dropdown-item" href="#">Create Item/s </a></li>
+                                        <a href="<?php echo base_url()."index.php/admin/manageitems"?> "class="nav-item nav-link mx-3">Manage Item/s</a> 
+                                        <a href="<?php echo base_url()."index.php/admin/createitem"?> "class="nav-item nav-link mx-3">Create Item/s</a> 
                                 </ul>
                             </div>
 
@@ -72,6 +79,7 @@
                                 <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-search"></i></button>
                                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
                                         <li><a class="dropdown-item" href="#">Logout </a></li> 
+                                        <a href="<?php echo base_url()."index.php/admin/logout"?>" class="nav-item nav-link mx-3">Logout</a> 
                                 </ul>
                             </div>       
                     </div>

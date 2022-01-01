@@ -14,6 +14,19 @@ class Item_model extends CI_Model {
         return $result;
     }
 
+    public function getItemss($itemId = null){
+        if(isset($itemId) && $itemId != null){
+            $this->db->where('itemId', $itemId);
+        }
+        
+        $query = $this->db->get($this->table);
+
+        #Test if get is working
+        //echo $this->db->last_query(). '<br>'; 
+
+        return $query->result_array();
+    }
+
     public function getSingleItem($id){
         $this->db->where('ItemId', $id);
         $item = $this->db->get($this->table)->row_array();

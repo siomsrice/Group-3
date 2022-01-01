@@ -64,11 +64,11 @@ class Admin extends CI_Controller {
             $data['countDeliveredOrders'] = $this->Order_model->countDeliveredOrders();
             $data['countRejectedOrders'] = $this->Order_model->countRejectOrders();
 
-            $supReport = $this->Admin_model->getSupReport();
+            /*$supReport = $this->Admin_model->getSupReport();
             $data['supReport'] = $supReport;
-
+            
             $itemReport = $this->Admin_model->itemReport();
-            $data['itemReport'] = $itemReport;
+            $data['itemReport'] = $itemReport;*/
             $this->load->view('admin/dashboard', $data);
         }
     }
@@ -102,7 +102,7 @@ class Admin extends CI_Controller {
         session_unset('adminId');
 		session_unset('username');
 		session_destroy();
-		redirect(base_url().'front/login');
+		redirect(base_url().'admin/dashboard');
     }
 
 
@@ -161,8 +161,7 @@ class Admin extends CI_Controller {
         $data = $this->input->post();
         if(isset($data) && $data != null){
             $this->load->model('user_model');
-            $return = $this->user_model->deleteUser($data['pwdRepeat'], $data['usersId']);
-
+            $return = $this->user_model->deleteUser($data['usersId']);
             if($return == true){
                 session_unset('usersId');
                 session_unset('usersUid');
@@ -173,8 +172,92 @@ class Admin extends CI_Controller {
                 echo "WrongPwd";
             }
         }
-        $this->load->view('front/deleteUser');
+        $this->load->view('admin/deleteUser');
     }
+
+    public function manageuser(){
+        $this->load->model('User_model');
+        $users = $this->User_model->getUsers();
+        $data['users'] = $users;
+        $this->load->view('admin/user/list', $data);
+    }
+
+    public function manageitems(){
+        $this->load->model('Item_model');
+        $items = $this->Item_model->getItem();
+        $data['items'] = $items;
+        $this->load->view('admin/items/list', $data);
+    }
+
+    public function createitem(){
+        $this->load->helper('common_helper');
+        $this->load->model('Supplier_model');
+        $supplier = $this->Supplier_model->getSuppliers();
+
+        $config['upload_path'] = './public/uploads/items/';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+
+        #$config['encrypt_name'] = true;
+
+        $this->load->library('upload', $config);
+
+        $this->load->library('form_validation');
+
+        $this->form_validation->set_error_delimiters('<p class="invalid-feedback">','</p>');
+        $this->form_validation->set_rules('name', 'Item name','trim|required');
+        $this->form_validation->set_rules('about', 'About','trim|required');
+        $this->form_validation->set_rules('price', 'Price','trim|required');
+        $this->form_validation->set_rules('sname', 'Supplier name','trim|required');
+
+        if($this->form_validation->run() == true){
+            if(!empty($_FILES['image']['name'])){
+                #image is selected
+                if($this->upload->do_upload('image')){
+                    #upload file successfully
+                    $data = $this->upload->data();
+
+                    #resize the image
+                    resizeImage($config['upload_path'].$data['file_name'], $config['upload_path'].'thumb/'.$data['file_name'], 300,270);
+
+                    resizeImage($config['upload_path'].$data['file_name'], $config['upload_path'].'front_thumb/'.$data['file_name'], 1120,270);
+
+                    $formArray['itemImg'] = $data['file_name'];
+                    $formArray['itemName'] = $this->input->post('name');
+                    $formArray['itemDesc'] = $this->input->post('about');
+                    $formArray['price'] = $this->input->post('price');
+                    $formArray['supplierId'] = $this->input->post('sname');
+
+                    $this->Item_model->create($formArray);
+
+                    $this->session->set_flashdata('item_success', 'Item added successfully');
+                    redirect(base_url().'admin/manageitems');
+                }
+
+                else{
+                    $error = $this->upload->display_errors("<p class='invalid-feedback'>","</p>");
+                    $data['errorImageUpload'] = $error; 
+                    $data['supply'] = $supplier;
+                    $this->load->view('admin/items/add_item', $data);
+                }
+            } else {
+                #add item data w/out img
+                $formArray['itemName'] = $this->input->post('name');
+                $formArray['itemDesc'] = $this->input->post('about');
+                $formArray['price'] = $this->input->post('price');
+                $formArray['supplierId'] = $this->input->post('sname');
+
+                $this->Item_model->create($formArray);
+
+                $this->session->set_flashdata('item_success', 'Item added successfully');
+                redirect(base_url().'admin/manageitems');
+            }
+
+        } else{
+            $supply_data['supply'] = $supplier;
+            $this->load->view('admin/items/add_item', $supply_data);
+        }
+    }
+
 
 }
 

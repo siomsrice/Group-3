@@ -1,3 +1,7 @@
+<?php
+    $this->load->view('admin/templates/header');
+?>
+
 <div class="container">
     <div class="container shadow-container">
         <?php if($this->session->flashdata('success') != ""):?>
