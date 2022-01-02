@@ -47,16 +47,16 @@
                             <div class="dropdown">
                                 <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-search"></i></button>
                                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-                                        <li><a class="dropdown-item" href="#">Manage Supplier</a></li>
-                                        <li><a class="dropdown-item" href="#">Create Supplier</a></li>
+                                    <a href="<?php echo base_url()."index.php/admin/supplier"?> "class="nav-item nav-link mx-3">Manage Supplier</a> 
+                                    <a href="<?php echo base_url()."index.php/admin/createsupplier"?> "class="nav-item nav-link mx-3">Create Supplier</a> 
                                 </ul>
                             </div>
 
                             <div class="dropdown">
                                 <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-search"></i></button>
                                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-                                        <li><a class="dropdown-item" href="#">Manage BrandCategories</a></li>
-                                        <li><a class="dropdown-item" href="#">Create BrandCategories</a></li>
+                                        <a href="<?php echo base_url()."index.php/admin/category"?> "class="nav-item nav-link mx-3">Manage Category</a> 
+                                        <a href="<?php echo base_url()."index.php/admin/createcategory"?> "class="nav-item nav-link mx-3">Create Category</a>          
                                 </ul>
                             </div>
 

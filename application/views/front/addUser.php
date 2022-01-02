@@ -10,7 +10,7 @@
                 <div class="col-lg-6 p-4 mt-4">
                     <h1 class="text-center">PC BUILDER</h1>
                     <h5 class="text-center">Want a Custom PC Without the Expensive Price tag?</h5>
-                    <img src="<?php echo base_url('styles/PCB_SamplePic.png'); ?>" alt="" class="col-12 pt-5 mx-auto d-block">
+                    <img src="<?php echo base_url('./public/PCB_SamplePic.png'); ?>" alt="" class="col-12 pt-5 mx-auto d-block">
                 </div>
 
 				<div class="col-lg-5 bg-dark bg-opacity-50 p-3 mt-5 mx-auto">

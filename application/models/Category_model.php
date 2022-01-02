@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit ('No direct script access allowed');
 
 class Category_model extends CI_Model {
   
-    private $table = "brand";
+    private $table = "category";
 
     public function createCategory($cat){
         $this->db->insert($this->table, $cat);
@@ -15,7 +15,7 @@ class Category_model extends CI_Model {
     }
 
     public function getCat($id){
-        $this->db->where('brandID', $id);
+        $this->db->where('categoryId', $id);
         $cat = $this->db->get($this->table)->row_array();
         return $cat;
     }
@@ -26,12 +26,12 @@ class Category_model extends CI_Model {
     }
 
     public function update($id, $cat){
-        $this->db->where('brandID', $id);
+        $this->db->where('categoryId', $id);
         $this->db->update($this->table, $cat);
     }
 
     public function delete($id){
-        $this->db->where('brandID', $id);
+        $this->db->where('categoryId', $id);
         $this->db->delete($this->table);
     }
 

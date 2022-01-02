@@ -83,7 +83,7 @@
 			</div>
 		</div>
 	</section>
-    <!-- Sign Up End -->
+    <!-- HTML End -->
 
 
     <!-- Script for Checkbox -->

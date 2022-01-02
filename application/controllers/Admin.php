@@ -64,11 +64,12 @@ class Admin extends CI_Controller {
             $data['countDeliveredOrders'] = $this->Order_model->countDeliveredOrders();
             $data['countRejectedOrders'] = $this->Order_model->countRejectOrders();
 
-            /*$supReport = $this->Admin_model->getSupReport();
-            $data['supReport'] = $supReport;
+            $supReport = $this->Admin_model->getSupReport();
+            $data['supReport'] = $supReport; 
             
+            /*
             $itemReport = $this->Admin_model->itemReport();
-            $data['itemReport'] = $itemReport;*/
+            $data['itemReport'] = $itemReport; */
             $this->load->view('admin/dashboard', $data);
         }
     }
@@ -94,9 +95,6 @@ class Admin extends CI_Controller {
         $data['supReport'] = $supReport;
         $this->load->view('admin/reports/res_report', $data);
     }
-
-
-
 
     public function logout(){
         session_unset('adminId');
@@ -258,6 +256,137 @@ class Admin extends CI_Controller {
         }
     }
 
+    public function edititem(){
+
+    }
+
+    public function deleteitem(){
+
+    }
+
+    public function category(){
+        $this->load->model('Category_model');
+        $cats = $this->Category_model->getCategory();
+        $cats_data['cats'] = $cats;
+
+        $this->load->view('admin/category/list', $cats_data);
+    }
+
+    public function createcategory(){
+        $this->load->model('Category_model');
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('category', 'Category', 'trim|required');
+
+        if($this->form_validation->run() == true){
+            $cat['categoryName'] = $this->input->post('category');
+            $this->Category_model->createCategory($cat);
+
+            $this->session->set_flashdata('cat_success', 'Category added successfully');
+            redirect(base_url().'admin/category');
+        } else{
+            $this->load->view('admin/category/add_cat');
+        }
+    }
+
+    public function editcategory($id){
+
+    }
+
+    public function deletecategory($id){
+
+    }
+
+    public function supplier(){
+        $this->load->model('Supplier_model');
+        $supplier = $this->Supplier_model->getSuppliers();
+        $supply_data['supplier'] = $supplier;
+        
+        #connection to front end
+        $this->load->view('admin/supplier/list', $supply_data);
+    }
+
+    public function createsupplier(){
+        $this->load->model('Category_model');
+        $cat = $this->Category_model->getCategory();
+        
+        $this->load->helper('common_helper');
+
+        $config['upload_path']          = './public/uploads/restaurant/';
+        $config['allowed_types']        = 'gif|jpg|png|jpeg';
+        #$config['encrypt_name']         = true;
+
+        $this->load->library('upload', $config);
+
+        $this->load->model('Supplier_model');
+        $this->load->library('form_validation');
+
+        $this->form_validation->set_error_delimiters('<p class="invalid-feedback">','</p>');
+        $this->form_validation->set_rules('sup_name', 'Supplier name','trim|required');
+        $this->form_validation->set_rules('email', 'Email','trim|required');
+        $this->form_validation->set_rules('phone', 'Phone','trim|required');
+        $this->form_validation->set_rules('url', 'URL','trim|required');
+        $this->form_validation->set_rules('categoryName', 'category','trim|required');
+        $this->form_validation->set_rules('address', 'Address','trim|required');
+
+        if($this->form_validation->run() == true){
+            
+            if(!empty($_FILES['image']['name'])){
+                #image is seleceted
+                if($this->upload->do_upload('image')){
+                    #file uploaded successfully
+                    $data = $this->upload->data();
+
+                    resizeImage($config['upload_path'].$data['file_name'],$config['upload_path'].'thumb/'.$data['file_name'], 300, 270);
+
+                    #resizeImage()
+
+                    $formArray['Img'] = $data['file_name'];
+                    $formArray['Name'] = $this->input->post('sup_name');
+                    $formArray['Email'] = $this->input->post('email');
+                    $formArray['Phone'] = $this->input->post('phone');
+                    $formArray['Url'] = $this->input->post('url');
+                    $formArray['categoryId'] = $this->input->post('categoryName');
+                    $formArray['address'] = $this->input->post('address');
+
+                    $this->Supplier_model->create($formArray);
+
+                    $this->session->set_flashdata('sup_success','Supplier added successfully');
+                    redirect(base_url().'admin/supplier');
+
+                } else {
+                    #error
+                    $error = $this->upload->display_errors("<p class='invalid-feedback'>","</p>");
+                    $data['errorImageUpload'] = $error;
+                    $data['cats'] = $cat;
+                    $this->load->view('admin/supplier/add_sup', $data);
+                } 
+            } else {
+                 #add supplier data w/out img
+                 $formArray['Name'] = $this->input->post('sup_name');
+                 $formArray['Email'] = $this->input->post('Email');
+                 $formArray['Phone'] = $this->input->post('Phone');
+                 $formArray['Url'] = $this->input->post('Url');
+                 $formArray['categoryId'] = $this->input->post('categoryName');
+                 $formArray['address'] = $this->input->post('Address');
+
+                 $this->Supplier_model->create($formArray);
+
+                 $this->session->set_flashdata('sup_success', 'Supplier added successfully');
+                 redirect(base_url().'admin/supplier');
+            } 
+        } else {
+            $data['cats'] = $cat;
+            $this->load->view('admin/supplier/add_sup', $data);
+        }   
+    }
+
+    public function supplieredit(){
+
+    }
+
+    public function supplierdelete(){
+
+    }
 
 }
 

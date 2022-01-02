@@ -55,7 +55,7 @@
                     <span></span>
                 </div>
                 <div class="form-group">
-                    <label for="itemImg">Food Image</label>
+                    <label for="itemImg">Item Image</label>
                     <input type="file" id="itemImg" name="itemImg" placeholder="Enter Image" class="form-control my-2
                     <?php echo(!empty($errorImageUpload))  ? 'is-invalid' : '';?>">
                     <?php echo (!empty($errorImageUpload)) ? $errorImageUpload : '';?>
@@ -69,6 +69,11 @@
 </div>
 
 <!--HTML END-->
+
+
+<!-- DITO FOOTER -->
+
+<!-- SCRIPTS FOR ERROR HANDLING -->
 
 <script>
     const form = document.getElementById('myForm');
