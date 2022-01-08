@@ -1,11 +1,6 @@
 <?php
     $this->load->view('templates/header');
 ?>
-<style>
-  <?php 
-  include 'assets/css/body_style.css'; 
-  ?>
-  </style>
  
   <!-- featured Section-->
   <section class="page-section portfolio" id="portfolio">
