@@ -1,0 +1,29 @@
+body{
+    background: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.5)),
+    url("PC background.jpg") center/cover no-repeat fixed;
+    justify-content: stretch;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    color: #fff;
+}
+main {
+    color: #fff;
+}
+/* ------Dashboard Style Start------- */
+.card-single {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-single div i {
+    font-size: 3rem;
+}
+/* ------Dashboard Style End------- */
+
+/* ---------Table Style Start-------- */
+.table thead, tbody {
+    color: #fff;
+}
+/* ---------Table Style End-------- */
