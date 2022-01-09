@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 29, 2021 at 04:32 PM
+-- Generation Time: Jan 09, 2022 at 06:05 AM
 -- Server version: 10.4.21-MariaDB
--- PHP Version: 7.3.30
+-- PHP Version: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,24 +33,6 @@ CREATE TABLE `admin` (
   `password` varchar(256) NOT NULL,
   `email` varchar(256) NOT NULL,
   `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `admin`
---
-
-INSERT INTO `admin` (`adminId`, `username`, `password`, `email`, `date`) VALUES
-(1, 'admin', 'admin', 'admin@gmail.com', '2021-12-12 13:44:49');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `brand`
---
-
-CREATE TABLE `brand` (
-  `brandID` int(11) NOT NULL,
-  `brandName` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -107,13 +89,13 @@ CREATE TABLE `order` (
 
 CREATE TABLE `supplier` (
   `supplierId` int(11) NOT NULL,
-  `brandID` int(11) NOT NULL,
+  `categoryID` int(11) NOT NULL,
   `Name` varchar(256) NOT NULL,
   `Email` varchar(256) NOT NULL,
   `Url` varchar(256) NOT NULL,
   `Phone` varchar(256) NOT NULL,
   `Address` text NOT NULL,
-  `Img` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `file_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -138,24 +120,6 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`usersId`, `firstName`, `usersEmail`, `usersUid`, `usersPwd`, `phone`, `address`, `usertype`, `lastName`, `status`, `pwdRepeat`, `terms`) VALUES
-(1, 'Jaime Hanz Sibucao', 'jaimehanzs@gmail.com', 'roove', '$2y$10$pNVGINkm7cxd4z6WCEZi5uILfyPLldmsm3ItvyXiuJmRl3YxjrUia', 0, 'n/a', '', '', NULL, '', 'Agree'),
-(2, 'hanz sibucao', 'jaimehanz.sibucao@tup.edu.ph', 'test', '$2y$10$sPE0.I85X8DsP.FOx5BHjOjSwPfC..vMTVnT/UnJW2/daithqJEQy', 0, 'n/a', '', '', NULL, '', 'Agree'),
-(3, 'signuptest', 'signuptest@gmail.com', '', '202cb962ac59075b964b07152d234b70', 0, 'n/a', '', '', NULL, '', 'Agree'),
-(9, 'update', 'update@gmail.com', 'updatetest', '$2y$10$XDRvaaNXqfPI.6W7uPVsKuMwZGbH2lj3//SINhYQZVBoZEPcxLlXa', 0, 'n/a', '', '', NULL, '', 'Agree'),
-(10, 'update123', 'update132@gmail.com', '', '202cb962ac59075b964b07152d234b70', 0, 'n/a', '', '', NULL, '', 'Agree'),
-(12, 'dbeaver', 'dbeaver@gmail.com', 'dbeavs', '$2y$10$hNolWKBvf7/kZv5vQW6knujRI9f8yyqnXOSzi0yJ3VWd0AEecUJuG', 0, 'n/a', '', '', NULL, '', 'Agree'),
-(19, 'firstname', 'email@gmail.com', 'username4', '202cb962ac59075b964b07152d234b70', 123, '123', 'Buyer', 'lastname', 'Active', '', 'Agree'),
-(20, 'asd', 'gmail@gmail.com', 'testtt', '202cb962ac59075b964b07152d234b70', 123, 'address', 'Buyer', 'zxc', 'Active', '', 'Agree'),
-(21, 'newfirstname1', 'newemail1@gmail.com', 'newsername1', '202cb962ac59075b964b07152d234b70', 12345, 'new address', 'Buyer', 'newlastname1', 'Active', '', 'Agree'),
-(22, 'namename', 'mail@gmail.com', 'useruser', '202cb962ac59075b964b07152d234b70', 123, 'addaddress', 'Buyer', 'sursur', 'Inactive', '', 'Agree'),
-(23, 'mark cedrick', 'markcedrick@gmail.com', 'markcedqt', '202cb962ac59075b964b07152d234b70', 19239821, 'mark address', 'Buyer', 'doria', 'Inactive', '', 'Agree'),
-(24, 'testing1', 'testing@gmail.com', 'testing3', '202cb962ac59075b964b07152d234b70', 12345, 'testingadd', 'Buyer', 'testing2', 'Active', '', 'Agree');
-
---
 -- Indexes for dumped tables
 --
 
@@ -164,12 +128,6 @@ INSERT INTO `users` (`usersId`, `firstName`, `usersEmail`, `usersUid`, `usersPwd
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`adminId`);
-
---
--- Indexes for table `brand`
---
-ALTER TABLE `brand`
-  ADD PRIMARY KEY (`brandID`);
 
 --
 -- Indexes for table `category`
@@ -209,13 +167,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `adminId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `brand`
---
-ALTER TABLE `brand`
-  MODIFY `brandID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `adminId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -245,7 +197,7 @@ ALTER TABLE `supplier`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `usersId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `usersId` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

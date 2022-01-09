@@ -35,8 +35,8 @@ class User_model extends CI_Model {
                 
                 #Insert Data to DB
                 $this->db->insert($this->table, $data);
+            }
         }
-    }
     
 
 

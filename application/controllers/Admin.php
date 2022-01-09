@@ -217,7 +217,7 @@ class Admin extends CI_Controller {
                     #resize the image
                     resizeImage($config['upload_path'].$data['file_name'], $config['upload_path'].'thumb/'.$data['file_name'], 300,270);
 
-                    #resizeImage($config['upload_path'].$data['file_name'], $config['upload_path'].'front_thumb/'.$data['file_name'], 1120,270);
+                    resizeImage($config['upload_path'].$data['file_name'], $config['upload_path'].'front_thumb/'.$data['file_name'], 1120,270);
 
                     $formArray['itemImg'] = $data['file_name'];
                     $formArray['itemName'] = $this->input->post('name');
@@ -306,87 +306,79 @@ class Admin extends CI_Controller {
     }
 
     public function createsupplier(){
-        $this->load->helper('url');
-		$this->load->library('session');
-		$this->load->database();
-        $this->load->model('Supplier_model');
-
+        $this->load->model('Category_model');
+        $cat = $this->Category_model->getCategory();
         
-		$data = array(); 
-		$errorUploadType = $statusMsg = ''; 
-		$this->load->helper('url');
-		$this->load->helper('html');
-	
-		/*Check submit button */
-		if($this->input->post('save'))
-		{
-			// If files are selected to upload 
-			if(!empty($_FILES['files']['name']) && count(array_filter($_FILES['files']['name'])) > 0)
-			{ 
-				$filesCount = count($_FILES['files']['name']); 
-				for($i = 0; $i < $filesCount; $i++)
-				{ 
-					$_FILES['file']['name']     = $_FILES['files']['name'][$i]; 
-					$_FILES['file']['type']     = $_FILES['files']['type'][$i]; 
-					$_FILES['file']['tmp_name'] = $_FILES['files']['tmp_name'][$i]; 
-					$_FILES['file']['error']    = $_FILES['files']['error'][$i]; 
-					$_FILES['file']['size']     = $_FILES['files']['size'][$i]; 
-					
-					// File upload configuration 
-					$uploadPath = 'uploads/files/'; 
-					$config['upload_path'] = $uploadPath; 
-					$config['allowed_types'] = 'jpg|jpeg|png|gif'; 
-					//$config['max_size']    = '100'; 
-					//$config['max_width'] = '1024'; 
-					//$config['max_height'] = '768'; 
-					
-					// Load and initialize upload library 
-					$this->load->library('upload', $config); 
-					$this->upload->initialize($config); 
-					
-					// Upload file to server 
-					if($this->upload->do_upload('file'))
-					{ 
-						// Uploaded file data 
-						$fileData = $this->upload->data(); 
-						$uploadData[$i]['sup_name']=$this->input->post('sup_name');
-						$uploadData[$i]['sup_email']=$this->input->post('sup_email');
-						$uploadData[$i]['sup_url']=$this->input->post('sup_url');
-						$uploadData[$i]['category']=$this->input->post('sup_url');
-						$uploadData[$i]['file_name'] = $fileData['file_name']; 
-						
-					}
-					else
-					{  
-						$errorUploadType .= $_FILES['file']['name'].' | ';  
-					} 
-				} 
-				
-		
-				
-				$errorUploadType = !empty($errorUploadType)?'<br/>File Type Error: '.trim($errorUploadType, ' | '):''; 
-				if(!empty($uploadData))
-				{ 
-					// Insert files data into the database 
-					$insert = $this->Supplier_model->insert($uploadData); 
-					$statusMsg = $insert?'Files uploaded successfully!'.$errorUploadType:'Some problem occurred, please try again.'; 
-                }
-                else
-				{ 
-                    $statusMsg = "Sorry, there was an error uploading your file.".$errorUploadType; 
-                } 
-			}else{ 
-                $statusMsg = 'Please select image files to upload.'; 
-			
-			}
-		}
-		$data['crud'] = $this->Supplier_model->getRows(); 
-         
-        // Pass the files data to view 
-        $data['statusMsg'] = $statusMsg; 
-        $this->load->view('admin/supplier/add_sup', $data); 
-	}
+        $this->load->helper('common_helper');
 
+        $config['upload_path']          = './public/uploads/restaurant/';
+        $config['allowed_types']        = 'gif|jpg|png|jpeg';
+        #$config['encrypt_name']         = true;
+
+        $this->load->library('upload', $config);
+
+        $this->load->model('Supplier_model');
+        $this->load->library('form_validation');
+
+        $this->form_validation->set_error_delimiters('<p class="invalid-feedback">','</p>');
+        $this->form_validation->set_rules('sup_name', 'Supplier name','trim|required');
+        $this->form_validation->set_rules('email', 'Email','trim|required');
+        $this->form_validation->set_rules('phone', 'Phone','trim|required');
+        $this->form_validation->set_rules('url', 'URL','trim|required');
+        $this->form_validation->set_rules('categoryName', 'category','trim|required');
+        $this->form_validation->set_rules('address', 'Address','trim|required');
+
+        if($this->form_validation->run() == true){
+            
+            if(!empty($_FILES['image']['name'])){
+                #image is seleceted
+                if($this->upload->do_upload('image')){
+                    #file uploaded successfully
+                    $data = $this->upload->data();
+
+                    resizeImage($config['upload_path'].$data['file_name'],$config['upload_path'].'thumb/'.$data['file_name'], 300, 270);
+
+                    #resizeImage()
+
+                    $formArray['Img'] = $data['file_name'];
+                    $formArray['Name'] = $this->input->post('sup_name');
+                    $formArray['Email'] = $this->input->post('email');
+                    $formArray['Phone'] = $this->input->post('phone');
+                    $formArray['Url'] = $this->input->post('url');
+                    $formArray['categoryId'] = $this->input->post('categoryName');
+                    $formArray['address'] = $this->input->post('address');
+
+                    $this->Supplier_model->create($formArray);
+
+                    $this->session->set_flashdata('sup_success','Supplier added successfully');
+                    redirect(base_url().'admin/supplier');
+
+                } else {
+                    #error
+                    $error = $this->upload->display_errors("<p class='invalid-feedback'>","</p>");
+                    $data['errorImageUpload'] = $error;
+                    $data['cats'] = $cat;
+                    $this->load->view('admin/supplier/add_sup', $data);
+                } 
+            } else {
+                 #add supplier data w/out img
+                 $formArray['Name'] = $this->input->post('sup_name');
+                 $formArray['Email'] = $this->input->post('Email');
+                 $formArray['Phone'] = $this->input->post('Phone');
+                 $formArray['Url'] = $this->input->post('Url');
+                 $formArray['categoryId'] = $this->input->post('categoryName');
+                 $formArray['address'] = $this->input->post('Address');
+
+                 $this->Supplier_model->create($formArray);
+
+                 $this->session->set_flashdata('sup_success', 'Supplier added successfully');
+                 redirect(base_url().'admin/supplier');
+            } 
+        } else {
+            $data['cats'] = $cat;
+            $this->load->view('admin/supplier/add_sup', $data);
+        }   
+    }
 
     public function supplieredit(){
 

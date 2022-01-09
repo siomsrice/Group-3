@@ -46,7 +46,7 @@
                         <td><?php echo $user['phone']; ?></td>
                         <td><?php echo $user['address']; ?></td>
                         <td>
-                            <a href="<?php echo base_url().'admin/useredit/'.$user['usersId'];?>"
+                            <a href="<?php echo base_url().'admin/user/edit/'.$user['usersId'];?>"
                                 class="btn btn-info mb-1"><i
                                     class="fas fa-edit mr-1"></i>Edit</a>
                             <a href="javascript:void(0);" onclick="deleteUser(<?php echo $user['usersId']; ?>)"

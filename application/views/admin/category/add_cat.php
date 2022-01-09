@@ -7,7 +7,7 @@
     <form action="<?php echo base_url().'admin/createcategory';?>" class="container my-3" method="POST" id="myForm">
         <div class="form-group">
             <label for="category">Category</label>
-            <input type="text" id="category" name="category" class="form-control" placeholder="Enter Category">
+            <input type="text" id="category" class="form-control" placeholder="Enter Category" name="category">
             <?php echo form_error('category'); ?>
             <span></span>
         </div>
