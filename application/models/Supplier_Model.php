@@ -42,5 +42,33 @@ class Supplier_model extends CI_Model {
         $result = $this->db->get()->result_array();
         return $result;
     }
-
+    /* 
+     * Fetch files data from the database 
+     * @param id returns a single record if specified, otherwise all records 
+     */ 
+    public function getRows($id = '')
+    { 
+        $this->db->select('supplierId,categoryID,Name,Email,Url,Phone,Address,file_name'); 
+        $this->db->from($this->table); 
+        if($id)
+        { 
+            $this->db->where('supplierId',$id); 
+            $query = $this->db->get(); 
+            $result = $query->row_array(); 
+        }
+        else
+        { 
+           
+            $query = $this->db->get(); 
+            $result = $query->result_array(); 
+        } 
+        return !empty($result)?$result:false; 
+    } 
+    public function add($data = array())
+    { 
+        $insert = $this->db->insert_batch($this->table,$data); 
+        return $insert?true:false; 
+    } 
 }
+     
+
