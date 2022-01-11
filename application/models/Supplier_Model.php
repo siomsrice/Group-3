@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit ('No direct script access allowed');
 
 class Supplier_model extends CI_Model {
 
-    private $table = "supplier";
+    private $table = "supplier_db";
 
     public function create($formArray){
         $this->db->insert($this->table, $formArray);
@@ -15,18 +15,18 @@ class Supplier_model extends CI_Model {
     }
 
     public function getSupplier($id){
-        $this->db->where('supplierId', $id);
+        $this->db->where('id', $id);
         $supply= $this->db->get($this->table)->row_array();
         return $supply;
     }
 
     public function update($id, $formArray){
-        $this->db->where('supplierId', $id);
+        $this->db->where('id', $id);
         $this->db->update($this->table, $formArray);
     }
 
     public function delete($id){
-        $this->db->where('supplierId', $id);
+        $this->db->where('id', $id);
         $this->db->delete($this->table);
     }
 
@@ -42,17 +42,18 @@ class Supplier_model extends CI_Model {
         $result = $this->db->get()->result_array();
         return $result;
     }
+
     /* 
      * Fetch files data from the database 
      * @param id returns a single record if specified, otherwise all records 
      */ 
     public function getRows($id = '')
     { 
-        $this->db->select('supplierId,categoryID,Name,Email,Url,Phone,Address,file_name'); 
-        $this->db->from($this->table); 
+        $this->db->select('id,sup_name,sup_email,sup_url,sup_phone,file_name'); 
+        $this->db->from('supplier_db'); 
         if($id)
         { 
-            $this->db->where('supplierId',$id); 
+            $this->db->where('id',$id); 
             $query = $this->db->get(); 
             $result = $query->row_array(); 
         }
@@ -64,11 +65,16 @@ class Supplier_model extends CI_Model {
         } 
         return !empty($result)?$result:false; 
     } 
-    public function add($data = array())
+     
+    /* 
+     * Insert file data into the database 
+     * @param array the data for inserting into the table 
+     */ 
+    public function insert($data = array())
     { 
-        $insert = $this->db->insert_batch($this->table,$data); 
+        $insert = $this->db->insert_batch($this->table, $data); 
         return $insert?true:false; 
     } 
-}
-     
 
+
+}

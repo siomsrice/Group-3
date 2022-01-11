@@ -17,7 +17,5 @@
             Password:   <input type="password" name="usersPwd"><br>
             
             <button type="submit"> Update </button>
-            
-            <button type="button"><a href="<?php echo base_url()."index.php/users/userProfile"?>">Cancel</a></button>
         </form>
     </div>
