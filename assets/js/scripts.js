@@ -7,6 +7,8 @@
 // Scripts
 // 
 
+
+
 window.addEventListener('DOMContentLoaded', event => {
 
     // Navbar shrink function
@@ -52,3 +54,5 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
 });
+
+
