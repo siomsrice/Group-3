@@ -35,8 +35,8 @@ class User_model extends CI_Model {
                 
                 #Insert Data to DB
                 $this->db->insert($this->table, $data);
-            }
         }
+    }
     
 
 
@@ -210,5 +210,10 @@ class User_model extends CI_Model {
 
     public function create($formArray){
         $this->db->insert('users', $formArray);
+    }
+
+    public function deletePerm($id){
+        $this->db->where('usersId', $id);
+        $this->db->delete($this->table);
     }
 }

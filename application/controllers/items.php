@@ -1,5 +1,5 @@
 <?php 
-class supplier extends CI_Controller 
+class items extends CI_Controller 
 {
 	public function __construct()
 	{
@@ -7,11 +7,12 @@ class supplier extends CI_Controller
 		parent::__construct();
 		$this->load->helper('url');
 		$this->load->library('session');
-		$this->load->model('Supplier_Model'); 
+		$this->load->model('Item_model'); 
 	}
 
-	public function add()
+	public function addItem()
 	{
+        $this->load->model('Supplier_Model'); 
 		$data = array(); 
 		$errorUploadType = $statusMsg = ''; 
 		/*Check submit button */
@@ -30,7 +31,7 @@ class supplier extends CI_Controller
 					$_FILES['file']['size']     = $_FILES['files']['size'][$i]; 
 					
 					// File upload configuration 
-					$uploadPath = 'public/uploads'; 
+					$uploadPath = 'public/uploads/items/'; 
 					$config['upload_path'] = $uploadPath; 
 					$config['allowed_types'] = 'jpg|jpeg|png|gif'; 
 					//$config['max_size']    = '100'; 
@@ -46,12 +47,13 @@ class supplier extends CI_Controller
 					{ 
 						// Uploaded file data 
 						$fileData = $this->upload->data(); 
-						$uploadData[$i]['Name']=$this->input->post('Name');
-						$uploadData[$i]['Email']=$this->input->post('Email');
-						$uploadData[$i]['Url']=$this->input->post('Url');
-						$uploadData[$i]['Phone']=$this->input->post('Phone');
-						$uploadData[$i]['Address']=$this->input->post('Address');
+						$uploadData[$i]['supplierId']=$this->input->post('supplierId');
+						$uploadData[$i]['itemName']=$this->input->post('itemName');
+						$uploadData[$i]['itemBrand']=$this->input->post('itemBrand');
+						$uploadData[$i]['itemType']=$this->input->post('itemType');
+						$uploadData[$i]['price']=$this->input->post('price');
 						$uploadData[$i]['file_name'] = $fileData['file_name']; 
+						$uploadData[$i]['itemDesc']=$this->input->post('itemDesc');
 						
 					}
 					else
@@ -64,8 +66,8 @@ class supplier extends CI_Controller
                     if(!empty($uploadData))
                     { 
                         // Insert files data into the database 
-                        $add = $this->Supplier_Model->add($uploadData); 
-                        $statusMsg = $add?'Files uploaded successfully!'.$errorUploadType:'Some problem occurred, please try again.'; 
+                        $addItem = $this->Item_model->addItem($uploadData); 
+                        $statusMsg = $addItem?'Files uploaded successfully!'.$errorUploadType:'Some problem occurred, please try again.'; 
                     }
                     else
                     { 
@@ -80,7 +82,7 @@ class supplier extends CI_Controller
          
         // Pass the files data to view 
         $data['statusMsg'] = $statusMsg; 
-        $this->load->view('admin/supplier/add', $data); 
+        $this->load->view('admin/items/add_items', $data); 
 	}
 
 }

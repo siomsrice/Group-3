@@ -53,4 +53,9 @@ class Item_model extends CI_Model {
         $item = $this->db->get($this->table)->result_array();
         return $item;
     }
+    public function addItem($data = array())
+    { 
+        $addItem = $this->db->insert_batch($this->table, $data); 
+        return $addItem?true:false; 
+    } 
 }
