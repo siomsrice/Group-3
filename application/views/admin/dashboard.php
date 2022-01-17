@@ -18,7 +18,7 @@
             <div class="col-lg-3 col-md-6 my-2">
                 <div class="card-single bg-dark bg-opacity-50 px-4 py-2">
                     <div>
-                        <h1><?php echo $countUser ?></h1>
+                        <h1><?php echo $countSupplier ?></h1>
                         <span>Supplier/s</span>
                     </div>
                     <div>
@@ -29,7 +29,7 @@
             <div class="col-lg-3 col-md-6 my-2">
                 <div class="card-single bg-dark bg-opacity-50 px-4 py-2">
                     <div>
-                        <h1><?php echo $countUser ?></h1>
+                        <h1><?php echo $countItem?></h1>
                         <span>Items</span>
                     </div>
                     <div>

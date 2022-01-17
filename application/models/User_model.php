@@ -199,7 +199,6 @@ class User_model extends CI_Model {
         if(count($return) > 0 && $usersId != $return[0]['usersId']){
             return true;
         }
-
         return false;
     }
 
@@ -216,4 +215,6 @@ class User_model extends CI_Model {
         $this->db->where('usersId', $id);
         $this->db->delete($this->table);
     }
+
+    
 }
