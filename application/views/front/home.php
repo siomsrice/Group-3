@@ -2,6 +2,7 @@
     $this->load->view('templates/header');
 ?>
 
+
     <!-- SLIDESHOW -->
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
@@ -194,54 +195,43 @@
       <hr>
 <!-- STEPS ON ORDERING END-->
 
-
-
-  <!-- featured Section-->
-  <section class="page-section portfolio" id="portfolio">
-        <div class="container">
-            <!-- Portfolio Section Heading-->
-            <h2 class="page-section-heading text-white text-uppercase text-secondary mb-0">FEATURED</h2>
-            <!-- Icon Divider-->
-            <div class="divider-custom">
-                <div class=></div>
-                <div class=><i class="fas fa-star"></i></div>
-                <div class=></div>
-            </div>
-            <!-- Portfolio Grid Items-->
-            <div class="row justify-content-center">
-            <!-- Portfolio Item 1-->
-            
-            <div class="col-md-6 col-lg-4 mb-5">
-                <?php if(!empty($items)) {?>
+        <!-- ITEM TESTING -->
+            <div class="container-fluid padding dish-card">
+            <div class="row">
+                <?php if(!empty($items)) { ?>
                 <?php foreach($items as $item) { ?>
-                    <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">
-                        <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+                    <div class="card mb-4 shadow-sm">
+                        <?php $image = $item['file_name'];?>
+                        <img class="card-img-top" src="<?php echo base_url().'public/uploads/items/'.$image; ?>">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h4 class="card-title"><?php echo $item['itemName']; ?></h4>
+                                <h4 class="text-muted"><b>₱<?php echo $item['price']; ?></b></h4>
+                            </div>
+                            <p class="card-text"><?php echo $item['itemDesc']; ?></p>
+                            
+                                <a href="<?php echo base_url().'Item/addToCart/'.$item['itemId']; ?>" class="btn btn-primary"><i
+                                    class="fas fa-cart-plus"></i> Add to
+                                Cart</a>
+                           
                         </div>
-                        <img src="<?php echo base_url().'public/uploads/items/thumb/1.jpg';?>" class="img-fluid"  alt="..." />
-                        <div class="card">
-                            <div class="card-body">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                <p>
-                                    <button type="button" class="btn btn-primary">
-                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-                                </svg>
-                                      Add to Cart
-                                </button>
-                                <a href="<?php echo base_url().'Item/addToCart/'.$item['ItemId']; ?>"> Add to Cart </a>
-
-                        </p>
                     </div>
                 </div>
-            </div>
-            <?php } ?>
-            <?php } else { ?>
-                <div class="record">
+                <?php } ?>
+                <?php } else { ?>
+                <div class="jumbotron">
                     <h1>No records found</h1>
                 </div>
-            <?php } ?>
+                <?php } ?>
+            </div>
+            <hr class="my-4">
         </div>
+
+             
+
+        <!-- ITEM TESTING END-->
+
                 <!-- Portfolio Item 2-->
                 <div class="col-md-6 col-lg-4 mb-5">
                     <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal2">
@@ -348,7 +338,7 @@
                         <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                         </div>
-                        <img class="img-fluid" src="<?php echo base_url().'public/uploads/items/thumb/.jpg';?>" alt="..." />
+                        <img class="img-fluid" src="<?php echo base_url().'public/uploads/items/thumb/6.jpg';?>" alt="..." />
                         <div class="card">
                             <div class="card-body">
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>

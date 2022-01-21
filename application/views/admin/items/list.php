@@ -5,9 +5,9 @@
 
 <div class="container mt-3">
     <div class="container shadow-container">
-        <?php if($this->session->flashdata('dish_success') != ""):?>
+        <?php if($this->session->flashdata('item_success') != ""):?>
         <div class="alert alert-success">
-            <?php echo $this->session->flashdata('dish_success');?>
+            <?php echo $this->session->flashdata('item_success');?>
         </div>
         <?php endif ?>
         <?php if($this->session->flashdata('error') != ""):?>
@@ -61,10 +61,11 @@
         </div>
     </div>
 </div>
+
 <script type="text/javascript">
 function deleteMenu(id) {
     if (confirm("Are you sure you want to delete dish?")) {
-        window.location.href = '<?php echo base_url().'admin/menu/delete/';?>' + id;
+        window.location.href = '<?php echo base_url().'admin/item/delete/';?>' + id;
     }
 }
 $(document).ready(function() {

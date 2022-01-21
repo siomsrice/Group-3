@@ -132,6 +132,12 @@ class User_model extends CI_Model {
         return $query->result_array();
     }
 
+    public function getUser($id) {
+        $this->db->where('usersId', $id);
+        $user = $this->db->get($this->table)->row_array();
+        return $user;
+    }
+
     public function updateUser($data){
 
         if($this->updateCheckUidExists($data['usersUid'], $data['usersId'])){

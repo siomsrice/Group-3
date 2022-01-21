@@ -142,7 +142,7 @@ h2{
 }
 body{
   background: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.5)),
-  url("PC background.jpg") center/cover no-repeat fixed;
+  url("../../public/PCT_Background.jpg") center/cover no-repeat fixed;
   justify-content: stretch;
   font-family: 'Poppins', sans-serif;
 }
