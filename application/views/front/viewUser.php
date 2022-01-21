@@ -21,6 +21,7 @@
             
             <a href='<?php echo base_url()."index.php/users/updateUser"?>'>Update</a><br>
             <a href='<?php echo base_url()."index.php/users/deleteUser"?>'>Delete</a><br>
+            <a href='<?php echo base_url()."index.php/cart/"?>'>Cart</a><br>
            
         </form>
     </div>

@@ -3,27 +3,18 @@ defined('BASEPATH') OR exit ('No direct script access allowed');
 
 class Cart extends CI_Controller {
 
-    
-    function __construct(){
-        parent::__construct();
-
-        $user = $this->user_model->getUsers($_SESSION['usersId']);
-            if(empty($user)) {
-                $this->session->set_flashdata('msg', 'Your session has been expired');
-                redirect(base_url().'login/');
-            }
-
-        #Load cart library
-        $this->load->library('cart');
-        $this->load->model('Item_model');
-    }
 
     public function index(){
+        $this->load->library('cart');
+        $this->load->model('Item_model');
+        
         $data['cartItems'] = $this->cart->contents();
         $this->load->view('front/cart', $data);
     }
 
     public function updateCartItemQty(){
+        $this->load->library('cart');
+        $this->load->model('Item_model');
         $update = 0;
 
         #Get cart item info
@@ -42,6 +33,9 @@ class Cart extends CI_Controller {
     }
 
     public function removeItem($id){
+        $this->load->library('cart');
+        $this->load->model('Item_model');
+
         $remove = $this->cart->remove($id);
 
         redirect(base_url().'cart');
