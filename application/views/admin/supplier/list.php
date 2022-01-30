@@ -1,7 +1,7 @@
 <?php
-    $this->load->view('admin/templates/header');
+    $this->load->view('admin/templates/header2');
 ?>
-
+<?=isset($message) ? $message: "";?>
 <div class="container my-3">
     <?php if($this->session->flashdata('res_success') != ""):?>
     <div class="alert alert-success">

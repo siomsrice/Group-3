@@ -60,7 +60,7 @@
                         <div class="dropdown">
                             <button class="btn btn-dark dropdown-toggle mx-3" type="button" id="dropdownMenuButton5" data-bs-toggle="dropdown" aria-expanded="false">Orders</button>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton5">
-                                <li><a class="dropdown-item" href="#">All Order</a></li>
+                                <li><a class="dropdown-item" href="<?php echo base_url()."index.php/admin/orders"?>">All Order</a></li>
                             </ul>
                         </div>
                         <a href="<?php echo base_url()."index.php/admin/logout"?>" class="nav-item nav-link mx-4">Logout</a>

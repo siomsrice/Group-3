@@ -31,7 +31,7 @@ class User_model extends CI_Model {
                 unset($data['pwdRepeat']);
                 $data['usersPwd'] = md5($data['usersPwd']);
                 $data['terms'] = "Agree";
-                $data['status'] = "Active"; 
+                $data['stat'] = "Active"; 
                 
                 #Insert Data to DB
                 $this->db->insert($this->table, $data);
@@ -112,7 +112,7 @@ class User_model extends CI_Model {
 
         $return = $query->result_array();
 
-        if(count($return) > 0 && $return[0]['status'] == 'Active'){
+        if(count($return) > 0 && $return[0]['stat'] == 'Active'){
             return $return;
         }
         echo "UserNoLongerExists";
@@ -136,6 +136,17 @@ class User_model extends CI_Model {
         $this->db->where('usersId', $id);
         $user = $this->db->get($this->table)->row_array();
         return $user;
+    }
+
+    public function update($id, $formArray) {
+        $this->db->where('usersId',$id);
+        $this->db->update($this->table, $formArray);
+    }
+
+    public function updates($data) {
+        $this->db->where('usersId', $data['usersId']);
+        
+        $this->db->update($this->table, $data);
     }
 
     public function updateUser($data){
@@ -173,7 +184,7 @@ class User_model extends CI_Model {
       }
       else{
             $this->db->where('usersId', $usersId);
-            $data['status'] = 'Inactive';
+            $data['stat'] = 'Inactive';
             $this->db->update($this->table, $data);
             return true;
         }

@@ -3,11 +3,10 @@ defined('BASEPATH') OR exit ('No direct script access allowed');
 
 class Cart extends CI_Controller {
 
-
     public function index(){
         $this->load->library('cart');
         $this->load->model('Item_model');
-        
+
         $data['cartItems'] = $this->cart->contents();
         $this->load->view('front/cart', $data);
     }

@@ -1,5 +1,5 @@
 <?php
-    $this->load->view('admin/templates/header');
+    $this->load->view('admin/templates/header2');
 ?>
 
 <!--DISABLED TELEPHONE PATTERN LATER FOR EASIER TESTING-->

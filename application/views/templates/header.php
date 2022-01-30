@@ -53,7 +53,7 @@
 
                                 <a href="<?php echo base_url()."index.php/home/index"?>" class="nav-item nav-link mx-3">Home</a>
                                 <a href="#" class="nav-item nav-link mx-3">About</a>
-                                <a href="#" class="nav-item nav-link mx-3">Blog</a>
+                                <a href="<?php echo base_url()."index.php/supplier/index"?>" class="nav-item nav-link mx-3">Suppliers</a>
                                 <a href="<?php echo base_url()."index.php/users/viewUser"?>" class="nav-item nav-link mx-3">Profile</a>
                                 <a href="<?php echo base_url()."index.php/users/logout"?>" class="nav-item nav-link mx-3">Sign Out</a>
                             </div>
@@ -61,12 +61,18 @@
                     <?php } else{ ?>
                                 <a href="<?php echo base_url()."index.php/home/index"?>" class="nav-item nav-link mx-3">Home</a>
                                 <a href="#" class="nav-item nav-link mx-3">About</a>
-                                <a href="#" class="nav-item nav-link mx-3">Blog</a>
+                                <a href="<?php echo base_url()."index.php/supplier/index"?>" class="nav-item nav-link mx-3">Suppliers</a>
                                 <a href="<?php echo base_url()."index.php/users/login"?>" class="nav-item nav-link mx-3">Sign In</a>
                                 <a href="<?php echo base_url()."index.php/users/register"?>" class="nav-item nav-link mx-3">Sign Up</a> 
                     <?php } ?>
             </div>
         </nav>
     </header>
+
+    <?php if($this->session->flashdata('msg') != ""):?>
+    <div class="alert alert-success">
+        <?php echo $this->session->flashdata('msg');?>
+    </div>
+    <?php endif ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

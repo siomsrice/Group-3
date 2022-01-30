@@ -93,6 +93,10 @@
 	</section>
     <!-- Sign Up End -->
 
+	<?php
+    	$this->load->view('templates/footer');
+	?>
+
 
     <!-- Script for Checkbox -->
     <script>
