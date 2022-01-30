@@ -69,8 +69,14 @@
                         <h1>My Account</h1>
                         <ul>
                             <li>
+<<<<<<< Updated upstream
                                 <a href="<?php echo base_url()."users/updateUser"?>">Edit Account Details</a>
                                 <a href="#">Delete Account</a>
+=======
+                                <p><a href="<?php echo base_url()."users/updateUser"?>" style="text-decoration:none; color:white">Edit Account Details</a></p>
+                                <p><a href="#" style="text-decoration:none; color:white">Delete Account</a></p>
+                                <p><a href="<?php echo base_url()."users/login"?>" style="text-decoration:none; color:white">Logout</a></p>
+>>>>>>> Stashed changes
                             </li>
                         </ul>
                         <h1>My Cart</h1>

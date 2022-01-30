@@ -94,7 +94,11 @@
    
     <!-- Footer Start here -->
     <footer class="page-footer pt-4 mt-auto">
+<<<<<<< Updated upstream
     <link rel="stylesheet" href="<?php echo base_url(); ?>Front-End/foot/style.css">
+=======
+    <link rel="stylesheet" href="<?php echo base_url(); ?>Front-End/footer/style.css">
+>>>>>>> Stashed changes
           <div class="container-fluid p-4">
             <div class="row">
               <div class="col-lg-6 col-xs-12 about-company pr-10">
