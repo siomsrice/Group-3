@@ -66,10 +66,6 @@ class Admin extends CI_Controller {
 
             $supReport = $this->Admin_model->getSupReport();
             $data['supReport'] = $supReport; 
-            
-            /*
-            $itemReport = $this->Admin_model->itemReport();
-            $data['itemReport'] = $itemReport; */
             $this->load->view('admin/dashboard', $data);
         }
     }
@@ -169,16 +165,17 @@ class Admin extends CI_Controller {
 
     public function manageuser(){
         $this->load->model('User_model');
+
         $users = $this->User_model->getUsers();
-        $data['users'] = $users;
-        $this->load->view('admin/user/list', $data);
+        $user_data['users'] = $users;
+        $this->load->view('admin/user/list', $user_data);
     }
 
     public function manageitems(){
         $this->load->model('Item_model');
         $items = $this->Item_model->getItem();
-        $data['items'] = $items;
-        $this->load->view('admin/items/list', $data);
+        $item_data['items'] = $items;
+        $this->load->view('admin/items/list', $item_data);
     }
 
     public function createitem(){
@@ -390,6 +387,47 @@ class Admin extends CI_Controller {
 
     public function supplierdelete(){
 
+    }
+
+    public function orders(){
+        $this->load->model('Order_model');
+        $this->load->model('User_model');
+        $this->load->helper('date');
+
+        $order = $this->Order_model->getAllOrders();
+        $data['orders'] = $order;
+        $this->load->view('admin/orders/list', $data);
+    }
+
+    public function processOrder($id){
+        $this->load->model('Order_model');
+        $this->load->helper('date');
+
+        $order = $this->Order_model->getOrderByUser($id);
+        $data['order'] = $order;
+        $this->load->view('admin/orders/processOrder', $data);
+    }
+
+    public function updateOrder($id){
+        $this->load->model('Order_model');
+        $this->load->helper('date');
+
+        $order['status'] = $this->input->post('status');
+        $orderData['successDate'] = date('Y-m-d H:i:s', now());
+        $this->Order_model->update($id, $order);
+        $this->session->set_flashdata('success', 'Order processed successfully');
+        redirect(base_url().'admin/orders');
+    }
+
+    public function TupdateOrder($id){
+        $this->load->model('Order_model');
+        $this->load->helper('date');
+
+        $order['status'] = $this->input->post('status');
+        $orderData['successDate'] = date('Y-m-d H:i:s', now());
+        $this->Order_model->update($id, $order);
+        $this->session->set_flashdata('success', 'Order processed successfully');
+        redirect(base_url().'admin/orders');
     }
 
 }

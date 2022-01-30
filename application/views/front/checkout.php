@@ -7,6 +7,8 @@
         <div class="col-md-8">
         <h2 class="mt-3">Order Preview</h2>
             <div class="table-responsive-sm">
+
+                <!-- TABLE -->
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
@@ -19,7 +21,7 @@
                     </thead>
                     <tbody id="myTable">
                         <?php if($this->cart->total_items() > 0) { 
-                    foreach($cartItems as $item) { ?>
+                        foreach($cartItems as $item) { ?>
                         <tr>
                             <td>
                                 <?php $image = $item['file_name'];?>
@@ -52,13 +54,16 @@
             </div>
         </div>
 
+        <!-- SHIPPING DETAILS ETC FORM -->
         <div class="col-md-4">
             <form action="<?php echo base_url().'checkout/index';?>" method="POST"
                 class="form-container  shadow-container" style="width:80%">
                 <h3 class="mt-3">Shipping Details</h3><hr>
                 <div class="form-group">
                     <label for="address">Address</label>
-                    <input type="text" name="address" value="<?php echo $user['address']?>"><br>
+                    <form method="post">
+                        <input type="text" name="address" value="<?php echo $user['address']?>"><br>
+                    </form>
                 </div>
 
                 <p class="lead mb-0">Cash On Delivery</p>
@@ -77,3 +82,7 @@
         </div>
     </div>
 </div>
+
+<?php
+    	$this->load->view('templates/footer');
+	?>

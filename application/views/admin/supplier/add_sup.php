@@ -1,11 +1,7 @@
 <?php
-    $this->load->view('admin/templates/header');
+    $this->load->view('admin/templates/header2');
 ?>
-<style>
-    <?php
-    include 'assets/css/adminstyle.css';
-    ?>
-</style>
+
     <div class="container">
     
 <div class="center">

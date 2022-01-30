@@ -30,15 +30,6 @@ class Admin_model extends CI_Model {
         return $result;
     }
 
-    public function itemReport() {
-        $query = $this->db->query('SELECT itemId, itemName, 
-        SUM(quantity) AS qty
-        FROM order
-        GROUP BY itemId
-        ORDER BY SUM(quantity) DESC');
-        return $query->result();
-    }
-
     public function mostOrderItem() {
         $sql = 'SELECT u.supplierId, r.Name, u.price, u.itemName, 
         MAX(u.quantity) AS quantity, 

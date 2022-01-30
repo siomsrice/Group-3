@@ -50,7 +50,9 @@
 </body>
 </html>
 
-
+<?php
+    	$this->load->view('templates/footer');
+	?>
 
 <!--<?=isset($message) ? $message: "";?>
 <form method="POST">

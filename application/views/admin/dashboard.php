@@ -7,7 +7,7 @@
             <div class="col-lg-3 col-md-6 my-2">
                 <div class="card-single bg-dark bg-opacity-50 px-4 py-2">
                     <div>
-                        <h1><?php echo $countUser ?></h1>
+                        <h1><?php echo $countUser; ?></h1>
                         <span>User/s</span>
                     </div>
                     <div>
@@ -18,7 +18,7 @@
             <div class="col-lg-3 col-md-6 my-2">
                 <div class="card-single bg-dark bg-opacity-50 px-4 py-2">
                     <div>
-                        <h1><?php echo $countSupplier ?></h1>
+                        <h1><?php echo $countSupplier; ?></h1>
                         <span>Supplier/s</span>
                     </div>
                     <div>
@@ -29,7 +29,7 @@
             <div class="col-lg-3 col-md-6 my-2">
                 <div class="card-single bg-dark bg-opacity-50 px-4 py-2">
                     <div>
-                        <h1><?php echo $countItem?></h1>
+                        <h1><?php echo $countItem; ?></h1>
                         <span>Items</span>
                     </div>
                     <div>
@@ -40,7 +40,7 @@
             <div class="col-lg-3 col-md-6 my-2">
                 <div class="card-single bg-dark bg-opacity-50 px-4 py-2">
                     <div>
-                        <h1><?php echo $countUser ?></h1>
+                        <h1><?php echo $countUser; ?></h1>
                         <span>Total Order/s</span>
                     </div>
                     <div>
@@ -51,7 +51,7 @@
             <div class="col-lg-3 col-md-6 my-2">
                 <div class="card-single bg-dark bg-opacity-50 px-4 py-2">
                     <div>
-                        <h1><?php echo $countCategory ?></h1>
+                        <h1><?php echo $countCategory; ?></h1>
                         <span>Categories</span>
                     </div>
                     <div>
@@ -62,7 +62,7 @@
             <div class="col-lg-3 col-md-6 my-2">
                 <div class="card-single bg-dark bg-opacity-50 px-4 py-2">
                     <div>
-                        <h1><?php echo $countUser ?></h1>
+                        <h1><?php echo $countPendingOrders; ?></h1>
                         <span>Pending Order</span>
                     </div>
                     <div>
@@ -73,7 +73,7 @@
             <div class="col-lg-3 col-md-6 my-2">
                 <div class="card-single bg-dark bg-opacity-50 px-4 py-2">
                     <div>
-                        <h1><?php echo $countUser ?></h1>
+                        <h1><?php echo $countDeliveredOrders; ?></h1>
                         <span>Delivered Order/s</span>
                     </div>
                     <div>
@@ -84,7 +84,7 @@
             <div class="col-lg-3 col-md-6 my-2">
                 <div class="card-single bg-dark bg-opacity-50 px-4 py-2">
                     <div>
-                        <h1><?php echo $countUser ?></h1>
+                        <h1><?php echo $countRejectedOrders; ?></h1>
                         <span>Rejected Orders</span>
                     </div>
                     <div>
@@ -94,28 +94,6 @@
             </div>     
         </div>
     <!-- Dashboard End -->
-
-    <!-- Table Start -->
-
-    <div class="report">
-        Supplier Report: <?php echo $countUser ?> <br>
-        <tbody id="myTable">
-                <?php if(!empty($supReport)) {?>
-                <?php foreach($supReport as $report) { ?>
-                    <tr>
-                        <td><?php echo $report->supplierId; ?></td>
-                        <td><?php echo $report->Name; ?></td>
-                        <td><?php echo $report->price; ?></td>
-                        </tr>
-                        <?php } ?>
-                        <?php } else {?>
-                        <tr>
-                        <td colspan="4">Records not found</td>
-                    </tr>
-            <?php }?>
-    </div>
-
-    <!-- Table End -->
 </div>
 
 

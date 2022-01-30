@@ -31,7 +31,8 @@ class Users extends CI_Controller {
 
             $return = $this->user_model->login($data['usersUid'], $data['usersPwd']);
             if(is_bool($return)){
-                echo "Login error";
+                $this->session->set_flashdata('error', 'Login Error');
+                //redirect(base_url().'users/login');
             } else{
                 #print_r($return);
                 $_SESSION['usersId'] = $return[0]['usersId'];
@@ -96,7 +97,7 @@ class Users extends CI_Controller {
                 redirect(base_url());
             }
             else{
-                echo "WrongPwd";
+                $this->session->set_flashdata('error', 'Wrong Password');
             }
         }
         $this->load->view('front/deleteUser');

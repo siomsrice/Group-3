@@ -1,8 +1,8 @@
 
 <?php
-    $this->load->view('admin/templates/header');
+    $this->load->view('admin/templates/header2');
 ?>
-
+<?=isset($message) ? $message: "";?>
 <div class="container mt-3">
     <div class="container shadow-container">
         <?php if($this->session->flashdata('item_success') != ""):?>
@@ -39,7 +39,7 @@
                         <td><?php echo $item['supplierId']; ?></td>
                         <td><?php echo $item['itemName']; ?></td>
                         <td><?php echo $item['itemDesc']; ?></td>
-                        <td><?php echo "$".$item['price']; ?></td>
+                        <td><?php echo "₱".$item['price']; ?></td>
                         <td>
                             <a href="<?php echo base_url().'admin/menu/edit/'.$item['itemId']; ?>"
                                 class="btn btn-info mb-1"><i

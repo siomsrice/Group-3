@@ -1,5 +1,5 @@
 <?php
-    $this->load->view('admin/templates/header');
+    $this->load->view('admin/templates/header2');
 ?>
 
 <div class="container">
@@ -51,8 +51,9 @@
                                     class="fas fa-edit mr-1"></i>Edit</a>
 
                             <a href="<?php echo base_url().'admin/deleteUser/'.$user['usersId'];?>"
-                                class="btn btn-info mb-1"><i
+                                class="btn btn-danger"><i
                                     class="fas fa-edit mr-1"></i>Delete</a>
+
                         </td>
                     </tr>
                     <?php } ?>

@@ -15,18 +15,18 @@ class Supplier_model extends CI_Model {
     }
 
     public function getSupplier($id){
-        $this->db->where('id', $id);
+        $this->db->where('supplierId', $id);
         $supply= $this->db->get($this->table)->row_array();
         return $supply;
     }
 
     public function update($id, $formArray){
-        $this->db->where('id', $id);
+        $this->db->where('supplierId', $id);
         $this->db->update($this->table, $formArray);
     }
 
     public function delete($id){
-        $this->db->where('id', $id);
+        $this->db->where('supplierId', $id);
         $this->db->delete($this->table);
     }
 
@@ -38,7 +38,6 @@ class Supplier_model extends CI_Model {
     public function getSupInfo(){
         $this->db->select('*');
         $this->db->from($this->table);
-        $this->db->join('category', 'supplier.categoryId = category.categoryId');
         $result = $this->db->get()->result_array();
         return $result;
     }
