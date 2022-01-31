@@ -1,11 +1,3 @@
-.horizontal-line {
-  width:65%;
-  border-top: 1px solid #080000;
-  border-bottom: 1px solid #0f0101;
-  margin-left: auto;
-    margin-right: auto;
-}
-
 html {
 	-webkit-font-smoothing: antialiased!important;
 	-moz-osx-font-smoothing: grayscale!important;
@@ -26,7 +18,7 @@ body {
 .md-stepper-horizontal .md-step {
 	display:table-cell;
 	position:relative;
-	padding:50px;
+	padding:24px;
 }
 .md-stepper-horizontal .md-step:hover,
 .md-stepper-horizontal .md-step:active {
@@ -118,7 +110,7 @@ body {
 .md-stepper-horizontal .md-step .md-step-bar-left,
 .md-stepper-horizontal .md-step .md-step-bar-right {
 	position:absolute;
-	top:63px;
+	top:36px;
 	height:1px;
 	border-top:1px solid #DDDDDD;
 }
