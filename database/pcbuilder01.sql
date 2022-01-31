@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 21, 2022 at 09:02 AM
+-- Generation Time: Jan 31, 2022 at 04:25 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.30
 
@@ -100,7 +100,8 @@ INSERT INTO `items` (`itemId`, `supplierId`, `itemName`, `itemBrand`, `itemType`
 (1, 2, 'hahahha', 'brand', 'type mto', 'ASDASEQWEQLKASDKADa', 23, 'web.jpg'),
 (2, 2, 'testing2', 'brand', 'type mto', 'descriptiontest', 45, 'Jean.jpg'),
 (3, 3, 'shabu', 'shabushabu', 'type mto', 'isang pack ', 500, 'website_backbone.JPG'),
-(4, 3, 'pictest1', 'test3', 'CPU', 'description 1 2 3', 3000, 'Capture.JPG');
+(4, 3, 'pictest1', 'test3', 'CPU', 'description 1 2 3', 3000, 'Capture.JPG'),
+(5, 4, 'Josh', 'ASUS', 'GPU', 'Description', 10000000, 'john-xina-xina.gif');
 
 -- --------------------------------------------------------
 
@@ -120,6 +121,29 @@ CREATE TABLE `order` (
   `successDate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `supplierId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `order`
+--
+
+INSERT INTO `order` (`OrderId`, `usersId`, `itemId`, `itemName`, `price`, `quantity`, `status`, `orderDate`, `successDate`, `supplierId`) VALUES
+(1, 0, 2, 'testing2', 45, 1, NULL, '2022-01-23 13:14:45', '2022-01-23 05:14:45', 2),
+(2, 21, 2, 'testing2', 45, 1, NULL, '2022-01-23 14:47:14', '2022-01-23 06:47:14', 2),
+(3, 21, 2, 'testing2', 45, 1, NULL, '2022-01-23 14:47:52', '2022-01-23 06:47:52', 2),
+(4, 21, 1, 'hahahha', 23, 1, NULL, '2022-01-23 14:47:52', '2022-01-23 06:47:52', 2),
+(5, 21, 3, 'shabu', 500, 1, NULL, '2022-01-23 14:48:38', '2022-01-23 06:48:38', 3),
+(6, 21, 3, 'shabu', 500, 1, NULL, '2022-01-23 14:50:26', '2022-01-23 06:50:26', 3),
+(7, 21, 1, 'hahahha', 23, 1, NULL, '2022-01-24 02:13:07', '2022-01-23 18:13:07', 2),
+(8, 21, 4, 'pictest1', 3000, 1, NULL, '2022-01-24 02:13:25', '2022-01-23 18:13:25', 3),
+(9, 21, 1, 'hahahha', 23, 1, NULL, '2022-01-24 02:20:11', '2022-01-23 18:20:11', 2),
+(10, 21, 1, 'hahahha', 23, 1, NULL, '2022-01-24 04:57:56', '2022-01-23 20:57:56', 2),
+(11, 21, 2, 'testing2', 45, 1, NULL, '2022-01-24 04:59:52', '2022-01-23 20:59:52', 2),
+(12, 21, 4, 'pictest1', 3000, 1, NULL, '2022-01-24 05:11:51', '2022-01-23 21:11:51', 3),
+(13, 19, 3, 'shabu', 500, 1, NULL, '2022-01-24 10:57:27', '2022-01-24 02:57:27', 3),
+(14, 27, 5, 'Josh', 10000000, 1, NULL, '2022-01-29 06:58:47', '2022-01-28 22:58:47', 4),
+(15, 27, 5, 'Josh', 10000000, 1, NULL, '2022-01-29 07:31:59', '2022-01-28 23:31:59', 4),
+(16, 27, 1, 'hahahha', 23, 1, NULL, '2022-01-29 07:56:13', '2022-01-28 23:56:13', 2),
+(17, 27, 3, 'shabu', 500, 1, NULL, '2022-01-29 09:32:04', '2022-01-29 01:32:04', 3);
 
 -- --------------------------------------------------------
 
@@ -144,7 +168,8 @@ CREATE TABLE `supplier` (
 
 INSERT INTO `supplier` (`supplierId`, `categoryId`, `Name`, `Email`, `Url`, `Phone`, `Address`, `file_name`) VALUES
 (2, 0, 'bruh', 'PCB@gmail.com', 'url.com,', '12331231', 'address', 'print1.jpg'),
-(3, 0, 'edward', 'edrwardroa@gmial.com', 'edward.com', '1231231', 'address', 'mondstadt.jpg');
+(3, 0, 'edward', 'edrwardroa@gmial.com', 'edward.com', '1231231', 'address', 'mondstadt.jpg'),
+(4, 0, 'Horse', 'Horse@gmail.com', 'Horse.com', '0912321321', 'Horse Horse Address', 'Chestnut_Horse.png');
 
 -- --------------------------------------------------------
 
@@ -162,28 +187,30 @@ CREATE TABLE `users` (
   `address` varchar(512) NOT NULL DEFAULT 'n/a',
   `usertype` enum('Buyer','Seller','Buyer/Seller') NOT NULL,
   `lastName` varchar(256) NOT NULL,
-  `status` enum('Active','Inactive') DEFAULT NULL,
+  `stat` enum('Active','Inactive') DEFAULT NULL,
   `pwdRepeat` varchar(256) NOT NULL,
-  `terms` enum('Agree') NOT NULL
+  `terms` enum('Agree') NOT NULL,
+  `file_name` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`usersId`, `firstName`, `usersEmail`, `usersUid`, `usersPwd`, `phone`, `address`, `usertype`, `lastName`, `status`, `pwdRepeat`, `terms`) VALUES
-(1, 'Jaime Hanz Sibucao', 'jaimehanzs@gmail.com', 'roove', '$2y$10$pNVGINkm7cxd4z6WCEZi5uILfyPLldmsm3ItvyXiuJmRl3YxjrUia', 0, 'n/a', '', '', NULL, '', 'Agree'),
-(2, 'hanz sibucao', 'jaimehanz.sibucao@tup.edu.ph', 'test', '$2y$10$sPE0.I85X8DsP.FOx5BHjOjSwPfC..vMTVnT/UnJW2/daithqJEQy', 0, 'n/a', '', '', NULL, '', 'Agree'),
-(3, 'signuptest', 'signuptest@gmail.com', '', '202cb962ac59075b964b07152d234b70', 0, 'n/a', '', '', NULL, '', 'Agree'),
-(9, 'update', 'update@gmail.com', 'updatetest', '$2y$10$XDRvaaNXqfPI.6W7uPVsKuMwZGbH2lj3//SINhYQZVBoZEPcxLlXa', 0, 'n/a', '', '', NULL, '', 'Agree'),
-(12, 'dbeaver', 'dbeaver@gmail.com', 'dbeavs', '$2y$10$hNolWKBvf7/kZv5vQW6knujRI9f8yyqnXOSzi0yJ3VWd0AEecUJuG', 0, 'n/a', '', '', NULL, '', 'Agree'),
-(19, 'firstname', 'email@gmail.com', 'username4', '202cb962ac59075b964b07152d234b70', 123, '123', 'Buyer', 'lastname', 'Active', '', 'Agree'),
-(20, 'asd', 'gmail@gmail.com', 'testtt', '202cb962ac59075b964b07152d234b70', 123, 'address', 'Buyer', 'zxc', 'Active', '', 'Agree'),
-(21, 'newfirstname1', 'newemail1@gmail.com', 'newsername1', '202cb962ac59075b964b07152d234b70', 12345, 'new address', 'Buyer', 'newlastname1', 'Active', '', 'Agree'),
-(22, 'namename', 'mail@gmail.com', 'useruser', '202cb962ac59075b964b07152d234b70', 123, 'addaddress', 'Buyer', 'sursur', 'Inactive', '', 'Agree'),
-(23, 'mark cedrick', 'markcedrick@gmail.com', 'markcedqt', '202cb962ac59075b964b07152d234b70', 19239821, 'mark address', 'Buyer', 'doria', 'Inactive', '', 'Agree'),
-(24, 'testing1', 'testing@gmail.com', 'testing3', '202cb962ac59075b964b07152d234b70', 12345, 'testingadd', 'Buyer', 'testing2', 'Active', '', 'Agree'),
-(25, 'admintesting', 'admikntest3@gmail.com', 'admintest3', '202cb962ac59075b964b07152d234b70', 123, 'admin address', 'Buyer', 'admintest', 'Active', '', 'Agree');
+INSERT INTO `users` (`usersId`, `firstName`, `usersEmail`, `usersUid`, `usersPwd`, `phone`, `address`, `usertype`, `lastName`, `stat`, `pwdRepeat`, `terms`, `file_name`) VALUES
+(1, 'Jaime Hanz Sibucao', 'jaimehanzs@gmail.com', 'roove', '$2y$10$pNVGINkm7cxd4z6WCEZi5uILfyPLldmsm3ItvyXiuJmRl3YxjrUia', 0, 'n/a', '', '', 'Active', '', 'Agree', ''),
+(2, 'hanz sibucao', 'jaimehanz.sibucao@tup.edu.ph', 'test', '$2y$10$sPE0.I85X8DsP.FOx5BHjOjSwPfC..vMTVnT/UnJW2/daithqJEQy', 0, 'n/a', '', '', NULL, '', 'Agree', ''),
+(9, 'update', 'update@gmail.com', 'updatetest', '$2y$10$XDRvaaNXqfPI.6W7uPVsKuMwZGbH2lj3//SINhYQZVBoZEPcxLlXa', 0, 'n/a', '', '', NULL, '', 'Agree', ''),
+(12, 'dbeaver', 'dbeaver@gmail.com', 'dbeavs', '$2y$10$hNolWKBvf7/kZv5vQW6knujRI9f8yyqnXOSzi0yJ3VWd0AEecUJuG', 0, 'n/a', '', '', NULL, '', 'Agree', ''),
+(19, 'firstname', 'email@gmail.com', 'username4', '202cb962ac59075b964b07152d234b70', 123, '123', 'Buyer', 'lastname', 'Active', '', 'Agree', ''),
+(20, 'asd', 'gmail@gmail.com', 'testtt', '202cb962ac59075b964b07152d234b70', 123, 'address', 'Buyer', 'zxc', 'Active', '', 'Agree', ''),
+(21, 'newfirstname1', 'newemail1@gmail.com', 'newsername1', '202cb962ac59075b964b07152d234b70', 12345, 'new address', 'Buyer', 'newlastname1', 'Active', '', 'Agree', ''),
+(22, 'namename', 'mail@gmail.com', 'useruser', '202cb962ac59075b964b07152d234b70', 123, 'addaddress', 'Buyer', 'sursur', 'Inactive', '', 'Agree', ''),
+(23, 'mark cedrick', 'markcedrick@gmail.com', 'markcedqt', '202cb962ac59075b964b07152d234b70', 19239821, 'mark address', 'Buyer', 'doria', 'Inactive', '', 'Agree', ''),
+(24, 'testing1', 'testing@gmail.com', 'testing3', '202cb962ac59075b964b07152d234b70', 12345, 'testingadd', 'Buyer', 'testing2', 'Active', '', 'Agree', ''),
+(25, 'admintesting', 'admikntest3@gmail.com', 'admintest3', '202cb962ac59075b964b07152d234b70', 123, 'admin address', 'Buyer', 'admintest', 'Active', '', 'Agree', ''),
+(26, 'asdfsadfsad', 'easdsafdsa@gmail.com', 'fsdafsdafsad', '202cb962ac59075b964b07152d234b70', 1231231, 'sadfsafdsa', 'Buyer', 'fsdfsdafsad', 'Active', '', 'Agree', ''),
+(27, 'Josh', 'josh.sibucao@gmail.com', 'blackpepperpizza', '202cb962ac59075b964b07152d234b70', 123456, 'address', 'Buyer', 'Sibucao', 'Active', '', 'Agree', '');
 
 --
 -- Indexes for dumped tables
@@ -257,25 +284,25 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `itemId` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `itemId` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-  MODIFY `OrderId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `OrderId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `supplierId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `supplierId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `usersId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `usersId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
