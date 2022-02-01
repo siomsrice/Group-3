@@ -1,8 +1,12 @@
 
+<?php
+    $this->load->view('admin/templates/header');
+?>
+
     <div class="container">
     
     <div class="center">
-      <form action="<?php echo base_url().'admin/updateuserdetails/'?>" method="POST" class="form-container mx-auto  shadow-container" id="myForm" style="width:80%" enctype="multipart/form-data">
+      <form action="<?php echo base_url().'admin/updateitemdetails/'?>" method="POST" class="form-container mx-auto  shadow-container" id="myForm" style="width:80%" enctype="multipart/form-data">
           <h3 class="mb-3 text-center">Edit Item no. <?php echo $row->itemId; ?></h3>  
           <input type="hidden" name="userid" value="<?php echo $row->itemId; ?>">
           <?php { ?>
@@ -61,8 +65,8 @@
              </div> 
               <br>
               
-             <button type="submit" name="insert" value="update" class="btn btn-primary">Submit</button>
-             <?php echo !empty($statusMsg)?'<p class="status-msg">'.$statusMsg.'</p>':''; ?>
+             <button type="submit" name="updateitems" value="update" class="btn btn-primary">Submit</button>
+             
              <?php } ?>
         
       </form>

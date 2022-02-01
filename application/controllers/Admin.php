@@ -163,7 +163,7 @@ class Admin extends CI_Controller {
 		} 
 		else 
 		{
-	        $this->session->set_flashdata('error', 'Wrong input !!');
+	       
 		    redirect('admin/manageuser');
         }
      }
@@ -180,7 +180,7 @@ class Admin extends CI_Controller {
              redirect(base_url().'admin/manageuser');
          }
          $this->user_model->deleteItem($id);
-         $this->session->set_flashdata('deluser_success', 'Item Deleted successfully');
+         $this->session->set_flashdata('deluser_success', 'User Deleted successfully');
          redirect(base_url().'admin/manageuser');
  
      }
@@ -289,9 +289,9 @@ class Admin extends CI_Controller {
         $this->load->view('admin/items/edit',['row'=>$reslt]);
 	}
 	// For data updation
-	public function updatedetails()
+	public function updateitemdetails()
 	{
-      if($this->input->post('insert'))
+      if($this->input->post('updateitems'))
 		{
 			$usid=$this->input->post('userid');
 			$supplierId=$this->input->post('supplierId');
@@ -309,7 +309,7 @@ class Admin extends CI_Controller {
 		} 
 		else 
 		{
-	        $this->session->set_flashdata('error', 'Wrong input !!');
+	       
 		    redirect('admin/manageitems');
         }
      }
@@ -320,15 +320,15 @@ class Admin extends CI_Controller {
          $this->load->model('item_model');
          $items = $this->item_model->getItemId($id);
  
-         if(empty($items)) 
+         if(!empty($items)) 
          {
-             $this->session->set_flashdata('error', 'Item not found');
-             redirect(base_url().'admin/dashboard');
+            $this->item_model->deleteItem($id);
+            $this->session->set_flashdata('itemdel_success', 'Item Deleted successfully');
+            redirect(base_url().'admin/manageitems');
+             
          }
-         $this->item_model->deleteItem($id);
-         $this->session->set_flashdata('item_success', 'Item Deleted successfully');
-         redirect(base_url().'admin/manageitems');
- 
+         $this->session->set_flashdata('error', 'Item not found');
+         redirect(base_url().'admin/dashboard'); 
      }
 
 
@@ -477,7 +477,7 @@ class Admin extends CI_Controller {
             } 
             else 
             {
-                $this->session->set_flashdata('error', 'Wrong input !!');
+                
                 redirect('admin/manageitems');
             }
          

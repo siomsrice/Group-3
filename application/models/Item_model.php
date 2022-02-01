@@ -55,7 +55,7 @@ class Item_model extends CI_Model {
         $addItem = $this->db->insert_batch($this->table, $data); 
         return $addItem?true:false; 
     } 
-    public function updatedetails(
+    public function updateitemdetails(
         $usid,$supplierId,$itemName,$itemBrand,$itemType,$itemDesc,$price
         )
     {

@@ -5,11 +5,7 @@
 
 <div class="container mt-3">
     <div class="container shadow-container">
-        <?php if($this->session->flashdata('item_success') != ""):?>
-        <div class="alert alert-success">
-            <?php echo $this->session->flashdata('item_success');?>
-        </div>
-        <?php endif ?>
+        
         
         <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">

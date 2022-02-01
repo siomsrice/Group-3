@@ -3,16 +3,7 @@
 ?>
 <?=isset($message) ? $message: "";?>
 <div class="container my-3">
-    <?php if($this->session->flashdata('res_success') != ""):?>
-    <div class="alert alert-success">
-        <?php echo $this->session->flashdata('res_success');?>
-    </div>
-    <?php endif ?>
-    <?php if($this->session->flashdata('error') != ""):?>
-    <div class="alert alert-danger">
-        <?php echo $this->session->flashdata('error');?>
-    </div>
-    <?php endif ?>
+    
     <div class="row">
         <div class="col-md-6">
             <h4>Available Supplier/s</h4>

@@ -249,7 +249,7 @@ class User_model extends CI_Model {
                     
                 );
         
-            $sql_query=$this->db->where('usersid', $usid)
+            $sql_query=$this->db->where('usersId', $usid)
                         ->update($this->table, $data); 
 
             if($sql_query)
