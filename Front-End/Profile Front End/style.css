@@ -1,0 +1,73 @@
+*{
+    list-style: none;
+}
+body{
+    background: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.5)),
+    url("PC background.jpg") center/cover no-repeat fixed;
+    justify-content: stretch;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    color: #fff;
+}
+.profile{
+    margin: 25px 90px 10px 90px;
+}
+.row1{
+    background-color: rgb(138,127,128,0.6);
+    height: 400px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+}
+.row1 h1{
+    font-size: 25px;
+    padding-top: 20px;
+    margin-left: 20px;
+}
+.row1 p:hover{
+    color: black;
+}
+.row2{
+    background-color: rgb(138,127,128,0.6);
+    height: 180px;
+    border-radius: 15px;
+}
+
+.container2{
+    background-color: rgb(138,127,128,0.6);
+    display: flex;
+    justify-content:space-between;
+    height: 600px;
+    border-radius: 15px;
+}
+.container2 h1{
+    margin-top: 15px;
+}
+.container2 p{
+    margin-left: 25px;
+}
+.user-image{
+    background-color: lightgrey;
+    height: 110px;
+    width: 110px;
+    margin-right:60px;
+    margin-top: 50px;
+}
+.container3{
+    background-color: rgb(138,127,128,0.6);
+    height: 600px;
+    border-radius: 15px;
+}
+h1{
+    font-family: 'Poppins', sans-serif;
+    margin-left: 15px;  
+    color: white;
+}
+p{
+    font-family: 'Poppins', sans-serif;
+    color: white;
+}
+li p{
+    margin-bottom: 1px;
+}

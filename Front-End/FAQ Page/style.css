@@ -1,0 +1,27 @@
+body{
+    background: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.5)),
+    url("PC background.jpg") center/cover no-repeat fixed;
+    justify-content: stretch;
+    font-family: 'Poppins', sans-serif;
+}
+/* ---------FAQ Style Start-------- */
+.container {
+    color: #fff;
+}
+
+.accordion-item button {
+    color: #fff;
+    letter-spacing: .5em;
+    font-weight: bold;
+}
+
+.links a i {
+    font-size: 2rem;
+    color: #fff;
+}
+
+.links a i:hover {
+    font-size: 2rem;
+    color: #43332c;
+}
+/* ---------FAQ Style End-------- */

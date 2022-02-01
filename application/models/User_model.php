@@ -31,7 +31,7 @@ class User_model extends CI_Model {
                 unset($data['pwdRepeat']);
                 $data['usersPwd'] = md5($data['usersPwd']);
                 $data['terms'] = "Agree";
-                $data['status'] = "Active"; 
+                $data['stat'] = "Active"; 
                 
                 #Insert Data to DB
                 $this->db->insert($this->table, $data);
@@ -112,7 +112,7 @@ class User_model extends CI_Model {
 
         $return = $query->result_array();
 
-        if(count($return) > 0 && $return[0]['status'] == 'Active'){
+        if(count($return) > 0 && $return[0]['stat'] == 'Active'){
             return $return;
         }
         echo "UserNoLongerExists";
@@ -130,6 +130,23 @@ class User_model extends CI_Model {
         //echo $this->db->last_query(). '<br>'; 
 
         return $query->result_array();
+    }
+
+    public function getUser($id) {
+        $this->db->where('usersId', $id);
+        $user = $this->db->get($this->table)->row_array();
+        return $user;
+    }
+
+    public function update($id, $formArray) {
+        $this->db->where('usersId',$id);
+        $this->db->update($this->table, $formArray);
+    }
+
+    public function updates($data) {
+        $this->db->where('usersId', $data['usersId']);
+        
+        $this->db->update($this->table, $data);
     }
 
     public function updateUser($data){
@@ -167,7 +184,7 @@ class User_model extends CI_Model {
       }
       else{
             $this->db->where('usersId', $usersId);
-            $data['status'] = 'Inactive';
+            $data['stat'] = 'Inactive';
             $this->db->update($this->table, $data);
             return true;
         }
@@ -199,7 +216,6 @@ class User_model extends CI_Model {
         if(count($return) > 0 && $usersId != $return[0]['usersId']){
             return true;
         }
-
         return false;
     }
 
@@ -216,4 +232,61 @@ class User_model extends CI_Model {
         $this->db->where('usersId', $id);
         $this->db->delete($this->table);
     }
+    public function updateuserdetails(
+        $usid,$firstName,$lastName,$usersUid,$phone,$usersEmail,$address,$usersPwd,$pwdRepeat
+        )
+    {
+        $data=array(
+                    
+                    'firstName' =>$firstName,
+                    'lastName' =>$lastName,
+                    'usersUid' =>$usersUid,
+                    'phone' =>$phone,
+                    'usersEmail' =>$usersEmail,
+                    'address' =>$address,
+                    'usersPwd' =>$usersPwd,
+                    'pwdRepeat' =>$pwdRepeat
+                    
+                );
+        
+            $sql_query=$this->db->where('usersId', $usid)
+                        ->update($this->table, $data); 
+
+            if($sql_query)
+            {
+                $this->session->set_flashdata('deluser_success', 'Record updated successful');
+                redirect('admin/manageuser');
+            }
+            else
+            {
+                $this->session->set_flashdata('deluser_error', 'Somthing went worng. Error!!');
+                redirect('admin/manageuser');
+            }
+    
+    }
+    public function getuserdetail($uid)
+    {
+        $ret=$this->db->select
+        (
+        'usersId,firstName,lastName,usersUid,phone,usersEmail,address,usersPwd,pwdRepeat'
+        )
+        ->where('usersId',$uid)
+        ->get($this->table);
+        return $ret->row();    
+    }
+    
+    public function getUserId($id) 
+    {
+        $this->db->where('usersId', $id);
+        $items = $this->db->get($this->table)->row_array();
+        return $items;
+    }
+   
+
+    public function deleteItem($id) 
+		{
+			$this->db->where('usersId',$id);
+			$this->db->delete(($this->table));
+        }
+    
 }
