@@ -1,0 +1,45 @@
+*{
+    list-style: none;
+}
+body{
+    background: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.5)),
+    url("PC background.jpg") center/cover no-repeat fixed;
+    justify-content: stretch;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    color: #fff;
+}
+
+/* ----index css start------ */
+.leftbox a{
+    text-decoration: none;
+    letter-spacing: 3px;
+    font-size: 1rem;
+    color: #fff;
+}
+
+.leftbox a:hover{
+    text-decoration: none;
+    letter-spacing: 3px;
+    font-size: 1rem;
+    color: #fff;
+    font-weight: bold;
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+/* ----index css End------ */
+
+
+/* ----edit css start------ */
+form input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+}
+/* ----Edit css End------ */
+
+
+
