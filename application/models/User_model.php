@@ -232,6 +232,61 @@ class User_model extends CI_Model {
         $this->db->where('usersId', $id);
         $this->db->delete($this->table);
     }
+    public function updateuserdetails(
+        $usid,$firstName,$lastName,$usersUid,$phone,$usersEmail,$address,$usersPwd,$pwdRepeat
+        )
+    {
+        $data=array(
+                    
+                    'firstName' =>$firstName,
+                    'lastName' =>$lastName,
+                    'usersUid' =>$usersUid,
+                    'phone' =>$phone,
+                    'usersEmail' =>$usersEmail,
+                    'address' =>$address,
+                    'usersPwd' =>$usersPwd,
+                    'pwdRepeat' =>$pwdRepeat
+                    
+                );
+        
+            $sql_query=$this->db->where('usersid', $usid)
+                        ->update($this->table, $data); 
 
+            if($sql_query)
+            {
+                $this->session->set_flashdata('deluser_success', 'Record updated successful');
+                redirect('admin/manageuser');
+            }
+            else
+            {
+                $this->session->set_flashdata('deluser_error', 'Somthing went worng. Error!!');
+                redirect('admin/manageuser');
+            }
+    
+    }
+    public function getuserdetail($uid)
+    {
+        $ret=$this->db->select
+        (
+        'usersId,firstName,lastName,usersUid,phone,usersEmail,address,usersPwd,pwdRepeat'
+        )
+        ->where('usersId',$uid)
+        ->get($this->table);
+        return $ret->row();    
+    }
+    
+    public function getUserId($id) 
+    {
+        $this->db->where('usersId', $id);
+        $items = $this->db->get($this->table)->row_array();
+        return $items;
+    }
+   
+
+    public function deleteItem($id) 
+		{
+			$this->db->where('usersId',$id);
+			$this->db->delete(($this->table));
+        }
     
 }

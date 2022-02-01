@@ -4,14 +4,14 @@
 
 <div class="container">
     <div class="container shadow-container">
-        <?php if($this->session->flashdata('success') != ""):?>
+        <?php if($this->session->flashdata('user_success') != ""):?>
         <div class="alert alert-success">
-            <?php echo $this->session->flashdata('success');?>
+            <?php echo $this->session->flashdata('user_success');?>
         </div>
         <?php endif ?>
-        <?php if($this->session->flashdata('error') != ""):?>
+        <?php if($this->session->flashdata('deluser_error') != ""):?>
         <div class="alert alert-danger">
-            <?php echo $this->session->flashdata('error');?>
+            <?php echo $this->session->flashdata('deluser_error');?>
         </div>
         <?php endif ?>
         <div class="d-flex justify-content-between align-items-center">

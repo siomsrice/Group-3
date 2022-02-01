@@ -4,7 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Admin extends CI_Controller {
 
 	public function index(){
-		#$this->load->view('front/login');
+        $this->load->model('Test_model');
+		$this->load->view('front/login');
 	}
 
     public function login(){
@@ -132,36 +133,57 @@ class Admin extends CI_Controller {
         $this->load->view('front/viewUser', $output);
     }
 
-    public function updateUser(){
-        #Connection to BackEnd
-        $this->load->model('user_model');
-        $user = $this->user_model->getUsers($_SESSION['usersId']);
-
-        $output['user'] = $user[0];
-
-        $data = array();
-        $data = $this->input->post();
-
-        if(isset($data) && $data != null){
-            $this->load->model('user_model');
-            $this->user_model->updateUser($data);
+    public function updateuser($uid){
+        $this->load->helper('url');
+		$this->load->library('session');
+		$this->load->model('user_model'); 
+        $reslt=$this->user_model->getuserdetail($uid);
+        $this->load->view('admin/user/edit',['row'=>$reslt]);
+	}
+	// For data updation
+	public function updateuserdetails()
+	{
+      if($this->input->post('updateuser'))
+		{
+			$usid=$this->input->post('userid');
+			$usersUid=$this->input->post('usersUid');
+            $firstName=$this->input->post('firstName');
+			$lastName=$this->input->post('lastName');
+            $phone=$this->input->post('phone');
+            $usersEmail=$this->input->post('usersEmail');
+			$address=$this->input->post('address');
+            $usersPwd=$this->input->post('usersPwd');
+            $pwdRepeat=$this->input->post('pwdRepeat');
+			$this->load->model('user_model');
+			$this->user_model->updateuserdetails
+			(
+                $usid,$firstName,$lastName,$usersUid,$phone,$usersEmail,$address,$usersPwd,$pwdRepeat
+            );
+			
+		} 
+		else 
+		{
+	        $this->session->set_flashdata('error', 'Wrong input !!');
+		    redirect('admin/manageuser');
         }
-        #Connection to FrontEnd
-        $this->load->view('admin/edit', $output);
-    }
+     }
 
-    public function deleteUser($id){
-        $this->load->model('user_model');
-        $user = $this->user_model->getUsers($id);
-
-        if(empty($user)){
-            echo "Error UserNotFound";
-            redirect(base_url().'admin/manageuser');
-        }
-
-        $this->user_model->deletePerm($id);
-        redirect(base_url().'admin/manageuser');
-    }
+     public function deleteuser($id)
+     {
+            
+         $this->load->model('user_model');
+         $users = $this->user_model->getUserId($id);
+ 
+         if(empty($users)) 
+         {
+             $this->session->set_flashdata('deluser_error', 'User not found');
+             redirect(base_url().'admin/manageuser');
+         }
+         $this->user_model->deleteItem($id);
+         $this->session->set_flashdata('deluser_success', 'Item Deleted successfully');
+         redirect(base_url().'admin/manageuser');
+ 
+     }
 
     public function manageuser(){
         $this->load->model('User_model');
@@ -256,13 +278,59 @@ class Admin extends CI_Controller {
 	}
     
 
-    public function edititem(){
+    public function edititem($uid){
+        $this->load->helper('url');
+		$this->load->library('session');
+		$this->load->model('Item_model'); 
+        $this->load->model('Supplier_Model');
+        $reslt=$this->Item_model->getuserdetail($uid);
+        $data['supplier'] = $this->Supplier_Model->getRows(); 
+        $this->load->view('admin/items/supplier_name',$data);
+        $this->load->view('admin/items/edit',['row'=>$reslt]);
+	}
+	// For data updation
+	public function updatedetails()
+	{
+      if($this->input->post('insert'))
+		{
+			$usid=$this->input->post('userid');
+			$supplierId=$this->input->post('supplierId');
+            $itemName=$this->input->post('itemName');
+			$itemBrand=$this->input->post('itemBrand');
+            $itemType=$this->input->post('itemType');
+            $itemDesc=$this->input->post('itemDesc');
+			$price=$this->input->post('price');
+			$this->load->model('item_model');
+			$this->item_model->updatedetails
+			(
+				$supplierId,$usid,$itemName,$itemBrand,$itemType,$itemDesc,$price
+            );
+			
+		} 
+		else 
+		{
+	        $this->session->set_flashdata('error', 'Wrong input !!');
+		    redirect('admin/manageitems');
+        }
+     }
 
-    }
+     public function deleteItem($id)
+     {
+            
+         $this->load->model('item_model');
+         $items = $this->item_model->getItemId($id);
+ 
+         if(empty($items)) 
+         {
+             $this->session->set_flashdata('error', 'Item not found');
+             redirect(base_url().'admin/dashboard');
+         }
+         $this->item_model->deleteItem($id);
+         $this->session->set_flashdata('item_success', 'Item Deleted successfully');
+         redirect(base_url().'admin/manageitems');
+ 
+     }
 
-    public function deleteitem(){
-
-    }
 
     public function category(){
         $this->load->model('Category_model');
@@ -381,11 +449,53 @@ class Admin extends CI_Controller {
 	}
 
 
-    public function supplieredit(){
-
+    public function supplieredit($uid){
+        $this->load->helper('url');
+		$this->load->library('session');
+        $this->load->model('Supplier_Model');
+        $reslt=$this->Supplier_Model->getsupplierdetail($uid);
+        $this->load->view('admin/supplier/edit',['row'=>$reslt]);
     }
+    public function updatedesuppliertails()
+	{
+      if($this->input->post('updatesupplier'))
+		{
+		
+            
+                $usid=$this->input->post('userid');
+                $Name=$this->input->post('Name');
+                $Email=$this->input->post('Email');
+                $Phone=$this->input->post('Phone');
+                $Address=$this->input->post('address');
+                $Url=$this->input->post('Url');
+                $this->load->model('supplier_model');
+                $this->supplier_model->updatesupplierdetails
+                (
+                    $usid,$Name,$Email,$Phone,$Address,$Url
+                );
+                
+            } 
+            else 
+            {
+                $this->session->set_flashdata('error', 'Wrong input !!');
+                redirect('admin/manageitems');
+            }
+         
+     }
 
-    public function supplierdelete(){
+    public function supplierdelete($id){
+        $this->load->model('Supplier_Model');
+        $supplier = $this->Supplier_Model->getSupplierId($id);
+     
+
+        if(empty($supplier)) 
+        {
+            $this->session->set_flashdata('error_supplier', 'Supplier Not Found');
+            redirect(base_url().'admin/supplier');
+        }
+        $this->Supplier_Model->deleteSupplier($id);
+        $this->session->set_flashdata('supplier_success', 'Supplier Deleted Successfully');
+        redirect(base_url().'admin/supplier');
 
     }
 

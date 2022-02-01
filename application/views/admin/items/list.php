@@ -1,8 +1,8 @@
 
 <?php
-    $this->load->view('admin/templates/header2');
+    $this->load->view('admin/templates/header');
 ?>
-<?=isset($message) ? $message: "";?>
+
 <div class="container mt-3">
     <div class="container shadow-container">
         <?php if($this->session->flashdata('item_success') != ""):?>
@@ -10,11 +10,7 @@
             <?php echo $this->session->flashdata('item_success');?>
         </div>
         <?php endif ?>
-        <?php if($this->session->flashdata('error') != ""):?>
-        <div class="alert alert-danger">
-            <?php echo $this->session->flashdata('error');?>
-        </div>
-        <?php endif ?>
+        
         <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
                 <h2>All Item Details</h2>
@@ -27,6 +23,8 @@
                     <tr>
                         <th>#</th>
                         <th>Item Name</th>
+                        <th>Item Brand</th>
+                        <th>Item Type</th>
                         <th>About</th>
                         <th>₱rice</th>
                         <th>Action</th>
@@ -36,17 +34,18 @@
                     <?php if(!empty($items)) { ?>
                     <?php foreach($items as $item) {?>
                     <tr>
-                        <td><?php echo $item['supplierId']; ?></td>
+                        <td><?php echo $item['itemId']; ?></td>
                         <td><?php echo $item['itemName']; ?></td>
+                        
+                        <td><?php echo $item['itemBrand']; ?></td>
+                        
+                        <td><?php echo $item['itemType']; ?></td>
                         <td><?php echo $item['itemDesc']; ?></td>
-                        <td><?php echo "₱".$item['price']; ?></td>
+                        <td><?php echo "$".$item['price']; ?></td>
                         <td>
-                            <a href="<?php echo base_url().'admin/menu/edit/'.$item['itemId']; ?>"
-                                class="btn btn-info mb-1"><i
-                                    class="fas fa-edit mr-1"></i>Edit</a>
-
-                            <a href="javascript:void(0);" onclick="deleteMenu(<?php echo $item['itemId']; ?>)"
-                                class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
+                        <a class="btn btn-info" href="<?php echo base_url('admin/edititem/'. $item['itemId'].''); ?>">Edit</a>
+                        <a class="btn btn-danger" href="<?php echo base_url('admin/deleteitem/'. $item['itemId'].''); ?>">Delete</a>
+                        
 
                         </td>
                     </tr>
@@ -62,18 +61,3 @@
     </div>
 </div>
 
-<script type="text/javascript">
-function deleteMenu(id) {
-    if (confirm("Are you sure you want to delete dish?")) {
-        window.location.href = '<?php echo base_url().'admin/item/delete/';?>' + id;
-    }
-}
-$(document).ready(function() {
-    $("#myInput").on("keyup", function() {
-        var value = $(this).val().toLowerCase();
-        $("#myTable tr").filter(function() {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-        });
-    });
-});
-</script>
