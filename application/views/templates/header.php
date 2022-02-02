@@ -18,6 +18,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!-- Boostrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <!-- Carousel -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script async src='/cdn-cgi/bm/cv/669835187/api.js'></script></head>
 
 </head>
 <body>
@@ -51,8 +56,8 @@
                                 </ul>
                             </div>
 
-                                <a href="<?php echo base_url()."index.php/home/index"?>" class="nav-item nav-link mx-3">Home</a>
-                                <a href="#" class="nav-item nav-link mx-3">About</a>
+                                <a href="<?php echo base_url()."index.php/home/index"?>" class="nav-item nav-link mx-4"><i class="bi bi-house"> Home</a></i>
+                                <a href="<?php echo base_url()."index.php/home/about"?>" class="nav-item nav-link mx-3">About</a>
                                 <a href="<?php echo base_url()."index.php/supplier/index"?>" class="nav-item nav-link mx-3">Suppliers</a>
                                 <a href="<?php echo base_url()."index.php/users/viewUser"?>" class="nav-item nav-link mx-3">Profile</a>
                                 <a href="<?php echo base_url()."index.php/users/logout"?>" class="nav-item nav-link mx-3">Sign Out</a>
@@ -60,7 +65,7 @@
                         </div>
                     <?php } else{ ?>
                                 <a href="<?php echo base_url()."index.php/home/index"?>" class="nav-item nav-link mx-3">Home</a>
-                                <a href="#" class="nav-item nav-link mx-3">About</a>
+                                <a href="<?php echo base_url()."index.php/home/about"?>" class="nav-item nav-link mx-3">About</a>
                                 <a href="<?php echo base_url()."index.php/supplier/index"?>" class="nav-item nav-link mx-3">Suppliers</a>
                                 <a href="<?php echo base_url()."index.php/users/login"?>" class="nav-item nav-link mx-3">Sign In</a>
                                 <a href="<?php echo base_url()."index.php/users/register"?>" class="nav-item nav-link mx-3">Sign Up</a> 

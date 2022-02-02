@@ -94,5 +94,58 @@ class Supplier_model extends CI_Model {
     }
   }
 
+  public function updatesupplierdetails(
+    $usid,$Name,$Email,$Url,$Phone,$Address
+    )
+{
+    $data=array(
+                
+                'Name' =>$Name,
+                
+                'Email' =>$Email,
+                'Url' =>$Url,
+                'Phone' =>$Phone,
+                'Address' =>$Address
+                
+            );
+    
+        $sql_query=$this->db->where('SupplierId', $usid)
+                    ->update($this->table, $data); 
 
+        if($sql_query)
+        {
+            $this->session->set_flashdata('success', 'Record updated successful');
+            redirect('admin/supplier');
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'Somthing went worng. Error!!');
+            redirect('admin/manageitems');
+        }
+
+}
+    public function getsupplierdetail($uid)
+    {   
+        $ret=$this->db->select
+        (
+        'SupplierId,Name,Email,Url,Phone,Address,file_name'
+        )
+        ->where('SupplierId',$uid)
+        ->get($this->table);
+        return $ret->row();    
+    }
+
+    public function getSupplierId($id) 
+    {
+        $this->db->where('SupplierId', $id);
+        $supplier = $this->db->get($this->table)->row_array();
+        return $supplier;
+    }
+
+
+    public function deleteSupplier($id) 
+        {
+            $this->db->where('SupplierId',$id);
+            $this->db->delete(($this->table));
+        }
 }

@@ -3,81 +3,83 @@
 ?>
 
 <?=isset($message) ? $message: "";?>
-
-<?php 
-    #test to see values
-    #print_r($user);
-?>
-<!--
-<p>ACCOUNT</p>
-    <div class="signup-form">
-        <form method="post">
-            <?php echo $user['usersId'] ?><br>
-            <?php echo $user['firstName'] ?><br>
-            <?php echo $user['lastName'] ?><br>
-            <?php echo $user['usersEmail'] ?><br>
-            <?php echo $user['usersUid'] ?><br>
-            <?php echo $user['phone'] ?><br>
-            <?php echo $user['address']?><br>
-            
-            <a href='<?php echo base_url()."index.php/users/updateUser"?>'>Update</a><br>
-            <a href='<?php echo base_url()."index.php/users/deleteUser"?>'>Delete</a><br>
-            <a href='<?php echo base_url()."index.php/cart/"?>'>Cart</a><br>
-            <a href='<?php echo base_url()."index.php/orders/"?>'>Orders</a><br>
-           
-        </form>
-    </div>
--->
-    <div class="profile">
-        <div class="row">
-            <div class="col-md-2">
-                <div class="container1">
-                    <div class="row1">
-                        <h1>My Account</h1>
-                        <ul>
-                            <li>
-                                <a href="<?php echo base_url()."users/updateUser"?>">Edit Account Details</a>
-                                <a href="<?php echo base_url()."users/deleteUser"?>">Delete Account</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="row2">
-                        <h1>
-                        </h1>
+    <!-- PROFILE START -->
+    <div class="container">
+        <div class="row my-5 py-4">
+            <div class="col-md-4 mt-1">
+                <div class="card text-center sidebar bg-dark bg-opacity-75">
+                    <div class="card-body">
+                        <img src="images/Temp Pic.jpg" alt="Temporary Picture" class="rounded-circle my-4" width="210">
+                        <div class="mt-3 row leftbox">
+                            <h3 class="col-12"><?php echo $user['firstName'] ?> <?php echo $user['lastName'] ?></h3>
+                            <a href="<?php echo base_url()."users/viewUser"?>" class="col-12 p-2">My Account</a>
+                            <a href="<?php echo base_url()."users/updateUser"?>" class="col-12 p-2">Edit Account</a>
+                            <a href="<?php echo base_url()."users/deleteUser"?>" class="col-12 p-2">Delete Account</a>
+                        </div>
                     </div>
                 </div>
             </div>
-
-             <div class="col-md-8" "col-xs-8">
-                <div class="container2">
-                    <div class="credentials">
-                        <h1>My Profile</h1>
-                        <p>Username: <?php echo $user['usersUid'] ?></p> 
-                        <p>Name: <?php echo $user['firstName'] ?> <?php echo $user['lastName'] ?></p>
-                        <p>Email: <?php echo $user['usersEmail'] ?></p>
-                        <p>Phone: <?php echo $user['phone'] ?></p>
-                        <p><b>For Delivery Purposes</b></p>
-                        <p>Home Address: <?php echo $user['address'] ?></p>
-                        <p>Office Address: <?php echo $user['address'] ?></p>
-                    </div>
-
-                    <div class="user-image">
-                    picture here
+            <div class="col-md-8 mt-1">
+                <div class="card mb-3 content bg-dark bg-opacity-75">
+                    <h1 class="p-4">My Account</h1>
+                    <p class="px-4">This information will be displayed publicly on your <a href="<?php echo base_url()."users/viewUser"?>" class="text-decoration-none">Profile</a> and in <a href="<?php echo base_url()."home"?>" class="text-decoration-none">PC Builder</a></p>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md 3">
+                                <h5>First Name</h5>
+                            </div>
+                            <div class="col-md-9">
+                                <p class="p-0 m-0"><?php echo $user['firstName'] ?></p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md 3">
+                                <h5>Last Name</h5>
+                            </div>
+                            <div class="col-md-9">
+                                <p class="p-0 m-0"><?php echo $user['lastName'] ?></p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md 3">
+                                <h5>Email</h5>
+                            </div>
+                            <div class="col-md-9">
+                                <p class="p-0 m-0"><?php echo $user['usersEmail'] ?></p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md 3">
+                                <h5>Phone Number</h5>
+                            </div>
+                            <div class="col-md-9">
+                                <p class="p-0 m-0"><?php echo $user['phone'] ?></p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md 3">
+                                <h5>Address</h5>
+                            </div>
+                            <div class="col-md-9">
+                                <p class="p-0 m-0"><?php echo $user['address'] ?></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
-     
-     </div>
 
+    </div>
+
+
+
+     
 
     <?php
     	$this->load->view('templates/footer');
 	?>
 
-<!--<form method="POST" action="/users/updateUser">
-    Enter Username: <input type="text" name="usersUid"><br/>
-    Enter Password: <input type="password" name="usersPwd"><br/>
-    <input type="submit" value="update">
-</form>-->

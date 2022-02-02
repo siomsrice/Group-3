@@ -1,23 +1,22 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Orders extends CI_Controller {
- 
-    public function index() {
+class Orders extends CI_Controller 
+{
+    public function index() 
+    {
         $this->load->model('user_model');
         $this->load->model('Order_model');
-        $this->load->model('Supplier_model');
+        //$this->load->model('Supplier_model');
 
         $data = array();
-        #Print Data
+       
         $data = $this->input->post();
         $user = $this->user_model->getUsers($_SESSION['usersId']);
 
         $order = $this->Order_model->getUserOrder($_SESSION['usersId']);
         
         $output['user'] = $user[0];
-        // $user = $this->user_model->getUsers($_SESSION['usersId']);
-
         $data['orders'] = $order;
         $this->load->view('front/orders', $data);
     }

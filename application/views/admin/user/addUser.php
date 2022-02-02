@@ -40,7 +40,7 @@
                         <!-- Telephone -->
                         <div class="form-row">
 							<div class="col-9 mx-auto">
-								<input type="tel" required name="phone" placeholder="Phone Number (09XX-XXX-XXXX)"  class="form-control my-3 p-2" <?php /*pattern="[0-9]{4}-[0-9]{3}-[0-9]{4}"*/?>>
+								<input type="tel" required name="phone" placeholder="Phone Number (09XX-XXX-XXXX)"  class="form-control my-3 p-2" pattern="[0-9]{4}-[0-9]{3}-[0-9]{4}">
 							</div>
 						</div>
 

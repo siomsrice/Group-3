@@ -1,8 +1,6 @@
 <?php
     $this->load->view('templates/header');
 ?>
-
-
     <!-- SLIDESHOW -->
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
@@ -149,7 +147,7 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-pc-display" viewBox="0 0 16 16">
             <path d="M8 1a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V1Zm1 13.5a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0Zm2 0a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0ZM9.5 1a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5ZM9 3.5a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 0-1h-5a.5.5 0 0 0-.5.5ZM1.5 2A1.5 1.5 0 0 0 0 3.5v7A1.5 1.5 0 0 0 1.5 12H6v2h-.5a.5.5 0 0 0 0 1H7v-4H1.5a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .5-.5H7V2H1.5Z"/>
           </svg>
-          <div class="md-step-title">Choose a Category<br><br>First thing you can do is choose from <br> the categorywith out partners easily!
+          <div class="md-step-title">Choose a Category<br><br>First thing you can do is choose from <br> the categorywith our partners easily!
           </div>
           <div class="md-step-bar-left"></div>
           <div class="md-step-bar-right"></div>
@@ -214,7 +212,6 @@
                                 <a href="<?php echo base_url().'Item/addToCart/'.$item['itemId']; ?>" class="btn btn-primary"><i
                                     class="fas fa-cart-plus"></i> Add to
                                 Cart</a>
-                           
                         </div>
                     </div>
                 </div>

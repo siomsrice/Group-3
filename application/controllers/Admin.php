@@ -1,53 +1,54 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Admin extends CI_Controller {
-
-	public function index(){
-		#$this->load->view('front/login');
-	}
-
-    public function login(){
+class Admin extends CI_Controller 
+{
+    public function login()
+    {
         $data = array();
-        #Print Data
+        //Print Data
         $data = $this->input->post();
 
-        if(isset($data) && $data != null){
+        if(isset($data) && $data != null)
+        {
             $this->load->model('Test_model');
 
             $return = $this->Test_model->login($data['username'], $data['password']);
-            if(is_bool($return)){
+            if(is_bool($return))
+            {
                 echo "Login error";
-            } else{
-                #print_r($return);
+            } else
+            {
+                //print_r($return);
                 $_SESSION['adminId'] = $return[0]['adminId'];
 				$_SESSION['username'] = $return[0]['username'];
-				#redirect('front/viewUser');
-                #redirect('index.php/users/viewUser');
+				//redirect('front/viewUser');
+                //redirect('index.php/users/viewUser');
                 redirect(base_url().'admin/dashboard');
             }
         }
         $this->load->view('admin/login');
     }
 
-    public function createUser(){
+    public function createUser()
+    {
         $data = array();
-        #Print Data
+        //Print Data
         $data = $this->input->post();
 
-        if(isset($data) && $data != null){
+        if(isset($data) && $data != null)
+        {
             $this->load->model('user_model');
             $this->user_model->createUser($data);
         }
-        #$this->load->view('templates/header');
         $this->load->view('admin/user/addUser');
-        #$this->load->view('templates/footer');
     }
 
-    public function dashboard(){
+    public function dashboard()
+    {
         $data['admin'] = $_SESSION['adminId'];
-        if(isset($data['admin']) && $data['admin'] != null){
-
+        if(isset($data['admin']) && $data['admin'] != null)
+        {
             $this->load->model('Admin_model');
             $this->load->model('Supplier_model');
             $this->load->model('Item_model');
@@ -70,29 +71,34 @@ class Admin extends CI_Controller {
         }
     }
 
-    public function supReport() {
+    public function supReport() 
+    {
         $supReport = $this->Admin_model->getSupReport();
         $data['supReport'] = $supReport;
         $this->load->view('admin/reports/sup_report', $data);
     }
     
-    public function itemReport() {
+    public function itemReport() 
+    {
         $itemReport = $this->Admin_model->itemReport();
         $data['itemReport'] = $itemReport;
         $this->load->view('admin/reports/item_report', $data);
     }
 
-    public function usersReport() {
+    public function usersReport() 
+    {
         echo "user";
     }
 
-    public function ordersReport() {
+    public function ordersReport() 
+    {
         $supReport = $this->Admin_model->getSupReport();
         $data['supReport'] = $supReport;
         $this->load->view('admin/reports/res_report', $data);
     }
 
-    public function logout(){
+    public function logout()
+    {
         session_unset('adminId');
 		session_unset('username');
 		session_destroy();
@@ -100,22 +106,23 @@ class Admin extends CI_Controller {
     }
 
 
-    public function register(){
+    public function register()
+    {
         $data = array();
-        #Print Data
+        //Print Data
         $data = $this->input->post();
 
-        if(isset($data) && $data != null){
+        if(isset($data) && $data != null)
+        {
             $this->load->model('user_model');
             $this->user_model->createUser($data);
         }
-        #$this->load->view('templates/header');
         $this->load->view('admin/user/addUser');
-        #$this->load->view('templates/footer');
     }
 
-    public function viewUser(){
-        #Connection to BackEnd
+    public function viewUser()
+    {
+        //Connection to BackEnd
         $this->load->model('user_model');
         $user = $this->user_model->getUsers($_SESSION['usersId']);
         
@@ -124,33 +131,27 @@ class Admin extends CI_Controller {
         $data = array();
         $data = $this->input->post();
 
-        if(isset($data) && $data != null){
+        if(isset($data) && $data != null)
+        {
             $this->load->model('user_model');
             $this->user_model->updateUser($data);
         }
-        #Connection to FrontEnd
+        //Connection to FrontEnd
         $this->load->view('front/viewUser', $output);
     }
 
-    public function updateUser(){
-        #Connection to BackEnd
-        $this->load->model('user_model');
-        $user = $this->user_model->getUsers($_SESSION['usersId']);
-
-        $output['user'] = $user[0];
-
-        $data = array();
-        $data = $this->input->post();
-
-        if(isset($data) && $data != null){
-            $this->load->model('user_model');
-            $this->user_model->updateUser($data);
-        }
-        #Connection to FrontEnd
-        $this->load->view('admin/edit', $output);
+    public function updateuser($uid)
+    {
+        //Connection to BackEnd
+        $this->load->helper('url');
+		$this->load->library('session');
+		$this->load->model('user_model'); 
+        $reslt=$this->user_model->getuserdetail($uid);
+        $this->load->view('admin/user/edit',['row'=>$reslt]);
     }
 
-    public function deleteUser($id){
+    public function deleteUser($id)
+    {
         $this->load->model('user_model');
         $user = $this->user_model->getUsers($id);
 
@@ -163,29 +164,59 @@ class Admin extends CI_Controller {
         redirect(base_url().'admin/manageuser');
     }
 
-    public function manageuser(){
-        $this->load->model('User_model');
+    // For data updation
+	public function updateuserdetails()
+	{
+      if($this->input->post('updateuser'))
+		{
+			$usid=$this->input->post('userid');
+			$usersUid=$this->input->post('usersUid');
+            $firstName=$this->input->post('firstName');
+			$lastName=$this->input->post('lastName');
+            $phone=$this->input->post('phone');
+            $usersEmail=$this->input->post('usersEmail');
+			$address=$this->input->post('address');
+            $usersPwd=$this->input->post('usersPwd');
+            $pwdRepeat=$this->input->post('pwdRepeat');
+			$this->load->model('user_model');
+			$this->user_model->updateuserdetails
+			(
+                $usid,$firstName,$lastName,$usersUid,$phone,$usersEmail,$address,$usersPwd,$pwdRepeat
+            );
+			
+		} 
+		else 
+		{
+	       
+		    redirect('admin/manageuser');
+        }
+     }
 
+    public function manageuser()
+    {
+        $this->load->model('User_model');
         $users = $this->User_model->getUsers();
         $user_data['users'] = $users;
         $this->load->view('admin/user/list', $user_data);
     }
 
-    public function manageitems(){
+    public function manageitems()
+    {
         $this->load->model('Item_model');
         $items = $this->Item_model->getItem();
         $item_data['items'] = $items;
         $this->load->view('admin/items/list', $item_data);
     }
 
-    public function createitem(){
+    public function createitem()
+    {
         $this->load->helper('url');
 		$this->load->library('session');
 		$this->load->model('Item_model'); 
         $this->load->model('Supplier_Model'); 
 		$data = array(); 
 		$errorUploadType = $statusMsg = ''; 
-		/*Check submit button */
+		//Check submit button 
 		if($this->input->post('save'))
 		{
 			// If files are selected to upload 
@@ -256,15 +287,49 @@ class Admin extends CI_Controller {
 	}
     
 
-    public function edititem(){
-
+    public function edititem($uid)
+    {
+        $this->load->helper('url');
+		$this->load->library('session');
+		$this->load->model('Item_model'); 
+        $this->load->model('Supplier_Model');
+        $reslt=$this->Item_model->getuserdetail($uid);
+        $data['supplier'] = $this->Supplier_Model->getRows(); 
+        $this->load->view('admin/items/supplier_name',$data);
+        $this->load->view('admin/items/edit',['row'=>$reslt]);
     }
+
+    public function updateitemdetails()
+	{
+      if($this->input->post('updateitems'))
+		{
+			$usid=$this->input->post('userid');
+			$supplierId=$this->input->post('supplierId');
+            $itemName=$this->input->post('itemName');
+			$itemBrand=$this->input->post('itemBrand');
+            $itemType=$this->input->post('itemType');
+            $itemDesc=$this->input->post('itemDesc');
+			$price=$this->input->post('price');
+			$this->load->model('item_model');
+			$this->item_model->updatedetails
+			(
+				$supplierId,$usid,$itemName,$itemBrand,$itemType,$itemDesc,$price
+            );
+			
+		} 
+		else 
+		{
+	       
+		    redirect('admin/manageitems');
+        }
+     }
 
     public function deleteitem(){
 
     }
 
-    public function category(){
+    public function category()
+    {
         $this->load->model('Category_model');
         $cats = $this->Category_model->getCategory();
         $cats_data['cats'] = $cats;
@@ -272,36 +337,32 @@ class Admin extends CI_Controller {
         $this->load->view('admin/category/list', $cats_data);
     }
 
-    public function createcategory(){
+    public function createcategory()
+    {
         $this->load->model('Category_model');
         $this->load->library('form_validation');
         $this->form_validation->set_rules('category', 'Category', 'trim|required');
 
-        if($this->form_validation->run() == true){
+        if($this->form_validation->run() == true)
+        {
             $cat['categoryName'] = $this->input->post('category');
             $this->Category_model->createCategory($cat);
 
             $this->session->set_flashdata('cat_success', 'Category added successfully');
             redirect(base_url().'admin/category');
-        } else{
+        } else
+        {
             $this->load->view('admin/category/add_cat');
         }
     }
 
-    public function editcategory($id){
-
-    }
-
-    public function deletecategory($id){
-
-    }
 
     public function supplier(){
         $this->load->model('Supplier_model');
         $supplier = $this->Supplier_model->getSuppliers();
         $supply_data['supplier'] = $supplier;
         
-        #connection to front end
+        //connection to front end
         $this->load->view('admin/supplier/list', $supply_data);
     }
 
@@ -381,15 +442,60 @@ class Admin extends CI_Controller {
 	}
 
 
-    public function supplieredit(){
-
+    public function supplieredit($uid)
+    {
+        $this->load->helper('url');
+		$this->load->library('session');
+        $this->load->model('Supplier_Model');
+        $reslt=$this->Supplier_Model->getsupplierdetail($uid);
+        $this->load->view('admin/supplier/edit',['row'=>$reslt]);
     }
 
-    public function supplierdelete(){
+    public function updatedesuppliertails()
+	{
+      if($this->input->post('updatesupplier'))
+		{
+		
+            
+                $usid=$this->input->post('userid');
+                $Name=$this->input->post('Name');
+                $Email=$this->input->post('Email');
+                $Phone=$this->input->post('Phone');
+                $Address=$this->input->post('address');
+                $Url=$this->input->post('Url');
+                $this->load->model('supplier_model');
+                $this->supplier_model->updatesupplierdetails
+                (
+                    $usid,$Name,$Email,$Phone,$Address,$Url
+                );
+                
+            } 
+            else 
+            {
+                
+                redirect('admin/manageitems');
+            }
+         
+     }
 
+    public function supplierdelete($id)
+    {
+        $this->load->model('Supplier_Model');
+        $supplier = $this->Supplier_Model->getSupplierId($id);
+     
+
+        if(empty($supplier)) 
+        {
+            $this->session->set_flashdata('error_supplier', 'Supplier Not Found');
+            redirect(base_url().'admin/supplier');
+        }
+        $this->Supplier_Model->deleteSupplier($id);
+        $this->session->set_flashdata('supplier_success', 'Supplier Deleted Successfully');
+        redirect(base_url().'admin/supplier');
     }
 
-    public function orders(){
+    public function orders()
+    {
         $this->load->model('Order_model');
         $this->load->model('User_model');
         $this->load->helper('date');
@@ -399,7 +505,8 @@ class Admin extends CI_Controller {
         $this->load->view('admin/orders/list', $data);
     }
 
-    public function processOrder($id){
+    public function processOrder($id)
+    {
         $this->load->model('Order_model');
         $this->load->helper('date');
 
@@ -408,7 +515,8 @@ class Admin extends CI_Controller {
         $this->load->view('admin/orders/processOrder', $data);
     }
 
-    public function updateOrder($id){
+    public function updateOrder($id)
+    {
         $this->load->model('Order_model');
         $this->load->helper('date');
 
@@ -419,7 +527,8 @@ class Admin extends CI_Controller {
         redirect(base_url().'admin/orders');
     }
 
-    public function TupdateOrder($id){
+    public function TupdateOrder($id)
+    {
         $this->load->model('Order_model');
         $this->load->helper('date');
 

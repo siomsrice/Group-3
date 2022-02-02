@@ -10,15 +10,6 @@ class Order_model extends CI_Model {
         parent::__construct();
     }
 
-    /*public function getAllOrders(){
-        $this->db->order_by('OrderId','DESC');
-        $this->db->select('OrderId, itemName, quantity, price, status, orderDate, usersUid, address');
-        $this->db->from($this->table);
-        $this->db->join('users', 'users.usersId = order.usersId');
-        $result = $this->db->get()->row_array();
-        return $result;
-    }*/
-
     public function getAllOrders(){
         $this->db->order_by('OrderId', 'DESC');
         $this->db->select('*');
@@ -38,7 +29,7 @@ class Order_model extends CI_Model {
         $this->db->from($this->table);
         $this->db->join($this->tabl, 'users.usersId = order.usersId');
 
-        #Test if get is working
+        //Test if get is working
         //echo $this->db->last_query(). '<br>'; 
 
         return $query->result_array();

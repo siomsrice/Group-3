@@ -108,6 +108,78 @@
             </tfoot>
 </table>
 
+<!-- TESTING -->
+<h1>Shopping Cart</h1>
+
+    <div class="shopping-cart">
+
+    <div class="column-labels">
+        <label class="product-image">Image</label>
+        <label class="product-details">Product Name</label>
+        <label class="product-price">Price</label>
+        <label class="product-quantity">Quantity</label>
+        <label class="product-removal">Remove</label>
+        <label class="product-line-price">Subtotal</label>
+    </div>
+    <!-- ROW 2  -->
+    <div class="product">
+		<?php if($this->cart->total_items() > 0) { 
+        foreach($cartItems as $item) { ?>
+			<div class="items">
+				<div class="product-image">
+					<?php $image = $item['file_name'];?>
+				<img src="<?php echo base_url().'public/uploads/items/'.$image; ?>">
+				</div>
+				<div class="product-details">
+					<div class="product-title"><?php echo $item['name']; ?></div>
+				</div>
+				<div class="product-price"><?php echo '₱'. $item['price']; ?></div>
+				<div class="product-quantity">
+					<input type="number" value="<?php echo $item['qty']; ?>" min="1">
+				</div>
+				<div class="product-removal">
+					<a href="<?php echo base_url().'cart/removeItem/'.$item['rowid'] ; ?>" class="btn btn-danger"
+					onclick="return confirm('Are you sure?')" >
+						Remove
+					</a>
+				</div>
+			<div class="product-line-price"><?php echo '₱'.$item['subtotal']; ?></div>
+		</div>
+		<?php } ?>
+        <?php } else { ?>
+			<tr>
+                    <td colspan="6"><p>No Items In Your Cart!</p></td>
+                </tr>
+			<?php } ?>
+	</div>
+
+	<div class="totals">
+      <div class="totals-item totals-item-total">
+        <label>Grand Total</label>
+        <div class="totals-value" id="cart-total"><?php echo '₱'.$this->cart->total();?></div>
+      </div>
+      <div class="totals-item totals-item-total">
+        <div class="totals-value" >
+            <p style=" position:relative; left:12px; bottom:20px;">
+                   
+                <a href="<?php echo base_url().'checkout';?>" class="btn btn-success">
+                   Checkout
+                </a>
+            </p>
+        </div> 
+      </div>
+    </div>
+
+	<p style=" position:relative; right:12px; bottom:20px;">
+				   <a href="<?php echo base_url().'home' ?>" class="btn btn-warning">
+					  <- Continue Ordering
+				   </a>
+			  </p>
+
+
+<!-- TEST END -->
+
+
 
 <?php
     	$this->load->view('templates/footer');

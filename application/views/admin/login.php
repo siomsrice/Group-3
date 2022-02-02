@@ -36,104 +36,8 @@
 
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-</body>
-</html>
-
-
-
-
-<!--CODE TESTING
-
-<body>
-    <div class="conatiner">
-        <h1 class="text-center mt-3">Admin Panel</h1>
-        <p class="text-center mb-4">Please Login To Continue</p>
-         #
-        /*if (!empty($this->session->flashdata('msg'))) {
-          echo "<div class='alert alert-danger mb-3 mx-auto' style='width:50%'>".$this->session->flashdata('msg')."</div>";
-        }
-      ?>
-        <form action=" /* echo base_url().'admin/login/authenticate' ;?>" name="loginform" id="loginform"
-            method="POST" class="form-container mx-auto">
-            <div class="form-group">
-                <label for="username">Enter Username</label>
-                <input type="text" class="form-control my-2" name="username" id="username" placeholder="Username">
-                <span></span>
-            </div>
-             echo form_error('username'); ?>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control my-2" name="password" id="password" placeholder="Password">
-                <span></span>
-            </div>
-             echo form_error('password'); ?>
-            <button type="submit" class="btn btn-info btn-block mb-2">Login</button>
-        </form>
-    </div>.
-
-    <script>
-        const form = document.getElementById("loginform");
-        const username = document.getElementById("username");
-        const password = document.getElementById("password");
-
-        form.addEventListener('submit',(event) => {
-            event.preventDefault();
-            validate();
-        })
-
-        const sendData = (sRate, count) => {
-            if(sRate === count) {
-                event.currentTarget.submit();
-            }
-        }
-
-        const successMsg = (usernameVal) => {
-            let formCon = document.getElementsByClassName('form-control');
-            var count = formCon.length - 1;
-            for(var i = 0; i < formCon.length; i++) {
-                if(formCon[i].className === "form-control my-2 success") {
-                    var sRate = 0 + i;
-                    sendData(sRate, count);
-                } else {
-                    return false;
-                }
-            }
-        }
-
-        const validate = () => {
-            const usernameVal = username.value.trim();
-            const passwordVal = password.value.trim();
-            
-            if(usernameVal === "") {
-                setErrorMsg(username, 'username cannot be blank');
-            } else {
-                setSuccessMsg(username);
-            }
-            if(passwordVal === "") {
-                setErrorMsg(password, 'password cannot be blank');
-            } else {
-                setSuccessMsg(password);
-            }
-            successMsg(usernameVal);
-        }
-
-        function setErrorMsg(ele, errormsgs) {
-            const formGroup = ele.parentElement;
-            const formInput = formGroup.querySelector('.form-control');
-            const span = formGroup.querySelector('span');
-            span.innerText = errormsgs;
-            formInput.className = "form-control my-2 is-invalid";
-            span.className = "invalid-feedback font-weight-bold";
-        }
-
-        function setSuccessMsg(ele) {
-            const formGroup = ele.parentElement;
-            const formInput = formGroup.querySelector('.form-control');
-            formInput.className = "form-control my-2 success";
-        }
-
-    </script>
-    <-- jQuery library -->
+    
+    <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- Popper JS -->
@@ -141,15 +45,6 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 </html>
-    <!-- Login End -->
-
-<!--<?=isset($message) ? $message: "";?>
-<form method="POST">
-    Enter Username: <input type="text" name="usersUid"><br/>
-    Enter Password: <input type="password" name="usersPwd"><br/>
-    <input type="submit" value="login">
-</form>
-
-TEST END	-->
