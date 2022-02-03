@@ -301,9 +301,9 @@ class Admin extends CI_Controller
 
     public function updateitemdetails()
 	{
-      if($this->input->post('updateitems'))
+        if($this->input->post('updateitems'))
 		{
-			$usid=$this->input->post('userid');
+            $usid=$this->input->post('userid');
 			$supplierId=$this->input->post('supplierId');
             $itemName=$this->input->post('itemName');
 			$itemBrand=$this->input->post('itemBrand');
@@ -311,7 +311,7 @@ class Admin extends CI_Controller
             $itemDesc=$this->input->post('itemDesc');
 			$price=$this->input->post('price');
 			$this->load->model('item_model');
-			$this->item_model->updatedetails
+			$this->item_model->updateitemdetails
 			(
 				$supplierId,$usid,$itemName,$itemBrand,$itemType,$itemDesc,$price
             );
@@ -319,13 +319,24 @@ class Admin extends CI_Controller
 		} 
 		else 
 		{
-	       
-		    redirect('admin/manageitems');
+	        $this->session->set_flashdata('error', 'Wrong input !!');
+		    redirect('admin/dashboard');
         }
-     }
+    }
 
-    public function deleteitem(){
+    public function deleteitem($id){
+        $this->load->model('item_model');
+        $items = $this->item_model->getItemId($id);
 
+        if(!empty($items)) 
+        {
+           $this->item_model->deleteItem($id);
+           $this->session->set_flashdata('itemdel_success', 'Item Deleted successfully');
+           redirect(base_url().'admin/manageitems');
+            
+        }
+        $this->session->set_flashdata('error', 'Item not found');
+        redirect(base_url().'admin/dashboard'); 
     }
 
     public function category()
@@ -453,16 +464,14 @@ class Admin extends CI_Controller
 
     public function updatedesuppliertails()
 	{
-      if($this->input->post('updatesupplier'))
+        if($this->input->post('updatesupplier'))
 		{
-		
-            
                 $usid=$this->input->post('userid');
                 $Name=$this->input->post('Name');
                 $Email=$this->input->post('Email');
-                $Phone=$this->input->post('Phone');
-                $Address=$this->input->post('address');
-                $Url=$this->input->post('Url');
+                $Phone=$this->input->post('Url');
+                $Address=$this->input->post('Phone');
+                $Url=$this->input->post('Address');
                 $this->load->model('supplier_model');
                 $this->supplier_model->updatesupplierdetails
                 (

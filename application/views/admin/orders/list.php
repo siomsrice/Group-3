@@ -41,10 +41,6 @@
                 <tbody id="myTable">
                     <?php if(!empty($orders)) {?>
                     <?php foreach($orders as $order) { ?>
-                        
-                        <!-- TESTING PURPOSES-->
-                        <?php //print_r($order)?>
-                        
                     <tr>
                         <td><?php echo $order['usersUid']; ?></td>
                         <td><?php echo $order['itemName']; ?></td>

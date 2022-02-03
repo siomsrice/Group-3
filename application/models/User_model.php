@@ -233,8 +233,7 @@ class User_model extends CI_Model {
         $this->db->delete($this->table);
     }
 
-    public function updateuserdetails
-    (
+    public function updateuserdetails(
         $usid,$firstName,$lastName,$usersUid,$phone,$usersEmail,$address,$usersPwd,$pwdRepeat
         )
     {

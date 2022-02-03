@@ -10,8 +10,8 @@
             <div class="col-md-4 col-sm-6 col-12 pt-4">
                 <div class="card text-center bg-dark bg-opacity-50">
                     <div class="card-body">
-                        <h5 class="card-title">TITLE</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus, autem non! Ipsa sapiente totam sed nostrum eaque quasi iure enim.</p>
+                        <h5 class="card-titles">TITLE</h5>
+                        <p class="card-texts">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus, autem non! Ipsa sapiente totam sed nostrum eaque quasi iure enim.</p>
                         <a href="#" class="btn btn-secondary">Go somewhere</a>
                     </div>
                 </div>
@@ -19,8 +19,8 @@
             <div class="col-md-4 col-sm-6 col-12 pt-4">
                 <div class="card text-center bg-dark bg-opacity-50">
                     <div class="card-body">
-                        <h5 class="card-title">TITLE</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus, autem non! Ipsa sapiente totam sed nostrum eaque quasi iure enim.</p>
+                        <h5 class="card-titles">TITLE</h5>
+                        <p class="card-texts">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus, autem non! Ipsa sapiente totam sed nostrum eaque quasi iure enim.</p>
                         <a href="#" class="btn btn-secondary">Go somewhere</a>
                     </div>
                 </div>
@@ -28,8 +28,8 @@
             <div class="col-md-4 col-sm-6 col-12 pt-4">
                 <div class="card text-center bg-dark bg-opacity-50">
                     <div class="card-body">
-                        <h5 class="card-title">TITLE</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus, autem non! Ipsa sapiente totam sed nostrum eaque quasi iure enim.</p>
+                        <h5 class="card-titles">TITLE</h5>
+                        <p class="card-texts">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus, autem non! Ipsa sapiente totam sed nostrum eaque quasi iure enim.</p>
                         <a href="#" class="btn btn-secondary">Go somewhere</a>
                     </div>
                 </div>
@@ -37,8 +37,8 @@
             <div class="col-md-4 col-sm-6 col-12 pt-4">
                 <div class="card text-center bg-dark bg-opacity-50">
                     <div class="card-body">
-                        <h5 class="card-title">TITLE</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus, autem non! Ipsa sapiente totam sed nostrum eaque quasi iure enim.</p>
+                        <h5 class="card-titles">TITLE</h5>
+                        <p class="card-texts">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus, autem non! Ipsa sapiente totam sed nostrum eaque quasi iure enim.</p>
                         <a href="#" class="btn btn-secondary">Go somewhere</a>
                     </div>
                 </div>
@@ -46,8 +46,8 @@
             <div class="col-md-4 col-sm-6 col-12 pt-4">
                 <div class="card text-center bg-dark bg-opacity-50">
                     <div class="card-body">
-                        <h5 class="card-title">TITLE</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus, autem non! Ipsa sapiente totam sed nostrum eaque quasi iure enim.</p>
+                        <h5 class="card-titles">TITLE</h5>
+                        <p class="card-texts">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus, autem non! Ipsa sapiente totam sed nostrum eaque quasi iure enim.</p>
                         <a href="#" class="btn btn-secondary">Go somewhere</a>
                     </div>
                 </div>
@@ -55,8 +55,8 @@
             <div class="col-md-4 col-sm-6 col-12 pt-4">
                 <div class="card text-center bg-dark bg-opacity-50">
                     <div class="card-body">
-                        <h5 class="card-title">TITLE</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus, autem non! Ipsa sapiente totam sed nostrum eaque quasi iure enim.</p>
+                        <h5 class="card-titles">TITLE</h5>
+                        <p class="card-texts">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus, autem non! Ipsa sapiente totam sed nostrum eaque quasi iure enim.</p>
                         <a href="#" class="btn btn-secondary">Go somewhere</a>
                     </div>
                 </div>

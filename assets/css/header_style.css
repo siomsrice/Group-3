@@ -23,6 +23,33 @@ font-size:16px;
 color:#555555; 
 
 }
+
+.display-4{
+  color:whitesmoke;
+}
+
+.card-txt {
+  color: #000;
+}
+
+.card-text {
+  color: #000;
+}
+
+.card-texts {
+  color: whitesmoke;
+}
+
+.card-title {
+  font-weight: 100;
+  color: #000;
+}
+
+.card-title {
+  font-weight: 100;
+  color: whitesmoke;
+}
+
 .horizontal-line {
   width:65%;
   border-top: 1px solid #080000;

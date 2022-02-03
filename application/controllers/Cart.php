@@ -43,5 +43,4 @@ class Cart extends CI_Controller
         redirect(base_url().'cart');
     }
 
-
 }

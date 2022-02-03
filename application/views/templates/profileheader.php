@@ -50,8 +50,8 @@
 
                                 <a href="<?php echo base_url()."index.php/home/index"?>" class="nav-item nav-link mx-4"><i class="bi bi-house"> Home</a></i>
                                 <a href="<?php echo base_url()."index.php/home/about"?>" class="nav-item nav-link mx-3">About</a>
-                                <a href="<?php echo base_url()."index.php/supplier/index"?>" class="nav-item nav-link mx-3">Suppliers</a>
-                                <a href="<?php echo base_url()."index.php/users/viewUser"?>" class="nav-item nav-link mx-3">Profile</a>
+                                <a href="<?php echo base_url()."cart"?>" class="nav-item nav-link mx-3">Cart</a>
+                                <a href="<?php echo base_url()."orders"?>" class="nav-item nav-link mx-3">Orders</a>
                                 <a href="<?php echo base_url()."index.php/users/logout"?>" class="nav-item nav-link mx-3">Sign Out</a>
                             </div>
                         </div>
