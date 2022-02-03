@@ -514,8 +514,10 @@ class Admin extends CI_Controller {
         $this->load->helper('url');
 		$this->load->library('session');
 		$this->load->model('order_model'); 
-        $reslt=$this->order_model->getorderdetail($uid);
-        $this->load->view('admin/orders/processOrder',['order'=>$reslt]);
+        $this->load->model('user_model');
+        $data['user']=$this->order_model->getoruserdetail($uid);
+        $data['order']=$this->order_model->getorderdetail($uid);
+        $this->load->view('admin/orders/processOrder',$data);
 	}
 	// For data updation
 	public function updateorderdetails()
@@ -524,22 +526,19 @@ class Admin extends CI_Controller {
 		{
 			$usid=$this->input->post('userid');
 			$status=$this->input->post('status');
-            $quantity=$this->input->post('quantity');
-			$price=$this->input->post('price');
-            $orderdate=$this->input->post('orderdate');
-			$this->load->model('order_model');
+            $this->load->model('user_model');
 			$this->user_model->updateorderdetails
 			(
-                $status,$usid,$usersId,$quantity,$price,$orderdate
-            );
+				$usid,$status
+			);
 			
 		} 
 		else 
 		{
-	       
-		    redirect('admin/manageuser');
+	        $this->session->set_flashdata('error', 'Wrong input !!');
+		    redirect('admin/dashboard');
         }
-     }
+    }	
     public function TupdateOrder($id){
         $this->load->model('Order_model');
         $this->load->helper('date');

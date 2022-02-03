@@ -46,7 +46,7 @@
                         <?php //print_r($order)?>
                         
                     <tr>
-                        <td><?php echo $order['usersUid']; ?></td>
+                        <td><?php echo $order['usersId']; ?></td>
                         <td><?php echo $order['itemName']; ?></td>
                         <td><?php echo $order['quantity']; ?></td>
                         <td><?php echo "₱".$order['price']; ?></td>

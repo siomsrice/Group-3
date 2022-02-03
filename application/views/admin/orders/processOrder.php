@@ -7,7 +7,7 @@
         <tbody>
             <tr>
                 <td><strong>Ordered By:</strong></td>
-                <td><?php echo $order['usersUid'] ?></td>
+                <td><?php echo $order['usersId'] ?></td>
             </tr>
             <tr>
                 <td><strong>Food Item:</strong></td>
@@ -30,21 +30,19 @@
                 <td><?php echo $order['orderDate'] ?></td>
             </tr>
 
-            <form method="post" action="<?php echo base_url().'admin/updateOrder/'.$order['OrderId']; ?>">
+            <form action="<?php echo base_url().'admin/updateorderdetails/'?>" method="POST" class="" id="myForm"  enctype="multipart/form-data">
                 <tr>
                     <td><strong>Select Order Status:</strong></td>
                     <td>
-                        <select class="form-control" name="status" id="dropdownHolder">
-                            <option>Select Status</option>
-                            <option value="in process">In Process</option>
-                            <option value="closed">Closed/Delivered</option>
-                            <option value="rejected">Rejected</option>
-                        </select>
+                    <div class="mb-3">
+          <label for="" class="form-label">status</label>
+          <input type="text" class="form-control" value="<?php echo $order->status;?>" name="status" >
+        </div>
                     </td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td><button class="btn btn-primary btn-block" type="submit">Submit</button></td>
+                    <td><button class="btn btn-primary btn-block" type="submit" name="updatestatus">Submit</button></td>
                 </tr>
             </form>
         </tbody>

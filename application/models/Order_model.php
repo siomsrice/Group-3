@@ -113,5 +113,41 @@ class Order_model extends CI_Model {
         $result = $this->db->get()->row_array();
         return $result;
     }
+    public function updateorderdetails(
+        $usid,$status
+        )
+    {
+        $data=array(
+                    
+                    'status' =>$status
+                   
+                );
+        
+            $sql_query=$this->db->where('orderId', $usid)
+                        ->update($this->table, $data); 
+
+            if($sql_query)
+            {
+                $this->session->set_flashdata('success', 'Record updated successful');
+                redirect('admin/dashboard');
+            }
+            else
+            {
+                $this->session->set_flashdata('error', 'Somthing went worng. Error!!');
+                redirect('admin/dashboard');
+            }
+    
+    }
+    public function getorderdetail($uid)
+    {
+        $ret=$this->db->select
+        (
+        'orderId,usersId,itemName,quantity,price,address,status,orderDate'
+        )
+        ->where('OrderId',$uid)
+        ->get($this->table);
+        return $ret->row();    
+    }
+    
 
 }
