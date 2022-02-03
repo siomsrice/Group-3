@@ -289,11 +289,11 @@ class Admin extends CI_Controller {
         $this->load->view('admin/items/edit',['row'=>$reslt]);
 	}
 	// For data updation
-	public function updateitemdetails()
+    public function updateitemdetails()
 	{
       if($this->input->post('updateitems'))
 		{
-			$usid=$this->input->post('userid');
+            $usid=$this->input->post('userid');
 			$supplierId=$this->input->post('supplierId');
             $itemName=$this->input->post('itemName');
 			$itemBrand=$this->input->post('itemBrand');
@@ -301,7 +301,7 @@ class Admin extends CI_Controller {
             $itemDesc=$this->input->post('itemDesc');
 			$price=$this->input->post('price');
 			$this->load->model('item_model');
-			$this->item_model->updatedetails
+			$this->item_model->updateitemdetails
 			(
 				$supplierId,$usid,$itemName,$itemBrand,$itemType,$itemDesc,$price
             );
@@ -309,10 +309,11 @@ class Admin extends CI_Controller {
 		} 
 		else 
 		{
-	       
-		    redirect('admin/manageitems');
+	        $this->session->set_flashdata('error', 'Wrong input !!');
+		    redirect('admin/dashboard');
         }
-     }
+    }	
+	
 
      public function deleteItem($id)
      {
@@ -465,9 +466,9 @@ class Admin extends CI_Controller {
                 $usid=$this->input->post('userid');
                 $Name=$this->input->post('Name');
                 $Email=$this->input->post('Email');
-                $Phone=$this->input->post('Phone');
-                $Address=$this->input->post('address');
-                $Url=$this->input->post('Url');
+                $Phone=$this->input->post('Url');
+                $Address=$this->input->post('Phone');
+                $Url=$this->input->post('Address');
                 $this->load->model('supplier_model');
                 $this->supplier_model->updatesupplierdetails
                 (
@@ -509,26 +510,36 @@ class Admin extends CI_Controller {
         $this->load->view('admin/orders/list', $data);
     }
 
-    public function processOrder($id){
-        $this->load->model('Order_model');
-        $this->load->helper('date');
-
-        $order = $this->Order_model->getOrderByUser($id);
-        $data['order'] = $order;
-        $this->load->view('admin/orders/processOrder', $data);
-    }
-
-    public function updateOrder($id){
-        $this->load->model('Order_model');
-        $this->load->helper('date');
-
-        $order['status'] = $this->input->post('status');
-        $orderData['successDate'] = date('Y-m-d H:i:s', now());
-        $this->Order_model->update($id, $order);
-        $this->session->set_flashdata('success', 'Order processed successfully');
-        redirect(base_url().'admin/orders');
-    }
-
+    public function processOrder($uid){
+        $this->load->helper('url');
+		$this->load->library('session');
+		$this->load->model('order_model'); 
+        $reslt=$this->order_model->getorderdetail($uid);
+        $this->load->view('admin/orders/processOrder',['order'=>$reslt]);
+	}
+	// For data updation
+	public function updateorderdetails()
+	{
+      if($this->input->post('updatestatus'))
+		{
+			$usid=$this->input->post('userid');
+			$status=$this->input->post('status');
+            $quantity=$this->input->post('quantity');
+			$price=$this->input->post('price');
+            $orderdate=$this->input->post('orderdate');
+			$this->load->model('order_model');
+			$this->user_model->updateorderdetails
+			(
+                $status,$usid,$usersId,$quantity,$price,$orderdate
+            );
+			
+		} 
+		else 
+		{
+	       
+		    redirect('admin/manageuser');
+        }
+     }
     public function TupdateOrder($id){
         $this->load->model('Order_model');
         $this->load->helper('date');

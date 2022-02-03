@@ -56,17 +56,17 @@ class Item_model extends CI_Model {
         return $addItem?true:false; 
     } 
     public function updateitemdetails(
-        $usid,$supplierId,$itemName,$itemBrand,$itemType,$itemDesc,$price
+        $supplierId,$usid,$itemName,$itemBrand,$itemType,$itemDesc,$price
         )
     {
         $data=array(
                     
-                    'itemName' =>$itemName,
                     'supplierId' =>$supplierId,
+                    'itemName' =>$itemName,
                     'itemBrand' =>$itemBrand,
-                    'itemType' =>$itemType,
-                    'price' =>$price,
-                    'itemDesc' =>$itemDesc
+                    'itemType'=>$itemType,
+                    'itemDesc'=>$itemDesc,
+                    'price'=>$price,
                     
                 );
         
@@ -76,12 +76,12 @@ class Item_model extends CI_Model {
             if($sql_query)
             {
                 $this->session->set_flashdata('success', 'Record updated successful');
-                redirect('admin/manageitems');
+                redirect('admin/manageItems');
             }
             else
             {
                 $this->session->set_flashdata('error', 'Somthing went worng. Error!!');
-                redirect('admin/manageitems');
+                redirect('admin/dashboard');
             }
     
     }
@@ -89,12 +89,13 @@ class Item_model extends CI_Model {
     {
         $ret=$this->db->select
         (
-        'itemId,itemName,itemBrand,itemType,itemDesc,price'
+        'supplierId,itemId,itemName,itemBrand,itemType,itemDesc,price'
         )
         ->where('itemId',$uid)
         ->get($this->table);
         return $ret->row();    
     }
+    
     
     public function getItemId($id) 
     {

@@ -82,7 +82,6 @@ class Supplier_model extends CI_Model {
         $data=array(
                     
                     'Name' =>$Name,
-                    
                     'Email' =>$Email,
                     'Url' =>$Url,
                     'Phone' =>$Phone,
@@ -109,7 +108,7 @@ class Supplier_model extends CI_Model {
     {
         $ret=$this->db->select
         (
-        'SupplierId,Name,Email,Url,Phone,Address,file_name'
+        'SupplierId,Name,Email,Url,Phone,Address'
         )
         ->where('SupplierId',$uid)
         ->get($this->table);

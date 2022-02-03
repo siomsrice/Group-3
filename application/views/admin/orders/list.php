@@ -51,28 +51,7 @@
                         <td><?php echo $order['quantity']; ?></td>
                         <td><?php echo "₱".$order['price']; ?></td>
                         <td><?php echo $order['address']; ?></td>
-
-                        <?php $status=$order['status'];
-						if($status=="" or $status=="NULL") { ?>
-                        <td> <button type="button" class="btn btn-secondary" style="font-weight:bold;"><i class="fas fa-bars"></i> Dispatch</button></td>
-                        <?php }
-
-                        if($status=="in process") { ?>
-                        <td> <button type="button" class="btn btn-warning"><span class="fa fa-cog fa-spin"
-                                    aria-hidden="true"></span> On the way!</button></td>
-                        <?php }
-
-                        if($status=="closed") { ?>
-                        <td> <button type="button" class="btn btn-success"><span class="fa fa-check-circle"aria-hidden="true"></span> Delivered</button>
-                        </td> <?php } ?> <?php 
-                        
-                        if($status=="rejected") { ?>
-                        <td> <button type="button" class="btn btn-danger"><i class="far fa-times-circle"></i> Cancelled</button>
-                        </td>
-                        <?php } ?>
-
-
-
+                        <td><?php echo $order['status']; ?></td>
                         <td><?php echo $order['orderDate']; ?></td>
                         <td>
 
