@@ -15,7 +15,7 @@
             <div class="carousel-caption d-none d-md-block">
                 <p style=" position:relative; right:120px; bottom:20px;">
                    
-                    <a href="#" class="btn btn-outline-dark">
+                    <a href="#" class="btn btn-dark">
                         Order Now 
                     </a>
                     <a href="#" class="btn btn-danger">
@@ -32,7 +32,7 @@
             <div class="carousel-caption d-none d-md-block">
                 <p style=" position:relative; left:120px; bottom:20px;">
                    
-                    <a href="#" class="btn btn-outline-dark">
+                    <a href="#" class="btn btn-dark">
                         Order Now 
                     </a>
                     <a href="#" class="btn btn-danger">
@@ -48,7 +48,7 @@
             <div class="carousel-caption d-none d-md-block">
                 <p style=" position:relative; right:120px; bottom:20px;">
                    
-                    <a href="#" class="btn btn-outline-dark">
+                    <a href="#" class="btn btn-dark">
                         Order Now 
                     </a>
                     <a href="#" class="btn btn-danger">
@@ -64,7 +64,7 @@
               <div class="carousel-caption d-none d-md-block">
                 <p style=" position:relative; left:120px; bottom:20px;">
                    
-                    <a href="#" class="btn btn-outline-dark">
+                    <a href="#" class="btn btn-dark">
                         Order Now 
                     </a>
                     <a href="#" class="btn btn-danger">
@@ -168,7 +168,7 @@
                         <img class="card-img-top" src="<?php echo base_url().'public/uploads/items/'.$image; ?>">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center">
-                                <h4 class="card-title"><?php echo $item['itemName']; ?></h4>
+                                <h4 class="card-title" style=color:black><?php echo $item['itemName']; ?></h4>
                                 <h4 class="text-muted"><b>₱<?php echo $item['price']; ?></b></h4>
                             </div>
                             <p class="card-txt fw-bold"><?php echo $item['itemDesc']; ?></p>

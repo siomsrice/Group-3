@@ -64,7 +64,7 @@
             <th width="10%" style="color:white">Item</th>
             <th width="10%" style="color:white">Price</th>
             <th width="10%" style="color:white">Quantity</th>
-            <th width="10%" style="color:white">Subtotal</th>
+            <th width="10%" style="color:white">Total</th>
             <th width="10%" style="color:white">Action</th>
         </tr>
     </thread>
@@ -119,7 +119,7 @@
         <label class="product-price">Price</label>
         <label class="product-quantity">Quantity</label>
         <label class="product-removal">Remove</label>
-        <label class="product-line-price">Subtotal</label>
+        <label class="product-line-price">Total</label>
     </div>
     <!-- ROW 2  -->
     <div class="product">
@@ -135,7 +135,8 @@
 				</div>
 				<div class="product-price"><?php echo '₱'. $item['price']; ?></div>
 				<div class="product-quantity">
-					<input type="number" value="<?php echo $item['qty']; ?>" min="1">
+                <input type="number" class="form-control text-center" value="<?php echo $item['qty']; ?>"
+                            onChange="updateCartItem(this, '<?php echo $item['rowid'] ?>')">
 				</div>
 				<div class="product-removal">
 					<a href="<?php echo base_url().'cart/removeItem/'.$item['rowid'] ; ?>" class="btn btn-danger"
@@ -154,20 +155,21 @@
 	</div>
 
 	<div class="totals">
+    <div class="totals-item totals-item-total">
+        <label>Subotal</label>
+        <div class="totals-value" id="cart-total"><?php echo '₱'.$this->cart->total();?></div>
+      </div>
+      <div class="totals-item totals-item-total">
+        <label>Shipping Fee</label>
+        <div class="totals-value" id="cart-total">₱0</div>
+      </div>
       <div class="totals-item totals-item-total">
         <label>Grand Total</label>
         <div class="totals-value" id="cart-total"><?php echo '₱'.$this->cart->total();?></div>
       </div>
-      <div class="totals-item totals-item-total">
-        <div class="totals-value" >
-            <p style=" position:relative; left:12px; bottom:20px;">
-                   
-                <a href="<?php echo base_url().'checkout';?>" class="btn btn-success">
+      <a href="<?php echo base_url().'checkout';?>" class="btn btn-success" style=float:right>
                    Checkout
                 </a>
-            </p>
-        </div> 
-      </div>
     </div>
 
 	<p style=" position:relative; right:12px; bottom:20px;">
