@@ -28,10 +28,6 @@ class Order_model extends CI_Model {
         $this->db->select('OrderId, itemName, quantity, price, status, orderDate, usersUid, address');
         $this->db->from($this->table);
         $this->db->join($this->tabl, 'users.usersId = order.usersId');
-
-        //Test if get is working
-        //echo $this->db->last_query(). '<br>'; 
-
         return $query->result_array();
     }
 
@@ -50,8 +46,6 @@ class Order_model extends CI_Model {
     public function getUserOrder($id){
         $this->db->where('usersId', $id);
         $this->db->order_by('OrderId', 'DESC');
-        //$query = $this->db->get($this->table);
-        //return $query->result_array();
         $result = $this->db->get($this->table)->result_array();
         return $result;
     }

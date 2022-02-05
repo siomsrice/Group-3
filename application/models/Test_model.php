@@ -21,13 +21,6 @@ class Test_model extends CI_Model {
             return true;
 
         return false;
-
-        /*$this->db->select('*')
-                ->from($this->table)
-                ->where('usersUid', $usersUid);
-        
-        $this->db->get();*/
-
     }
 
     public function checkEmailExists($email){
@@ -72,10 +65,6 @@ class Test_model extends CI_Model {
         }
         
         $query = $this->db->get($this->table);
-
-        //Test if get is working
-        //echo $this->db->last_query(). '<br>'; 
-
         return $query->result_array();
     }
 }

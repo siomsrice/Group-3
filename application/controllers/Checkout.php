@@ -3,8 +3,7 @@ defined('BASEPATH') OR exit ('No direct script access allowed');
 
 class Checkout extends CI_Controller {
 
-    public function index() 
-    {
+    public function index() {
         $this->load->helper('date');
         $this->load->library('cart');
         $this->load->model('order_model');
@@ -35,8 +34,7 @@ class Checkout extends CI_Controller {
         $this->load->view('front/checkout', $output);
     }
 
-    public function placeOrder($usersId) 
-    {  
+    public function placeOrder($usersId) {  
         $cartItems = $this->cart->contents();
         $i = 0;
         foreach($cartItems as $item) 

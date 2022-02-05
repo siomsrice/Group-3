@@ -20,10 +20,6 @@ class Item_model extends CI_Model {
         }
         
         $query = $this->db->get($this->table);
-
-        //Test if get is working
-        //echo $this->db->last_query(). '<br>'; 
-
         return $query->result_array();
     }
 
@@ -60,11 +56,9 @@ class Item_model extends CI_Model {
     } 
 
     public function updateitemdetails(
-        $usid,$supplierId,$itemName,$itemBrand,$itemType,$itemDesc,$price
-        )
-    {
-        $data=array(
-                    
+        $usid,$supplierId,$itemName,$itemBrand,$itemType,$itemDesc,$price) {
+        
+            $data=array(
                     'itemName' =>$itemName,
                     'supplierId' =>$supplierId,
                     'itemBrand' =>$itemBrand,
@@ -89,8 +83,8 @@ class Item_model extends CI_Model {
             }
     
     }
-    public function getuserdetail($uid)
-    {
+
+    public function getuserdetail($uid) {
         $ret=$this->db->select
         (
         'itemId,itemName,itemBrand,itemType,itemDesc,price'
@@ -100,17 +94,15 @@ class Item_model extends CI_Model {
         return $ret->row();    
     }
     
-    public function getItemId($id) 
-    {
+    public function getItemId($id) {
         $this->db->where('itemId', $id);
         $items = $this->db->get($this->table)->row_array();
         return $items;
     }
    
 
-    public function deleteItem($id) 
-		{
+    public function deleteItem($id) {
 			$this->db->where('itemId',$id);
 			$this->db->delete(($this->table));
-        }
+    }
 }

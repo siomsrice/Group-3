@@ -3,10 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Users extends CI_Controller 
 {
-    public function register()
-    {
+    public function register() {
         $data = array();
-        //Print Data
+       
         $data = $this->input->post();
 
         if(isset($data) && $data != null)
@@ -17,10 +16,9 @@ class Users extends CI_Controller
         $this->load->view('front/addUser');
     }
 
-    public function login()
-    {
+    public function login() {
         $data = array();
-        //Print Data
+        
         $data = $this->input->post();
 
         if(isset($data) && $data != null)
@@ -33,7 +31,6 @@ class Users extends CI_Controller
                 $this->session->set_flashdata('error', 'Login Error');
             } else
             {
-                //print_r($return);
                 $_SESSION['usersId'] = $return[0]['usersId'];
 				$_SESSION['usersUid'] = $return[0]['usersUid'];
                 redirect(base_url().'users/viewUser');
@@ -43,9 +40,7 @@ class Users extends CI_Controller
         $this->load->view('front/login');
     }
 
-    public function viewUser()
-    {
-        //Connection to BackEnd
+    public function viewUser() {
         $this->load->model('user_model');
         $user = $this->user_model->getUsers($_SESSION['usersId']);
         
@@ -59,13 +54,10 @@ class Users extends CI_Controller
             $this->load->model('user_model');
             $this->user_model->updateUser($data);
         }
-        //Connection to FrontEnd
         $this->load->view('front/viewUser', $output);
     }
 
-    public function updateUser()
-    {
-        //Connection to BackEnd
+    public function updateUser() {
         $this->load->model('user_model');
         $user = $this->user_model->getUsers($_SESSION['usersId']);
 
@@ -83,8 +75,7 @@ class Users extends CI_Controller
         $this->load->view('front/updateUser', $output);
     }
 
-    public function deleteUser()
-    {
+    public function deleteUser() {
         //Connection to BackEnd
         $this->load->model('user_model');
         $user = $this->user_model->getUsers($_SESSION['usersId']);
@@ -113,16 +104,12 @@ class Users extends CI_Controller
         $this->load->view('front/deleteUser');
     }
 
-    public function logout()
-    {
-        session_unset('usersId');
-		session_unset('usersUid');
+    public function logout() {
 		session_destroy();
-		redirect(base_url().'users/login');
+		redirect('/');
     }
 
-    public function profile()
-    {
+    public function profile() {
             $this->load->view('front/userProfile');
     }   
 

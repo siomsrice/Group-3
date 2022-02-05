@@ -4,15 +4,8 @@ defined('BASEPATH') OR exit ('No direct script access allowed');
 class Item extends CI_Controller 
 {
 
-        function __construct()
-        {
-        parent::__construct();
-            //Load cart library
+        public function list($id) {
             $this->load->library('cart');
-        }
-
-        public function list($id)
-        {
             $this->load->model('Item_model');
             $items = $this->Item_model->getItems($id);
 
@@ -25,8 +18,8 @@ class Item extends CI_Controller
             $this->load->view('front/item', $data);
         }
 
-        public function addToCart($id)
-        {
+        public function addToCart($id) {
+            $this->load->library('cart');
             $this->load->model('Item_model');
             $items = $this->Item_model->getSingleItem($id);
             $data = array (
@@ -38,7 +31,6 @@ class Item extends CI_Controller
                 'file_name' => $items['file_name']
             );
 
-            //file_name = images
             $this->cart->insert($data);
             redirect(base_url().'cart/index');
         }

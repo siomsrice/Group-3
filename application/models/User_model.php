@@ -27,13 +27,11 @@ class User_model extends CI_Model {
             }
     
             else{
-                //Set status data to active
                 unset($data['pwdRepeat']);
-                $data['usersPwd'] = md5($data['usersPwd']);
+                $data['usersPwd'] = sha1($data['usersPwd']);
                 $data['terms'] = "Agree";
                 $data['stat'] = "Active"; 
                 
-                //Insert Data to DB
                 $this->db->insert($this->table, $data);
         }
     }
@@ -52,12 +50,6 @@ class User_model extends CI_Model {
             return true;
 
         return false;
-
-        /*$this->db->select('*')
-                ->from($this->table)
-                ->where('usersUid', $usersUid);
-        
-        $this->db->get();*/
 
     }
 
@@ -93,7 +85,7 @@ class User_model extends CI_Model {
 
         $return = $query->result_array();
         
-        if($this->checkPwdMatch($return[0]['usersPwd'], md5($pwdRepeat))){
+        if($this->checkPwdMatch($return[0]['usersPwd'], sha1($pwdRepeat))){
 			return true;
 		}
 		else{
@@ -103,9 +95,9 @@ class User_model extends CI_Model {
 
     public function login($usersUid, $usersPwd){
         $this->db->where('usersUid', $usersUid)
-                ->where('usersPwd', md5($usersPwd))
+                ->where('usersPwd', sha1($usersPwd))
                 ->or_where('usersEmail', $usersUid)
-                ->where('usersPwd', md5($usersPwd));
+                ->where('usersPwd', sha1($usersPwd));
 
         $query = $this->db->get($this->table);
         //echo $this->db->last_query(). '<br>';
@@ -170,7 +162,7 @@ class User_model extends CI_Model {
             $this->db->where('usersId', $data['usersId']);
             unset($data['usersId']);
             unset($data['pwdRepeat']);
-            $data['usersPwd'] = md5($data['usersPwd']);
+            $data['usersPwd'] = sha1($data['usersPwd']);
 
             //insert data to db
             $this->db->update($this->table, $data);

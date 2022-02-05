@@ -42,12 +42,7 @@ class Supplier_model extends CI_Model {
         return $result;
     }
 
-    /* 
-     * Fetch files data from the database 
-     * @param id returns a single record if specified, otherwise all records 
-     */ 
-    public function getRows($id = '')
-    { 
+    public function getRows($id = '') { 
        $this->db->select('Name,supplierId'); 
         $this->db->from($this->table); 
         if($id)
@@ -65,27 +60,19 @@ class Supplier_model extends CI_Model {
         return !empty($result)?$result:false; 
     } 
      
-    /* 
-     * Insert file data into the database 
-     * @param array the data for inserting into the table 
-     */ 
     public function add($data = array()){ 
         $add = $this->db->insert_batch($this->table, $data); 
         return $add?true:false; 
     } 
     
     function get_users($where_arr){
-    /* all the queries relating to the data we want to retrieve will go in here. */
 
-    $this->db->where($where_arr);
-    $this->db->select('categoryID,Name');
-    $q = $this->db->get('supplier');
+        $this->db->where($where_arr);
+        $this->db->select('categoryID,Name');
+        $q = $this->db->get('supplier');
 
-    /* after we've made the queries from the database, we will store them inside a variable called $data, and return the variable to the controller */
     if($q->num_rows() > 0)
     {
-      // we will store the results in the form of class methods by using $q->result()
-      // if you want to store them as an array you can use $q->result_array()
       foreach ($q->result_array() as $row)
       {
         $data[] = $row;
@@ -96,12 +83,10 @@ class Supplier_model extends CI_Model {
 
   public function updatesupplierdetails(
     $usid,$Name,$Email,$Url,$Phone,$Address
-    )
-{
+    ) {
     $data=array(
                 
                 'Name' =>$Name,
-                
                 'Email' =>$Email,
                 'Url' =>$Url,
                 'Phone' =>$Phone,
@@ -124,28 +109,23 @@ class Supplier_model extends CI_Model {
         }
 
 }
-    public function getsupplierdetail($uid)
-    {   
+    public function getsupplierdetail($uid) {   
         $ret=$this->db->select
-        (
-        'SupplierId,Name,Email,Url,Phone,Address,file_name'
-        )
+        ('SupplierId,Name,Email,Url,Phone,Address,file_name')
         ->where('SupplierId',$uid)
         ->get($this->table);
         return $ret->row();    
     }
 
-    public function getSupplierId($id) 
-    {
+    public function getSupplierId($id) {
         $this->db->where('SupplierId', $id);
         $supplier = $this->db->get($this->table)->row_array();
         return $supplier;
     }
 
 
-    public function deleteSupplier($id) 
-        {
+    public function deleteSupplier($id) {
             $this->db->where('SupplierId',$id);
             $this->db->delete(($this->table));
-        }
+    }
 }
