@@ -7,44 +7,63 @@
         <tbody>
             <tr>
                 <td><strong>Ordered By:</strong></td>
-                <td><?php echo $order['usersId'] ?></td>
+                <td><?php echo $order->usersId; ?></td>
             </tr>
             <tr>
                 <td><strong>Food Item:</strong></td>
-                <td><?php echo $order['itemName'] ?></td>
+                <td><?php echo $order->itemName; ?></td>
             </tr>
             <tr>
                 <td><strong>Quantity:</strong></td>
-                <td><?php echo $order['quantity'] ?></td>
+                <td><?php echo $order->quantity; ?></td>
             </tr>
             <tr>
                 <td><strong>Price:</strong></td>
-                <td><?php echo "₱".$order['price'] ?></td>
+                <td><?php echo "₱".$order->price; ?></td>
             </tr>
-            <tr>
-                <td><strong>Address:</strong></td>
-                <td><?php echo $order['address'] ?></td>
-            </tr>
+           
             <tr>
                 <td><strong>Order Date:</strong></td>
-                <td><?php echo $order['orderDate'] ?></td>
+                <td><?php echo $order->successDate; ?></td>
             </tr>
 
-            <form action="<?php echo base_url().'admin/updateorderdetails/'?>" method="POST" class="" id="myForm"  enctype="multipart/form-data">
-                <tr>
-                    <td><strong>Select Order Status:</strong></td>
-                    <td>
-                    <div class="mb-3">
-          <label for="" class="form-label">status</label>
-          <input type="text" class="form-control" value="<?php echo $order->status;?>" name="status" >
-        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><button class="btn btn-primary btn-block" type="submit" name="updatestatus">Submit</button></td>
-                </tr>
-            </form>
+            <form action="<?php echo base_url().'admin/updateorderdetails/'?>" method="POST" class="form-container mx-auto  shadow-container" id="myForm" style="width:80%" enctype="multipart/form-data">
+
+      <input type="hidden" name="userid" value="<?php echo $order->OrderId; ?>">
+        
+      <?php { ?>
+    
+      
+    <tr>
+    <td><strong>Status</strong></td>
+         <td> <select name="status" id="status"
+                    class="form-control ">
+                    <option>--Select Supplier--</option>
+                    <?php 
+                    if (!empty($status)) { 
+                        foreach($status as $data) {
+                            ?>
+                    <option value="<?php echo $data['status'];?>">
+                        <?php echo set_select('status');?>
+                        <?php echo $data['status'];?>
+                    </option>
+                    <?php }
+                    }
+                    ?>
+                </select>
+         </td>
+         
+      </tr> 
+      <tr>
+         <button type="submit" name="updatestatus" value="Save Data" class="btn btn-primary">Submit</button>
+         </tr>
+      </div> 
+         <?php } ?>
+        
+         
+        
+  </form>
+   
         </tbody>
     </table>
-</div>
+   </div>

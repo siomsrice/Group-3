@@ -104,23 +104,35 @@ class Order_model extends CI_Model {
     }
     
    
-    public function getOrderByUser($id) {
+    public function getOrderByUser($uid) {
         $this->db->select('*');
         //$this->db->select('OrderId, supplierId, itemId, users.usersId, itemName, quantity, price, status, firstName, lastName, order.orderDate, users.usersEmail, users.phone, successDate, usersUid, address');
         $this->db->from('order');
         $this->db->join('users', 'users.usersId = order.usersId');
-        $this->db->where('OrderId', $id);
+        $this->db->where('OrderId', $uid);
         $result = $this->db->get()->row_array();
         return $result;
     }
+    public function getorderdetail($uid)
+    {
+        $ret=$this->db->select
+        (
+        'OrderId,usersId,itemName, supplierId, itemId, quantity, price, status, successDate'
+        )
+        ->where('OrderId',$uid)
+        ->get($this->table);
+        return $ret->row();    
+    }
+  
     public function updateorderdetails(
         $usid,$status
         )
     {
         $data=array(
                     
-                    'status' =>$status
-                   
+                  
+                    'status'=>$status
+                    
                 );
         
             $sql_query=$this->db->where('orderId', $usid)
@@ -129,7 +141,7 @@ class Order_model extends CI_Model {
             if($sql_query)
             {
                 $this->session->set_flashdata('success', 'Record updated successful');
-                redirect('admin/dashboard');
+                redirect('admin/orders');
             }
             else
             {
@@ -138,16 +150,25 @@ class Order_model extends CI_Model {
             }
     
     }
-    public function getorderdetail($uid)
-    {
-        $ret=$this->db->select
-        (
-        'orderId,usersId,itemName,quantity,price,address,status,orderDate'
-        )
-        ->where('OrderId',$uid)
-        ->get($this->table);
-        return $ret->row();    
-    }
+    public function getRows($id = '')
+    { 
+       $this->db->select('status,statusId'); 
+        $this->db->from('status'); 
+        if($id)
+        { 
+            $this->db->where('statusId',$id); 
+            $query = $this->db->get(); 
+            $result = $query->row_array(); 
+        }
+        else
+        { 
+           
+            $query = $this->db->get(); 
+            $result = $query->result_array(); 
+        } 
+        return !empty($result)?$result:false; 
+    } 
+ 
     
 
 }

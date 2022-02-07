@@ -511,13 +511,13 @@ class Admin extends CI_Controller {
     }
 
     public function processOrder($uid){
-        $this->load->helper('url');
-		$this->load->library('session');
-		$this->load->model('order_model'); 
-        $this->load->model('user_model');
-        $data['user']=$this->order_model->getoruserdetail($uid);
-        $data['order']=$this->order_model->getorderdetail($uid);
-        $this->load->view('admin/orders/processOrder',$data);
+        $this->load->model('Order_model');
+        $this->load->helper('date');
+        $reslt=$this->Order_model->getorderdetail($uid);
+        $data['status'] = $this->Order_model->getRows(); 
+        $data['user'] = $this->Order_model->getOrderByUser($uid); 
+        $this->load->view('admin/items/supplier_name',$data);
+        $this->load->view('admin/orders/processOrder', ['order'=>$reslt]);
 	}
 	// For data updation
 	public function updateorderdetails()
@@ -526,8 +526,8 @@ class Admin extends CI_Controller {
 		{
 			$usid=$this->input->post('userid');
 			$status=$this->input->post('status');
-            $this->load->model('user_model');
-			$this->user_model->updateorderdetails
+            $this->load->model('Order_model');
+			$this->Order_model->updateorderdetails
 			(
 				$usid,$status
 			);

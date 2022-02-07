@@ -95,7 +95,16 @@ class Item_model extends CI_Model {
         ->get($this->table);
         return $ret->row();    
     }
-    
+    public function getorderdetail($id)
+    {
+        $ret=$this->db->select
+        (
+        'OrderId,status'
+        )
+        ->where('OrderId',$id)
+        ->get('order');
+        return $ret->row();    
+    }
     
     public function getItemId($id) 
     {
