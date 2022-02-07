@@ -18,5 +18,9 @@ class Home extends CI_Controller
 	public function FAQ() {
 		$this->load->view('front/faq');
 	}
+
+	public function verify(){
+        $this->load->view('front/wait');
+    }
 	
 }

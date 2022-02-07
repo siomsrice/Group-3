@@ -1,0 +1,85 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center stretch;
+    min-height: 100vh;
+    text-align: center;
+    background: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.5)),
+    url("../../public/PC_Background.jpg") center/cover no-repeat fixed;
+}
+.container{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.wrapper{
+    position: absolute;
+    top: -40px;
+    transform: scale(2);
+}
+.loader{
+    height: 25px;
+    width: 1px;
+    position: absolute;
+    animation: rotate 3.5s linear infinite;
+}
+.loader .dot{
+    top: 30px;
+    height: 5px;
+    width: 5px;
+    background: #fff;
+    border-radius: 50%;
+    position: relative;
+}
+.text{
+    position: absolute;
+    bottom: -85px;
+    font-size: 30px;
+    letter-spacing: 2px;
+    font-weight: bolder;
+    color: #fff;
+}
+@keyframes rotate{
+    30%{
+        transform: rotate(220deg);
+    }
+    40%{
+        transform: rotate(450deg);
+        opacity: 1;
+    }
+    75%{
+        transform: rotate(720deg);
+        opacity: 1;
+    }
+    76%{
+        opacity: 0;
+    }
+    100%{
+        transform: rotate(0deg);
+        opacity: 0;
+    }
+}
+.loader:nth-child(1){
+    animation-delay: 0.15s;
+}
+.loader:nth-child(2){
+    animation-delay: 0.3s;
+}
+.loader:nth-child(3){
+    animation-delay: 0.45s;
+}
+.loader:nth-child(4){
+    animation-delay: 0.6s;
+}
+.loader:nth-child(5){
+    animation-delay: 0.75s;
+}
+.loader:nth-child(6){
+    animation-delay: 0.9s;
+}

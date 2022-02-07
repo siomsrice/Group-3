@@ -14,11 +14,7 @@
             <img src="<?php echo base_url().'public/uploads/pcAlley.jpg';?>" class="d-block w-40" alt="..." height="500">
             <div class="carousel-caption d-none d-md-block">
                 <p style=" position:relative; right:120px; bottom:20px;">
-                   
-                    <a href="#" class="btn btn-dark">
-                        Order Now 
-                    </a>
-                    <a href="#" class="btn btn-danger">
+                    <a href="<?php echo base_url().'item/list/5' ?>" class="btn btn-danger">
                         View Items
                    </a>
                </p>
@@ -31,11 +27,7 @@
             <img src="<?php echo base_url().'public/uploads/pcZone.png';?>" class="d-block w-40" alt="..."  height="500">
             <div class="carousel-caption d-none d-md-block">
                 <p style=" position:relative; left:120px; bottom:20px;">
-                   
-                    <a href="#" class="btn btn-dark">
-                        Order Now 
-                    </a>
-                    <a href="#" class="btn btn-danger">
+                    <a href="<?php echo base_url().'item/list/7' ?>" class="btn btn-danger">
                         View Items
                    </a>
                </p>
@@ -47,11 +39,7 @@
             <img src="<?php echo base_url().'public/uploads/Cheapid.jpg';?>" class="d-block w-40" alt="..." height="500">
             <div class="carousel-caption d-none d-md-block">
                 <p style=" position:relative; right:120px; bottom:20px;">
-                   
-                    <a href="#" class="btn btn-dark">
-                        Order Now 
-                    </a>
-                    <a href="#" class="btn btn-danger">
+                    <a href="<?php echo base_url().'item/list/8' ?>" class="btn btn-danger">
                         View Items
                    </a>
                </p>
@@ -63,11 +51,7 @@
               <img src="<?php echo base_url().'public/uploads/RJF.jpg';?>" class="d-block w-40" alt="..." height="500">
               <div class="carousel-caption d-none d-md-block">
                 <p style=" position:relative; left:120px; bottom:20px;">
-                   
-                    <a href="#" class="btn btn-dark">
-                        Order Now 
-                    </a>
-                    <a href="#" class="btn btn-danger">
+                    <a href="<?php echo base_url().'item/list/6' ?>" class="btn btn-danger">
                         View Items
                    </a>
                </p>

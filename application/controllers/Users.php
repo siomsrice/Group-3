@@ -11,7 +11,12 @@ class Users extends CI_Controller
         if(isset($data) && $data != null)
         {
             $this->load->model('user_model');
-            $this->user_model->createUser($data);
+            $userdata = $this->user_model->createUser($data);
+            $user = $this->user_model->getUsers($userdata);
+            $_SESSION['user'] = $user[0];
+            if (is_int($userdata)) {
+                redirect('users/mail/' . $userdata);
+            } 
         }
         $this->load->view('front/addUser');
     }
@@ -111,7 +116,66 @@ class Users extends CI_Controller
             $this->load->view('front/userProfile');
     }   
 
-    
+
+
+
+    public function mail($id=null){
+        $email['protocol'] = 'smtp';
+        $email['smtp_host'] = 'smtp.gmail.com';
+        $email['smtp_user'] = "jaimehanzs@gmail.com";
+        $email['smtp_pass'] = 'tljukbvvxgpbluzd';
+        $email['smtp_port'] = '587';
+        $email['smtp_crypto'] = 'tls';
+
+        $this->load->library('email', $email);
+
+        $this->email->set_newline("\r\n");
+
+        $this->load->model('user_model');
+        $user = $this->user_model->getUsers($id);
+
+        $email = $user[0]['usersEmail'];
+
+        $this->email->set_mailtype('html');
+        $this->email->subject('Account Verification');
+        $this->email->to($email);
+        $this->email->from('jaimehanzs@gmail.com');
+        $this->email->message('Your account has been successfully created! Please <strong> <a href="' . base_url() . 'users/login/' . $email . '/' . '">click here</a></strong> to activate your account');
+        $this->email->send();
+
+        redirect('home/verify');
+    }
+
+    public function ForgotPassword($id) {
+        $email['protocol'] = 'smtp';
+        $email['smtp_host'] = 'smtp.gmail.com';
+        $email['smtp_user'] = "jaimehanzs@gmail.com";
+        $email['smtp_pass'] = 'tljukbvvxgpbluzd';
+        $email['smtp_port'] = '587';
+        $email['smtp_crypto'] = 'tls';
+
+        $this->load->library('email', $email);
+
+        $this->email->set_newline("\r\n");
+
+        $this->load->model('user_model');
+        $user = $this->user_model->getUsers($id);
+
+        //$pwd = $this->user_model->
+
+        $email = $user[0]['usersPwd'];
+
+        $this->email->set_mailtype('html');
+        $this->email->subject('Account Verification');
+        $this->email->to($email);
+        $this->email->from('jaimehanzs@gmail.com');
+        $this->email->message('Please edit it as soon as possible. This is your account password: ' );
+        $this->email->send();
+
+        redirect('home/verify');
+    }
+
+	
 }
 
    

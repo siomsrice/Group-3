@@ -33,6 +33,7 @@ class User_model extends CI_Model {
                 $data['stat'] = "Active"; 
                 
                 $this->db->insert($this->table, $data);
+                return $this->db->insert_id();
         }
     }
     
@@ -117,6 +118,16 @@ class User_model extends CI_Model {
         $query = $this->db->get($this->table);
         return $query->result_array();
     }
+
+    public function getPwd($pwd = null){
+        if(isset($pwd) && $pwd != null){
+            $this->db->where('usersPwd', $pwd);
+        }
+        
+        $query = $this->db->get($this->table);
+        return $query->result_array();
+    }
+
 
     public function getUser($id) {
         $this->db->where('usersId', $id);
@@ -269,9 +280,8 @@ class User_model extends CI_Model {
    
 
     public function deleteItem($id) 
-		{
-			$this->db->where('usersId',$id);
-			$this->db->delete(($this->table));
-        }
-    
+	{
+		$this->db->where('usersId',$id);
+		$this->db->delete(($this->table));
+    }
 }

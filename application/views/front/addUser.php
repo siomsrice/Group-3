@@ -76,7 +76,7 @@
                         <!-- Terms & Services Checkbox -->
                         <div class="formcheck text-center">
                             <input class="form-check-input" required name="terms" type="checkbox" id="flexCheckIndeterminate">
-                            <label class="form-check-label" for="flexCheckIndeterminate"> I Agree to <a href="#">PC Builder's Terms</a> <br> and <a href="#">Service & Privacy Policy</a></label>
+                            <label class="form-check-label" for="flexCheckIndeterminate"> I Agree to <a href="<?php echo base_url()."index.php/home/FAQ"?>">PC Builder's Terms</a> <br> and <a href="<?php echo base_url()."index.php/home/FAQ"?>">Service & Privacy Policy</a></label>
                         </div> 
                        
                         <!-- Submit -->
