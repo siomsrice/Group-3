@@ -10,8 +10,9 @@
                 <div class="col-lg-6 p-4 mt-4">
                     <h1 class="text-center">PC BUILDER</h1>
                     <h5 class="text-center">Want a Custom PC Without the Expensive Price tag?</h5>
-                    <img src="<?php echo base_url(); ?>styles/PCB_SamplePic.png" alt="" class="col-12 pt-5 mx-auto d-block">
+                    <img src="<?php echo base_url('public/PCB_SamplePic.png'); ?>" alt="" class="col-12 pt-5 mx-auto d-block">
                 </div>
+
 				<div class="col-lg-5 bg-dark bg-opacity-50 p-3 mt-5 mx-auto">
 					<h3 class="pb-4 text-center">Create an Account</h3>
                 <?=isset($message) ? $message: "";?>
@@ -22,7 +23,7 @@
 								<input type="text" required name="firstName" placeholder="First Name"  class="form-control my-3 p-2">
 							</div>
 						</div>
-
+						
                         <!-- Last Name -->
                         <div class="form-row">
 							<div class="col-9 mx-auto">
@@ -40,7 +41,7 @@
                         <!-- Telephone -->
                         <div class="form-row">
 							<div class="col-9 mx-auto">
-								<input type="tel" required name="phone" placeholder="Phone Number (09XX-XXX-XXXX)"  class="form-control my-3 p-2" pattern="[0-9]{4}-[0-9]{3}-[0-9]{4}">
+								<input type="tel" required name="phone" placeholder="Phone Number (09XX-XXX-XXXX)"  class="form-control my-3 p-2" <?php /*pattern="[0-9]{4}-[0-9]{3}-[0-9]{4}"*/?>>
 							</div>
 						</div>
 
@@ -75,13 +76,13 @@
                         <!-- Terms & Services Checkbox -->
                         <div class="formcheck text-center">
                             <input class="form-check-input" required name="terms" type="checkbox" id="flexCheckIndeterminate">
-                            <label class="form-check-label" for="flexCheckIndeterminate"> I Agree to PC Builder's Terms <br> and Service & Privacy Policy</label>
+                            <label class="form-check-label" for="flexCheckIndeterminate"> I Agree to <a href="#">PC Builder's Terms</a> <br> and <a href="#">Service & Privacy Policy</a></label>
                         </div> 
                        
                         <!-- Submit -->
 						<div class="form-row">
 							<div class="col-lg-12 text-center">
-                                <input type="submit" class="mt-3 mb-4 col-7" value="Submit"></input>
+                                <input type="submit" class="mt-3 mb-4 col-7 bg-primary" value="Submit"></input>
 							</div>
 						</div>
 						<p class="text-center">Have an Account? <a href="<?php echo base_url(); ?>users/login"><span>Login</span></a></p>
@@ -95,6 +96,7 @@
 	<?php
     	$this->load->view('templates/footer');
 	?>
+
 
     <!-- Script for Checkbox -->
     <script>

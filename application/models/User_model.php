@@ -100,8 +100,6 @@ class User_model extends CI_Model {
                 ->where('usersPwd', sha1($usersPwd));
 
         $query = $this->db->get($this->table);
-        //echo $this->db->last_query(). '<br>';
-
         $return = $query->result_array();
 
         if(count($return) > 0 && $return[0]['stat'] == 'Active'){
@@ -117,10 +115,6 @@ class User_model extends CI_Model {
         }
         
         $query = $this->db->get($this->table);
-
-        //Test if get is working
-        //echo $this->db->last_query(). '<br>'; 
-
         return $query->result_array();
     }
 
@@ -164,9 +158,7 @@ class User_model extends CI_Model {
             unset($data['pwdRepeat']);
             $data['usersPwd'] = sha1($data['usersPwd']);
 
-            //insert data to db
             $this->db->update($this->table, $data);
-
         }
     }
 

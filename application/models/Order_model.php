@@ -99,4 +99,59 @@ class Order_model extends CI_Model {
         return $result;
     }
 
+    public function getorderdetail($uid) {
+        $ret=$this->db->select
+        (
+        'OrderId,usersId,itemName, supplierId, itemId, quantity, price, status, successDate'
+        )
+        ->where('OrderId',$uid)
+        ->get($this->table);
+        return $ret->row();    
+    }
+  
+    public function updateorderdetails(
+        $usid,$status
+        )
+    {
+        $data=array(
+                    
+                  
+                    'status'=>$status
+                    
+                );
+        
+            $sql_query=$this->db->where('orderId', $usid)
+                        ->update($this->table, $data); 
+
+            if($sql_query)
+            {
+                $this->session->set_flashdata('success', 'Record updated successful');
+                redirect('admin/orders');
+            }
+            else
+            {
+                $this->session->set_flashdata('error', 'Somthing went worng. Error!!');
+                redirect('admin/dashboard');
+            }
+    
+    }
+    public function getRows($id = '')
+    { 
+       $this->db->select('status,statusId'); 
+        $this->db->from('status'); 
+        if($id)
+        { 
+            $this->db->where('statusId',$id); 
+            $query = $this->db->get(); 
+            $result = $query->row_array(); 
+        }
+        else
+        { 
+           
+            $query = $this->db->get(); 
+            $result = $query->result_array(); 
+        } 
+        return !empty($result)?$result:false; 
+    } 
+
 }

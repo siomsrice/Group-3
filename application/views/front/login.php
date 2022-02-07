@@ -31,8 +31,8 @@
                         </div>
 						<div class="form-row">
 							<div class="col-lg-12 d-flex justify-content-around">
-								<input type="reset" class="mt-3 mb-4 col-3">
-                                <input type="submit" value ="login" class="mt-3 mb-4 col-3">
+								<input type="reset" class="mt-3 mb-4 col-3 bg-primary">
+                                <input type="submit" value ="Login" class="mt-3 mb-4 col-3 bg-primary">
 							</div>
 						</div>
 						<p class="text-center">Don't have an account? <a href="<?php echo base_url()."index.php/users/register";?>"><span>Sign Up</span></a></p>

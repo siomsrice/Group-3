@@ -507,13 +507,11 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
   color: #fff;
 }
 /*
-
 /* FONT COLOR HOME ABOUT ETC.*/
 .navbar-dark .navbar-nav .nav-link {
   color: rgba(255, 255, 255, 0.55);
 }
 /*
-
 /* CLOSE BUTTON */
 .btn-close {
   box-sizing: content-box;
@@ -1471,7 +1469,7 @@ p{
 .product .product-price:before,
 .product .product-line-price:before,
 .totals-value:before {
-  content: "$";
+  content: "";
 }
 
 
@@ -1523,7 +1521,7 @@ label {
   line-height: 1.4em;
 }
 .product .product-quantity input {
-  width: 40px;
+  width: 70px;
 }
 .product .remove-product {
   border: 0;
@@ -1654,5 +1652,3 @@ label {
     width: 40%;
   }
 }
-
-

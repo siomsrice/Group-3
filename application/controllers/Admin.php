@@ -3,9 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Admin extends CI_Controller 
 {
-    public function login(){
+    public function index(){
         $data = array();
-        //Print Data
         $data = $this->input->post();
 
         if(isset($data) && $data != null)
@@ -24,19 +23,6 @@ class Admin extends CI_Controller
             }
         }
         $this->load->view('admin/login');
-    }
-
-    public function createUser() {
-        $data = array();
-
-        $data = $this->input->post();
-
-        if(isset($data) && $data != null)
-        {
-            $this->load->model('user_model');
-            $this->user_model->createUser($data);
-        }
-        $this->load->view('admin/user/addUser');
     }
 
     public function dashboard() {
@@ -144,7 +130,7 @@ class Admin extends CI_Controller
         redirect(base_url().'admin/manageuser');
     }
 
-	public function updateuserdetails(){
+	public function updateuserdetails() {
       if($this->input->post('updateuser'))
 		{
 			$usid=$this->input->post('userid');
@@ -251,8 +237,7 @@ class Admin extends CI_Controller
 	}
     
 
-    public function edititem($uid)
-    {
+    public function edititem($uid)  {
         $this->load->helper('url');
 		$this->load->library('session');
 		$this->load->model('Item_model'); 
@@ -263,8 +248,7 @@ class Admin extends CI_Controller
         $this->load->view('admin/items/edit',['row'=>$reslt]);
     }
 
-    public function updateitemdetails()
-	{
+    public function updateitemdetails() {
         if($this->input->post('updateitems'))
 		{
             $usid=$this->input->post('userid');
@@ -288,7 +272,7 @@ class Admin extends CI_Controller
         }
     }
 
-    public function deleteitem($id){
+    public function deleteitem($id) {
         $this->load->model('item_model');
         $items = $this->item_model->getItemId($id);
 
@@ -303,8 +287,7 @@ class Admin extends CI_Controller
         redirect(base_url().'admin/dashboard'); 
     }
 
-    public function category()
-    {
+    public function category() {
         $this->load->model('Category_model');
         $cats = $this->Category_model->getCategory();
         $cats_data['cats'] = $cats;
@@ -312,8 +295,7 @@ class Admin extends CI_Controller
         $this->load->view('admin/category/list', $cats_data);
     }
 
-    public function createcategory()
-    {
+    public function createcategory() {
         $this->load->model('Category_model');
         $this->load->library('form_validation');
         $this->form_validation->set_rules('category', 'Category', 'trim|required');
@@ -332,7 +314,7 @@ class Admin extends CI_Controller
     }
 
 
-    public function supplier(){
+    public function supplier()  {
         $this->load->model('Supplier_model');
         $supplier = $this->Supplier_model->getSuppliers();
         $supply_data['supplier'] = $supplier;
@@ -340,7 +322,7 @@ class Admin extends CI_Controller
         $this->load->view('admin/supplier/list', $supply_data);
     }
 
-    public function createsupplier(){
+    public function createsupplier()    {
         $this->load->helper('url');
 		$this->load->library('session');
 		$this->load->model('Supplier_Model'); 
@@ -405,8 +387,7 @@ class Admin extends CI_Controller
 	}
 
 
-    public function supplieredit($uid)
-    {
+    public function supplieredit($uid)  {
         $this->load->helper('url');
 		$this->load->library('session');
         $this->load->model('Supplier_Model');
@@ -414,8 +395,7 @@ class Admin extends CI_Controller
         $this->load->view('admin/supplier/edit',['row'=>$reslt]);
     }
 
-    public function updatedesuppliertails()
-	{
+    public function updatedesuppliertails() {
         if($this->input->post('updatesupplier'))
 		{
                 $usid=$this->input->post('userid');
@@ -439,8 +419,7 @@ class Admin extends CI_Controller
          
      }
 
-    public function supplierdelete($id)
-    {
+    public function supplierdelete($id) {
         $this->load->model('Supplier_Model');
         $supplier = $this->Supplier_Model->getSupplierId($id);
      
@@ -455,8 +434,7 @@ class Admin extends CI_Controller
         redirect(base_url().'admin/supplier');
     }
 
-    public function orders()
-    {
+    public function orders()    {
         $this->load->model('Order_model');
         $this->load->model('User_model');
         $this->load->helper('date');
@@ -466,38 +444,34 @@ class Admin extends CI_Controller
         $this->load->view('admin/orders/list', $data);
     }
 
-    public function processOrder($id)
-    {
+    public function processOrder($uid)   {
         $this->load->model('Order_model');
         $this->load->helper('date');
-
-        $order = $this->Order_model->getOrderByUser($id);
-        $data['order'] = $order;
-        $this->load->view('admin/orders/processOrder', $data);
+        $reslt=$this->Order_model->getorderdetail($uid);
+        $data['status'] = $this->Order_model->getRows(); 
+        $data['user'] = $this->Order_model->getOrderByUser($uid); 
+        $this->load->view('admin/items/supplier_name',$data);
+        $this->load->view('admin/orders/processOrder', ['order'=>$reslt]);
     }
 
-    public function updateOrder($id)
-    {
-        $this->load->model('Order_model');
-        $this->load->helper('date');
-
-        $order['status'] = $this->input->post('status');
-        $orderData['successDate'] = date('Y-m-d H:i:s', now());
-        $this->Order_model->update($id, $order);
-        $this->session->set_flashdata('success', 'Order processed successfully');
-        redirect(base_url().'admin/orders');
-    }
-
-    public function TupdateOrder($id)
-    {
-        $this->load->model('Order_model');
-        $this->load->helper('date');
-
-        $order['status'] = $this->input->post('status');
-        $orderData['successDate'] = date('Y-m-d H:i:s', now());
-        $this->Order_model->update($id, $order);
-        $this->session->set_flashdata('success', 'Order processed successfully');
-        redirect(base_url().'admin/orders');
+	// For data updation
+	public function updateorderdetails() {
+      if($this->input->post('updatestatus'))
+		{
+			$usid=$this->input->post('userid');
+			$status=$this->input->post('status');
+            $this->load->model('Order_model');
+			$this->Order_model->updateorderdetails
+			(
+				$usid,$status
+			);
+			
+		} 
+		else 
+		{
+	        $this->session->set_flashdata('error', 'Wrong input !!');
+		    redirect('admin/dashboard');
+        }
     }
 
 }

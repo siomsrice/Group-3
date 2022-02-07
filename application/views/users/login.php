@@ -31,11 +31,11 @@
                         </div>
 						<div class="form-row">
 							<div class="col-lg-12 d-flex justify-content-around">
-								<input type="reset" class="mt-3 mb-4 col-3">
-                                <input type="submit" value ="login" class="mt-3 mb-4 col-3">
+								<input type="reset" class="mt-3 mb-4 col-3 bg-primary">
+                                <input type="submit" value ="Login" class="mt-3 mb-4 col-3 bg-primary">
 							</div>
 						</div>
-						<p class="text-center">Don't have an account? <a href="#"><span>Sign Up</span></a></p>
+						<p class="text-center">Don't have an account? <a href="<?php echo base_url()."index.php/users/register";?>"><span>Sign Up</span></a></p>
 					</form>
 				</div>
 			</div>
@@ -46,10 +46,16 @@
 
 
     <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-</body>
-</html>
 
 <?php
     	$this->load->view('templates/footer');
 	?>
+
+
+
+<!--<?=isset($message) ? $message: "";?>
+<form method="POST">
+    Enter Username: <input type="text" name="usersUid"><br/>
+    Enter Password: <input type="password" name="usersPwd"><br/>
+    <input type="submit" value="login">
+</form>

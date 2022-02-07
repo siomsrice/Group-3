@@ -71,12 +71,10 @@ class Users extends CI_Controller
             $this->load->model('user_model');
             $this->user_model->updateUser($data);
         }
-        //Connection to FrontEnd
         $this->load->view('front/updateUser', $output);
     }
 
     public function deleteUser() {
-        //Connection to BackEnd
         $this->load->model('user_model');
         $user = $this->user_model->getUsers($_SESSION['usersId']);
   
@@ -113,7 +111,7 @@ class Users extends CI_Controller
             $this->load->view('front/userProfile');
     }   
 
-
+    
 }
 
    

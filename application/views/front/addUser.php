@@ -76,13 +76,13 @@
                         <!-- Terms & Services Checkbox -->
                         <div class="formcheck text-center">
                             <input class="form-check-input" required name="terms" type="checkbox" id="flexCheckIndeterminate">
-                            <label class="form-check-label" for="flexCheckIndeterminate"> I Agree to PC Builder's Terms <br> and Service & Privacy Policy</label>
+                            <label class="form-check-label" for="flexCheckIndeterminate"> I Agree to <a href="#">PC Builder's Terms</a> <br> and <a href="#">Service & Privacy Policy</a></label>
                         </div> 
                        
                         <!-- Submit -->
 						<div class="form-row">
 							<div class="col-lg-12 text-center">
-                                <input type="submit" class="mt-3 mb-4 col-7" value="Submit"></input>
+                                <input type="submit" class="mt-3 mb-4 col-7 bg-primary" value="Submit"></input>
 							</div>
 						</div>
 						<p class="text-center">Have an Account? <a href="<?php echo base_url(); ?>users/login"><span>Login</span></a></p>

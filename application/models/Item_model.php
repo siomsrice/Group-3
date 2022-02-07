@@ -105,4 +105,15 @@ class Item_model extends CI_Model {
 			$this->db->where('itemId',$id);
 			$this->db->delete(($this->table));
     }
+
+    public function getorderdetail($id)
+    {
+        $ret=$this->db->select
+        (
+        'OrderId,status'
+        )
+        ->where('OrderId',$id)
+        ->get('order');
+        return $ret->row();    
+    }
 }
