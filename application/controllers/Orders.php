@@ -7,6 +7,7 @@ class Orders extends CI_Controller
     {
         $this->load->model('user_model');
         $this->load->model('Order_model');
+        $this->load->model('Item_model');
 
         $data = array();
        
@@ -14,26 +15,28 @@ class Orders extends CI_Controller
         $user = $this->user_model->getUsers($_SESSION['usersId']);
 
         $order = $this->Order_model->getUserOrder($_SESSION['usersId']);
+
+        $items = $this->Item_model->getItem();
         
         $output['user'] = $user[0];
+        $data['items'] = $items;
         $data['orders'] = $order;
         $this->load->view('front/orders', $data);
     }
 
-    public function deleteOrder($id) {
-        $this->load->model('Order_model');
-        $order = $this->Order_model->getOrder($id);
+    public function deleteorder($id) {
+        $this->load->model('order_model');
+        $items = $this->order_model->getOrder($id);
 
-        if(empty($order)) {
-            $this->session->set_flashdata('error_msg', 'Order not found');
-            redirect(base_url().'order');
+        if(!empty($items)) 
+        {
+           $this->order_model->deleteOrder($id);
+           $this->session->set_flashdata('itemdel_success', 'Item Deleted successfully');
+           redirect(base_url().'orders');
+            
         }
-
-        $this->Order_model->deleteOrder($id);
-
-        $this->session->set_flashdata('success_msg', 'Your order cancelled successfully');
-        redirect(base_url().'order');
-
+        $this->session->set_flashdata('error', 'Item not found');
+        redirect(base_url().'users/viewUser'); 
     }
 
     public function invoice($id) {

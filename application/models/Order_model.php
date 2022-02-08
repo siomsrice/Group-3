@@ -59,8 +59,9 @@ class Order_model extends CI_Model {
         $this->db->where('OrderId', $id);
         $this->db->delete($this->table);
     }
-
+    
     public function insertOrder($orderData){
+        //$orderData['status'] = "In Process";
         $this->db->insert_batch($this->table, $orderData);
         return $this->db->insert_id();
     }

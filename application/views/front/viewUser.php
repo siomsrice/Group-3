@@ -9,7 +9,7 @@
             <div class="col-md-4 mt-1">
                 <div class="card text-center sidebar bg-dark bg-opacity-75">
                     <div class="card-body">
-                        <img src="images/Temp Pic.jpg" alt="Temporary Picture" class="rounded-circle my-4" width="210">
+                        <img src="<?php echo base_url().'public/uploads/anon.png';?>" alt="Temporary Picture" class="rounded-circle my-4" width="210">
                         <div class="mt-3 row leftbox">
                             <h3 class="col-12"><?php echo $user['firstName'] ?> <?php echo $user['lastName'] ?></h3>
                             <a href="<?php echo base_url()."users/viewUser"?>" class="col-12 p-2">My Account</a>

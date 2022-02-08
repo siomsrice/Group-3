@@ -94,8 +94,6 @@ class Users extends CI_Controller
 
             if($return == true)
             {
-                session_unset('usersId');
-                session_unset('usersUid');
                 session_destroy();
                 redirect(base_url());
             }
@@ -115,8 +113,6 @@ class Users extends CI_Controller
     public function profile() {
             $this->load->view('front/userProfile');
     }   
-
-
 
 
     public function mail($id=null){

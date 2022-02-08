@@ -14,10 +14,10 @@
             <img src="<?php echo base_url().'public/uploads/'.$img; ?>" class="card-img-top" />
             <div class="card-body">
                 <h4 class="card-title font-weight-bold text-primary"><?php echo $sup['Name']; ?></h4>
-                Address: <p class="card-text lead"><?php echo $sup['Address']; ?></p>
-                Website URL: <p class="card-text lead"><?php echo $sup['Url']; ?></p>
-                Email: <p class="card-text lead"><?php echo $sup['Email']; ?></p>
-                Contact No.: <p class="card-text lead"><?php echo $sup['Phone']; ?></p>
+                <p class="card-text lead">Address: <?php echo $sup['Address']; ?></p>
+                <p class="card-text lead">Website URL: <?php echo $sup['Url']; ?></p>
+                <p class="card-text lead">Email: <?php echo $sup['Email']; ?></p>
+                <p class="card-text lead">Contact No: +<?php echo $sup['Phone']; ?></p>
             </div>
         </div>
     </div>

@@ -1,7 +1,12 @@
 <?php
     $this->load->view('templates/header');
 ?>
-
+<style>
+table {
+  border-collapse: separate;
+  border-spacing: 0 15px;
+}
+</style>
 <!-- testing -->
 <h1 style="color:white">Shopping Cart</h1>
 <table>
@@ -43,21 +48,30 @@
                 </tr>
                 <?php } ?>
             </tbody>
+            
             <tfoot>
+           
                 <tr>
-                    <td colspan="3"></td>
-                    <?php  if($this->cart->total_items() > 0) { ?>
-                    <td class="text-left" style= color:white;position:relative;right:-150px; >SubTotal: <b><?php echo '₱'.$this->cart->total();?></b></td>
-                    <?php } ?>
+                    
                 </tr>
 
                 <tr>
                     <td colspan="3"></td>
                     <?php  if($this->cart->total_items() > 0) { ?>
-                    <td class="text-left" style= color:white;position:relative;right:-119px; >Shipping Fee: ₱0<b></b></td>
+                    <td class="text-left" style= color:white;position:relative;right:-165px; >SubTotal: <b><?php echo '₱'.$this->cart->total();?></b></td>
+                    <?php } ?>
+                </tr>
+
+                
+
+                <tr>
+                    <td colspan="3"></td>
+                    <?php  if($this->cart->total_items() > 0) { ?>
+                    <td class="text-left" style= color:white;position:relative;right:-165px; >Shipping Fee: ₱49.99<b></b></td>
                     <?php } ?>
                 </tr>
                     
+                
                 <tr>
                     <td><a href="<?php echo base_url().'home' ?>" class="btn btn-sm btn-warning"><i class="fas fa-angle-left"></i> Continue Ordering</a></td>
                     <td colspan="3"></td>
@@ -67,9 +81,17 @@
                     <?php } ?>
                 </tr>
                
-            </tfoot>
+            </tfoot>    
 </table>
 
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 
 <?php
     	$this->load->view('templates/footer');

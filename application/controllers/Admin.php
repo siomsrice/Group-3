@@ -4,6 +4,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Admin extends CI_Controller 
 {
     public function index(){
+       redirect('admin/login');
+    }
+    public function login(){
         $data = array();
         $data = $this->input->post();
 
@@ -472,6 +475,21 @@ class Admin extends CI_Controller
 	        $this->session->set_flashdata('error', 'Wrong input !!');
 		    redirect('admin/dashboard');
         }
+    }
+
+    public function deleteorder($id) {
+        $this->load->model('order_model');
+        $items = $this->order_model->getOrder($id);
+
+        if(!empty($items)) 
+        {
+           $this->order_model->deleteOrder($id);
+           $this->session->set_flashdata('itemdel_success', 'Item Deleted successfully');
+           redirect(base_url().'admin/orders');
+            
+        }
+        $this->session->set_flashdata('error', 'Item not found');
+        redirect(base_url().'admin/dashboard'); 
     }
 
 }
