@@ -38,8 +38,11 @@
                 <?php if ($status == "" or $status == "NULL"){ ?>
                     <td class="text-right">Processing</td>
 
-                <?php } else if($status != "" or $status != "NULL") { ?>
-            
+                <?php } else if($status == "In Process") { ?>
+                <td class="text-right">On the way!</td>
+               
+                <?php }  else if($status != "" or $status != "NULL") {?>
+
                     <td class="text-right"><?php echo $order['status']; ?></td>
                 <?php } ?>
 

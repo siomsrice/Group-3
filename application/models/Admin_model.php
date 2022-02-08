@@ -30,16 +30,4 @@ class Admin_model extends CI_Model {
         return $result;
     }
 
-    public function mostOrderItem() {
-        $sql = 'SELECT u.supplierId, r.Name, u.price, u.itemName, 
-        MAX(u.quantity) AS quantity, 
-        SUM(price) AS total
-        FROM order AS u
-        INNER JOIN supplier as r
-        ON u.supplierId = r.supplierId
-        GROUP BY u.supplierId';
-
-        $query = $this->db->query($sql);
-        return $query->result();
-    }
 }

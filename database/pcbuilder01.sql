@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 05, 2022 at 01:35 PM
+-- Generation Time: Feb 08, 2022 at 09:37 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.30
 
@@ -134,29 +134,37 @@ CREATE TABLE `order` (
   `supplierId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `order`
+-- Table structure for table `pin`
 --
 
-INSERT INTO `order` (`OrderId`, `usersId`, `itemId`, `itemName`, `price`, `quantity`, `status`, `orderDate`, `successDate`, `supplierId`) VALUES
-(1, 0, 2, 'testing2', 45, 1, NULL, '2022-01-23 13:14:45', '2022-01-23 05:14:45', 2),
-(2, 21, 2, 'testing2', 45, 1, NULL, '2022-01-23 14:47:14', '2022-01-23 06:47:14', 2),
-(3, 21, 2, 'testing2', 45, 1, NULL, '2022-01-23 14:47:52', '2022-01-23 06:47:52', 2),
-(4, 21, 1, 'hahahha', 23, 1, NULL, '2022-01-23 14:47:52', '2022-01-23 06:47:52', 2),
-(5, 21, 3, 'shabu', 500, 1, NULL, '2022-01-23 14:48:38', '2022-01-23 06:48:38', 3),
-(6, 21, 3, 'shabu', 500, 1, NULL, '2022-01-23 14:50:26', '2022-01-23 06:50:26', 3),
-(7, 21, 1, 'hahahha', 23, 1, NULL, '2022-01-24 02:13:07', '2022-01-23 18:13:07', 2),
-(8, 21, 4, 'pictest1', 3000, 1, NULL, '2022-01-24 02:13:25', '2022-01-23 18:13:25', 3),
-(9, 21, 1, 'hahahha', 23, 1, NULL, '2022-01-24 02:20:11', '2022-01-23 18:20:11', 2),
-(10, 21, 1, 'hahahha', 23, 1, NULL, '2022-01-24 04:57:56', '2022-01-23 20:57:56', 2),
-(11, 21, 2, 'testing2', 45, 1, NULL, '2022-01-24 04:59:52', '2022-01-23 20:59:52', 2),
-(12, 21, 4, 'pictest1', 3000, 1, NULL, '2022-01-24 05:11:51', '2022-01-23 21:11:51', 3),
-(13, 19, 3, 'shabu', 500, 1, NULL, '2022-01-24 10:57:27', '2022-01-24 02:57:27', 3),
-(14, 27, 5, 'Josh', 10000000, 1, NULL, '2022-01-29 06:58:47', '2022-01-28 22:58:47', 4),
-(15, 27, 5, 'Josh', 10000000, 1, NULL, '2022-01-29 07:31:59', '2022-01-28 23:31:59', 4),
-(16, 27, 1, 'hahahha', 23, 1, NULL, '2022-01-29 07:56:13', '2022-01-28 23:56:13', 2),
-(17, 27, 3, 'shabu', 500, 1, NULL, '2022-01-29 09:32:04', '2022-01-29 01:32:04', 3),
-(18, 21, 1, 'hahahha', 23, 1, NULL, '2022-02-03 09:09:40', '2022-02-03 01:09:40', 2);
+CREATE TABLE `pin` (
+  `pinId` int(11) NOT NULL,
+  `pin` varchar(256) NOT NULL,
+  `usersId` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `status`
+--
+
+CREATE TABLE `status` (
+  `statusId` int(11) NOT NULL,
+  `status` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `status`
+--
+
+INSERT INTO `status` (`statusId`, `status`) VALUES
+(1, 'In Process'),
+(2, 'Closed/Delivered'),
+(3, 'Rejected');
 
 -- --------------------------------------------------------
 
@@ -197,7 +205,7 @@ CREATE TABLE `users` (
   `usersEmail` varchar(128) NOT NULL,
   `usersUid` varchar(128) NOT NULL,
   `usersPwd` varchar(128) NOT NULL,
-  `phone` int(11) NOT NULL,
+  `phone` int(64) NOT NULL,
   `address` varchar(512) NOT NULL DEFAULT 'n/a',
   `usertype` enum('Buyer','Seller','Buyer/Seller') NOT NULL,
   `lastName` varchar(256) NOT NULL,
@@ -206,25 +214,6 @@ CREATE TABLE `users` (
   `terms` enum('Agree') NOT NULL,
   `file_name` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`usersId`, `firstName`, `usersEmail`, `usersUid`, `usersPwd`, `phone`, `address`, `usertype`, `lastName`, `stat`, `pwdRepeat`, `terms`, `file_name`) VALUES
-(1, 'Jaime Hanz', 'jaimehanzs@gmail.com', 'roove', '123', 2147483647, 'address', '', 'Sibucao', 'Active', '123', 'Agree', ''),
-(2, 'hanz sibucao', 'jaimehanz.sibucao@tup.edu.ph', 'test', '$2y$10$sPE0.I85X8DsP.FOx5BHjOjSwPfC..vMTVnT/UnJW2/daithqJEQy', 0, 'n/a', '', '', NULL, '', 'Agree', ''),
-(9, 'update', 'update@gmail.com', 'updatetest', '$2y$10$XDRvaaNXqfPI.6W7uPVsKuMwZGbH2lj3//SINhYQZVBoZEPcxLlXa', 0, 'n/a', '', '', NULL, '', 'Agree', ''),
-(12, 'dbeaver', 'dbeaver@gmail.com', 'dbeavs', '$2y$10$hNolWKBvf7/kZv5vQW6knujRI9f8yyqnXOSzi0yJ3VWd0AEecUJuG', 0, 'n/a', '', '', NULL, '', 'Agree', ''),
-(19, 'firstname', 'email@gmail.com', 'username4', '202cb962ac59075b964b07152d234b70', 123, '123', 'Buyer', 'lastname', 'Active', '', 'Agree', ''),
-(20, 'asd', 'gmail@gmail.com', 'testtt', '202cb962ac59075b964b07152d234b70', 123, 'address', 'Buyer', 'zxc', 'Active', '', 'Agree', ''),
-(21, 'newfirstname1', 'newemail1@gmail.com', 'newsername1', '202cb962ac59075b964b07152d234b70', 12345, 'new address', 'Buyer', 'newlastname1', 'Active', '', 'Agree', ''),
-(22, 'namename', 'mail@gmail.com', 'useruser', '202cb962ac59075b964b07152d234b70', 123, 'addaddress', 'Buyer', 'sursur', 'Inactive', '', 'Agree', ''),
-(23, 'mark cedrick', 'markcedrick@gmail.com', 'markcedqt', '202cb962ac59075b964b07152d234b70', 19239821, 'mark address', 'Buyer', 'doria', 'Inactive', '', 'Agree', ''),
-(24, 'testing1', 'testing@gmail.com', 'testing3', '202cb962ac59075b964b07152d234b70', 12345, 'testingadd', 'Buyer', 'testing2', 'Active', '', 'Agree', ''),
-(25, 'admintesting', 'admikntest3@gmail.com', 'admintest3', '202cb962ac59075b964b07152d234b70', 123, 'admin address', 'Buyer', 'admintest', 'Active', '', 'Agree', ''),
-(26, 'asdfsadfsad', 'easdsafdsa@gmail.com', 'fsdafsdafsad', '202cb962ac59075b964b07152d234b70', 1231231, 'sadfsafdsa', 'Buyer', 'fsdfsdafsad', 'Active', '', 'Agree', ''),
-(27, 'Josh', 'josh.sibucao@gmail.com', 'blackpepperpizza', '202cb962ac59075b964b07152d234b70', 123456, 'address', 'Buyer', 'Sibucao', 'Active', '', 'Agree', '');
 
 --
 -- Indexes for dumped tables
@@ -259,6 +248,18 @@ ALTER TABLE `items`
 --
 ALTER TABLE `order`
   ADD PRIMARY KEY (`OrderId`);
+
+--
+-- Indexes for table `pin`
+--
+ALTER TABLE `pin`
+  ADD PRIMARY KEY (`pinId`);
+
+--
+-- Indexes for table `status`
+--
+ALTER TABLE `status`
+  ADD PRIMARY KEY (`statusId`);
 
 --
 -- Indexes for table `supplier`
@@ -304,7 +305,19 @@ ALTER TABLE `items`
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-  MODIFY `OrderId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `OrderId` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `pin`
+--
+ALTER TABLE `pin`
+  MODIFY `pinId` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `status`
+--
+ALTER TABLE `status`
+  MODIFY `statusId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `supplier`
@@ -316,7 +329,7 @@ ALTER TABLE `supplier`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `usersId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `usersId` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

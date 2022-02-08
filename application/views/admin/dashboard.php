@@ -94,6 +94,42 @@
             </div>     
         </div>
     <!-- Dashboard End -->
-</div>
+
+    <!-- TABLE 1 START -->
+    <div class="row m-5">
+            <div class="col-lg-6">
+                <div>
+                    <h3 class="text-center">Supplier Report</h3>
+                    <table class="table text-center bg-dark bg-opacity-50">
+                        <thead>
+                            <th>ID Number</th>
+                            <th>Supplier Name</th>
+                            <th>Total Sales</th>    
+                        </thead>
+                        <tbody>
+                            <?php if(!empty($supReport)) {?>
+                            <?php foreach($supReport as $report) { ?>
+                            <tr>
+                                <td><?php echo $report->supplierId; ?></td>
+                                <td><?php echo $report->Name; ?></td>
+                                <td><?php echo $report->price; ?></td>
+                            </tr>
+                          <?php } ?>
+                          <?php } else { ?>
+                            </tbody>
+                            <tr>
+                                <td>No Records Found</td>
+                            </tr>
+                        <?php } ?>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    <!-- TABLE 1 END -->
+
+</main>
 
 
+
+                            

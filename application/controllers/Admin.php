@@ -50,6 +50,7 @@ class Admin extends CI_Controller
 
             $supReport = $this->Admin_model->getSupReport();
             $data['supReport'] = $supReport; 
+            
             $this->load->view('admin/dashboard', $data);
         }
     }

@@ -139,7 +139,7 @@ class Users extends CI_Controller
         $this->email->message('Your account has been successfully created! Please <strong> <a href="' . base_url() . 'users/login/' . $email . '/' . '">click here</a></strong> to activate your account');
         $this->email->send();
 
-        redirect('home/verify');
+        redirect('verify');
     }
 
     public function ForgotPassword($id) {

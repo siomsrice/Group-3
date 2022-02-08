@@ -76,7 +76,7 @@ table {
                     <td><a href="<?php echo base_url().'home' ?>" class="btn btn-sm btn-warning"><i class="fas fa-angle-left"></i> Continue Ordering</a></td>
                     <td colspan="3"></td>
                     <?php  if($this->cart->total_items() > 0) { ?>
-                    <td class="text-left" style= color:white;position:relative;right:95px; >Grand Total: <b><?php echo '₱'.$this->cart->total();?></b></td>
+                    <td class="text-left" style= color:white;position:relative;right:151px; >Grand Total: <b><?php echo '₱'.$this->cart->total();?></b></td>
                     <td><a href="<?php echo base_url().'checkout';?>" class="btn btn-sm btn-success btn-block">Checkout <i class="fas fa-angle-right"></i></a></td>
                     <?php } ?>
                 </tr>

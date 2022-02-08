@@ -61,24 +61,23 @@ class Order_model extends CI_Model {
     }
     
     public function insertOrder($orderData){
-        //$orderData['status'] = "In Process";
         $this->db->insert_batch($this->table, $orderData);
         return $this->db->insert_id();
     }
 
     public function countOrder(){
-        $query = $this->db->get($this->table);
+        $query = $this->db->get('order');
         return $query->num_rows();
     }
 
     public function countPendingOrders(){
-        $this->db->where('status', 'closed');
+        $this->db->where('status', 'in process');
         $query = $this->db->get($this->table);
         return $query->num_rows();
     }
 
     public function countDeliveredOrders(){
-        $this->db->where('status', 'closed');
+        $this->db->where('status', 'closed/delivered');
         $query = $this->db->get($this->table);
         return $query->num_rows();
     }
